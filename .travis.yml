@@ -9,16 +9,10 @@ env:
   - MONGODB_PORT_27017_TCP_ADDR=127.0.0.1
 
 before_install:
-  # https://github.com/mattn/goveralls/issues/20
-  #- go get golang.org/x/tools/cmd/cover
-  #- go get github.com/modocache/gover
   - go get github.com/mattn/goveralls
 
 script:
-  #- go test -v -covermode=count -coverprofile=coverage.out $(go list ./... | grep -v /vendor/)
   - go test -v $(go list ./... | grep -v /vendor/)
 
 after_success:
-  #- $HOME/gopath/bin/gover
-  #- $HOME/gopath/bin/goveralls -coverprofile=gover.coverprofile -service travis-ci
   - COVERALLS=true ./test-coverage.sh

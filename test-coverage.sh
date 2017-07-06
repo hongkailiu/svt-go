@@ -5,7 +5,7 @@
 
 echo "mode: set" > acc.out
 
-while read dir;
+while read -r dir;
 do
     if ls "${dir}"/*.go &> /dev/null; then
         return_val="$(go test -coverprofile=profile.out "${dir}")"
@@ -26,9 +26,8 @@ EOF
 
 
 if [[ -n "$COVERALLS" ]]; then
-    echo "aaa"
 	"${HOME}/gopath/bin/goveralls" -coverprofile=acc.out -service travis-ci
 fi
 
-rm -rf ./profile.out
-rm -rf ./acc.out
+rm -f ./profile.out
+rm -f ./acc.out

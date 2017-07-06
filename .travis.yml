@@ -9,8 +9,16 @@ go:
 before_install:
   #- go get -v github.com/golang/lint/golint
   #- go get golang.org/x/tools/cmd/cover
+  # https://github.com/mattn/goveralls/issues/20
+  - go get code.google.com/p/go.tools/cmd/cover
+  - go get github.com/modocache/gover
   - go get github.com/mattn/goveralls
 
 script:
-  - go test -v -covermode=count -coverprofile=coverage.out $(go list ./... | grep -v /vendor/)
+  #- go test -v -covermode=count -coverprofile=coverage.out $(go list ./... | grep -v /vendor/)
+  - go test -v $(go list ./... | grep -v /vendor/)
   - $HOME/gopath/bin/goveralls -coverprofile=coverage.out -service=travis-ci
+
+after_success:
+  - gover
+  - $HOME/gopath/bin/goveralls -coverprofile=gover.coverprofile -service travis-ci

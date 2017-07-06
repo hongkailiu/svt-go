@@ -5,6 +5,7 @@ import (
 	//"github.com/hongkailiu/test-go/stringutil"
 	"github.com/op/go-logging"
 	"os"
+	"github.com/hongkailiu/svt-go/oc"
 )
 
 var log = logging.MustGetLogger("svt")
@@ -31,6 +32,10 @@ func main() {
 	log.Error("err")
 	log.Critical("crit")
 
+
 	//fmt.Printf("hello, world\n")
 	//fmt.Printf(stringutil.Reverse("!oG ,olleH"))
+
+	response :=oc.GetResponse("{\"apiVersion\": \"v1\"}");
+	log.Critical(response.APIVersion)
 }

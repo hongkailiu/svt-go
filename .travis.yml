@@ -8,7 +8,7 @@ go:
 
 before_install:
   # https://github.com/mattn/goveralls/issues/20
-  - go go get golang.org/x/tools/cmd/cover
+  - go get golang.org/x/tools/cmd/cover
   - go get github.com/modocache/gover
   - go get github.com/mattn/goveralls
 

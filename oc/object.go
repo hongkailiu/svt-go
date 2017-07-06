@@ -1,13 +1,6 @@
 package oc
 
 import (
-//"fmt"
-//"github.com/hongkailiu/test-go/stringutil"
-//"github.com/op/go-logging"
-//"os"
-)
-import (
-//"fmt"
 	"encoding/json"
 )
 

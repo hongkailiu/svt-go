@@ -1,0 +1,171 @@
+{
+  "apiVersion": "v1",
+  "items": [
+    {
+      "apiVersion": "v1",
+      "kind": "Pod",
+      "metadata": {
+        "annotations": {
+          "kubernetes.io/limit-ranger": "LimitRanger plugin set: cpu, memory request for container deployment; cpu, memory limit for container deployment",
+          "openshift.io/deployment.name": "jenkins-1",
+          "openshift.io/scc": "restricted"
+        },
+        "creationTimestamp": "2017-07-05T23:53:04Z",
+        "labels": {
+          "openshift.io/deployer-pod-for.name": "jenkins-1"
+        },
+        "name": "jenkins-1-deploy",
+        "namespace": "calculator-monitor-proj",
+        "resourceVersion": "507503062",
+        "selfLink": "/api/v1/namespaces/calculator-monitor-proj/pods/jenkins-1-deploy",
+        "uid": "163267a1-61dd-11e7-9997-0a69cdf75e6f"
+      },
+      "spec": {
+        "activeDeadlineSeconds": 3600,
+        "containers": [
+          {
+            "env": [
+              {
+                "name": "KUBERNETES_MASTER",
+                "value": "https://ip-172-31-61-172.us-west-2.compute.internal"
+              },
+              {
+                "name": "OPENSHIFT_MASTER",
+                "value": "https://ip-172-31-61-172.us-west-2.compute.internal"
+              },
+              {
+                "name": "BEARER_TOKEN_FILE",
+                "value": "/var/run/secrets/kubernetes.io/serviceaccount/token"
+              },
+              {
+                "name": "OPENSHIFT_CA_DATA",
+                "value": "-----BEGIN CERTIFICATE-----\nMIIC6jCCAdKgAwIBAgIBATANBgkqhkiG9w0BAQsFADAmMSQwIgYDVQQDDBtvcGVu\nc2hpZnQtc2lnbmVyQDE0OTMzMzU1ODIwHhcNMTcwNDI3MjMyNjIyWhcNMjIwNDI2\nMjMyNjIzWjAmMSQwIgYDVQQDDBtvcGVuc2hpZnQtc2lnbmVyQDE0OTMzMzU1ODIw\nggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDPUg0F78yfoFVJp20knL1j\nuhLqh/MTu81CJXabjVHBte5bf4iPx6Y03FWbihFIkqO0LqSOVGafKhZPGRKPcQ4I\nsnz+SF05WTZVFCFh/sv1Zq2u8ZVdmaSIswlG7iws4TAyTSQoZQreWBb5URg5hV3o\nk+KE23oSOEC5sxsIgvEsFp4S0JvUxj0yspjkuCQu6k11N3OkPnYd3r8TYYA0FqzO\nrTFAf9PihMXnDo3mZUKKFS1pQnDgYXxcLV9WPpKOUqMr2ejU0g7S78zPXUfHMOnx\n9pVxOAOUl62HZGgnPJ3NQchKfhe621Doi0quUPm4S2zKbIFvjx2mX+lmBtes1KbX\nAgMBAAGjIzAhMA4GA1UdDwEB/wQEAwICpDAPBgNVHRMBAf8EBTADAQH/MA0GCSqG\nSIb3DQEBCwUAA4IBAQBWkKw3HobKxLsWmZpabJiHWUyxbvihsCICjuqTnewNNWao\nIJOofFV02Lc1BVaSBgiPeGLHh6KtDmX37YfHrNDaC8GOIzyTIsFFBRVUz599mt3d\nGmE8P3NkebWWc24crUlBR8aW9JQxcANnXRNszb0uKYIRw0ew8rpTfEZTHJRNFdUZ\nMMq3a6EytlaZET8nGMHd8mUBrtZtNGY960+ZzkAn4oQwEbNQpdu5f48pbOcRWi59\nM3QcgEqKs/AezFClo18O1L2ECR9JAOEu/nScaZQIcYcYkCPJEOjUuqjXwuHuT8kG\nehiZQzwqOJHbJOFlp4wkRxg8h72wISmaNuvhBsEO\n-----END CERTIFICATE-----\n"
+              },
+              {
+                "name": "OPENSHIFT_DEPLOYMENT_NAME",
+                "value": "jenkins-1"
+              },
+              {
+                "name": "OPENSHIFT_DEPLOYMENT_NAMESPACE",
+                "value": "calculator-monitor-proj"
+              }
+            ],
+            "image": "registry.ops.openshift.com/openshift3/ose-deployer:v3.5.5.28",
+            "imagePullPolicy": "Always",
+            "name": "deployment",
+            "resources": {
+              "limits": {
+                "cpu": "1",
+                "memory": "512Mi"
+              },
+              "requests": {
+                "cpu": "60m",
+                "memory": "307Mi"
+              }
+            },
+            "securityContext": {
+              "capabilities": {
+                "drop": [
+                  "KILL",
+                  "MKNOD",
+                  "NET_RAW",
+                  "SETGID",
+                  "SETUID",
+                  "SYS_CHROOT"
+                ]
+              },
+              "privileged": false,
+              "runAsUser": 1099070000,
+              "seLinuxOptions": {
+                "level": "s0:c315,c80"
+              }
+            },
+            "terminationMessagePath": "/dev/termination-log",
+            "volumeMounts": [
+              {
+                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                "name": "deployer-token-7dz9t",
+                "readOnly": true
+              }
+            ]
+          }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "imagePullSecrets": [
+          {
+            "name": "deployer-dockercfg-4kqnh"
+          }
+        ],
+        "nodeName": "ip-172-31-54-180.us-west-2.compute.internal",
+        "nodeSelector": {
+          "type": "compute"
+        },
+        "restartPolicy": "Never",
+        "securityContext": {
+          "fsGroup": 1099070000,
+          "seLinuxOptions": {
+            "level": "s0:c315,c80"
+          }
+        },
+        "serviceAccount": "deployer",
+        "serviceAccountName": "deployer",
+        "terminationGracePeriodSeconds": 10,
+        "volumes": [
+          {
+            "name": "deployer-token-7dz9t",
+            "secret": {
+              "defaultMode": 420,
+              "secretName": "deployer-token-7dz9t"
+            }
+          }
+        ]
+      },
+      "status": {
+        "conditions": [
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2017-07-05T23:53:04Z",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2017-07-05T23:53:21Z",
+            "status": "True",
+            "type": "Ready"
+          },
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2017-07-05T23:53:04Z",
+            "status": "True",
+            "type": "PodScheduled"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "containerID": "docker://9b285ad4ea239c28ff85fa01ee7ea4075dbb6a2ddfe3c765e34b2a0d56f02577",
+            "image": "registry.ops.openshift.com/openshift3/ose-deployer:v3.5.5.28",
+            "imageID": "docker-pullable://registry.ops.openshift.com/openshift3/ose-deployer@sha256:687bc966373751a73632c276dc73037730fe4b3ebf5f65fb3a1787cb5d757f8e",
+            "lastState": {},
+            "name": "deployment",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2017-07-05T23:53:20Z"
+              }
+            }
+          }
+        ],
+        "hostIP": "172.31.54.180",
+        "phase": "Running",
+        "podIP": "10.131.137.107",
+        "startTime": "2017-07-05T23:53:04Z"
+      }
+    }
+  ],
+  "kind": "List",
+  "metadata": {},
+  "resourceVersion": "",
+  "selfLink": ""
+}

@@ -15,7 +15,6 @@ before_install:
 script:
   #- go test -v -covermode=count -coverprofile=coverage.out $(go list ./... | grep -v /vendor/)
   - go test -v $(go list ./... | grep -v /vendor/)
-  - $HOME/gopath/bin/goveralls -coverprofile=coverage.out -service=travis-ci
 
 after_success:
   - $HOME/gopath/bin/gover

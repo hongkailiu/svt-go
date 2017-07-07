@@ -1,12 +1,7 @@
 package oc
 
 import (
-	//"encoding/json"
 	"strings"
-	//"errors"
-	//"fmt"
-	//"errors"
-	//"fmt"
 	"errors"
 	"fmt"
 )
@@ -64,17 +59,3 @@ type Object struct {
 type Pod struct {
 	Object
 }
-
-/*func GetResponse(responseString string) error {
-
-	// Get byte slice from string.
-	bytes := []byte(responseString)
-
-	// Unmarshal string into structs.
-	var response Response
-	err := json.Unmarshal(bytes, &response)
-	if err != nil {
-		return err
-	}
-	return response
-}*/

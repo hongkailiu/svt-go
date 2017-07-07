@@ -8,6 +8,7 @@ import (
 	"github.com/hongkailiu/svt-go/oc"
 	"github.com/stretchr/testify/assert"
 	"encoding/json"
+	"fmt"
 )
 
 func TestUnmarshalJSON(t *testing.T) {
@@ -41,4 +42,21 @@ func TestUnmarshalJSON(t *testing.T) {
 
 }
 
+func TestUnmarshalJSONWithUnknownKind(t *testing.T) {
+	assert := assert.New(t)
+	dir, err := os.Getwd()
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+	text, err := ioutil.ReadFile(dir+"/../file_for_test/pod_response_unknown_kind.json")
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+	var response oc.Response
+	if err2 := json.Unmarshal([]byte(text), &response); err2==nil {
+		log.Fatal("111")
+	} else {
+		assert.Equal(fmt.Sprintf("unsuppoted kind: %s", "unknown_kind"), err2.Error())
+	}
 
+}

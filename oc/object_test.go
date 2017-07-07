@@ -8,7 +8,6 @@ import (
 	"github.com/hongkailiu/svt-go/oc"
 	"github.com/stretchr/testify/assert"
 	"encoding/json"
-	"fmt"
 )
 
 func TestUnmarshalJSON(t *testing.T) {

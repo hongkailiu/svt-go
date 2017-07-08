@@ -3,8 +3,8 @@
 # workaround for issue https://github.com/mattn/goveralls/issues/20
 # https://raw.githubusercontent.com/gopns/gopns/master/test-coverage.sh
 
-readonly SOURCE_FOLDER="$(dirname "$(readlink -f ${0})")"
-readonly APP_FOLDER=$(dirname $(dirname "${SOURCE_FOLDER}"))
+readonly SOURCE_FOLDER="$(dirname "$(readlink -f "${0}")")"
+readonly APP_FOLDER="$(dirname "$(dirname "${SOURCE_FOLDER}")")"
 readonly BUILD_DIR="${APP_FOLDER}/build"
 readonly TARGET_DIR="${BUILD_DIR}/coverage"
 readonly ACC_FILE="${BUILD_DIR}/coverage/acc.out"
@@ -15,7 +15,7 @@ mkdir -p "${TARGET_DIR}"
 
 echo "mode: set" > "${ACC_FILE}"
 
-cd "${APP_FOLDER}"
+cd "${APP_FOLDER}" || exit 1
 while read -r dir;
 do
     if ls "${dir}"/*.go &> /dev/null; then
@@ -32,4 +32,4 @@ do
 done << EOF
 $(find ./* -maxdepth 10 -type d -not -path "./vendor*")
 EOF
-cd "${CURRENT_DIR}"
+cd "${CURRENT_DIR}" || exit 1

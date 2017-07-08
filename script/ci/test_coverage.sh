@@ -21,10 +21,8 @@ do
     if ls "${dir}"/*.go &> /dev/null; then
         return_val="$(go test -coverprofile="${PROFILE_FILE}" "${dir}")"
         echo "${return_val}"
-        if [[ ${return_val} != *FAIL* ]]
-        then
-            if [ -f profile.out ]
-            then
+        if [[ ${return_val} != *FAIL* ]]; then
+            if [[ -f "${PROFILE_FILE}" ]]; then
                 grep -v "mode: set" "${PROFILE_FILE}" >> "${ACC_FILE}"
             fi
         else

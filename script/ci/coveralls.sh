@@ -10,6 +10,6 @@ if [[ ! -f "${ACC_FILE}" ]]; then
 fi
 
 if [[ -n "${COVERALLS}" ]]; then
-  echo "uploading results to coveralls.io ..."
+  echo "uploading results (${COVERALLS}) to coveralls.io ..."
   "${HOME}/gopath/bin/goveralls" -coverprofile="${ACC_FILE}" -service travis-ci
 fi

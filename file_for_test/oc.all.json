@@ -1,0 +1,3609 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "BuildConfig",
+            "metadata": {
+                "annotations": {
+                    "description": "Defines how to build the application",
+                    "openshift.io/generated-by": "OpenShiftNewApp"
+                },
+                "creationTimestamp": "2017-07-07T14:49:32Z",
+                "labels": {
+                    "app": "cakephp-mysql-example",
+                    "template": "cakephp-mysql-example"
+                },
+                "name": "cakephp-mysql-example",
+                "namespace": "mff",
+                "resourceVersion": "84621",
+                "selfLink": "/oapi/v1/namespaces/mff/buildconfigs/cakephp-mysql-example",
+                "uid": "7c78fc81-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "failedBuildsHistoryLimit": 5,
+                "nodeSelector": null,
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "cakephp-mysql-example:latest"
+                    }
+                },
+                "postCommit": {
+                    "script": "./lib/Cake/Console/cake test app AllTests"
+                },
+                "resources": {},
+                "runPolicy": "Serial",
+                "source": {
+                    "git": {
+                        "uri": "https://github.com/openshift/cakephp-ex.git"
+                    },
+                    "type": "Git"
+                },
+                "strategy": {
+                    "sourceStrategy": {
+                        "env": [
+                            {
+                                "name": "COMPOSER_MIRROR"
+                            }
+                        ],
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "name": "php:7.0",
+                            "namespace": "openshift"
+                        }
+                    },
+                    "type": "Source"
+                },
+                "successfulBuildsHistoryLimit": 5,
+                "triggers": [
+                    {
+                        "imageChange": {
+                            "lastTriggeredImageID": "registry.access.redhat.com/rhscl/php-70-rhel7@sha256:6c9e1044218385ed314324de33c39d40c1051d2f9cf7cbaf053fc51ccd87c087"
+                        },
+                        "type": "ImageChange"
+                    },
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "github": {
+                            "secret": "Im1uWdanFKaEvJnsQw5E6iqX1uefvjIEBNLFtX6j"
+                        },
+                        "type": "GitHub"
+                    }
+                ]
+            },
+            "status": {
+                "lastVersion": 1
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "BuildConfig",
+            "metadata": {
+                "annotations": {
+                    "description": "Defines how to build the application",
+                    "openshift.io/generated-by": "OpenShiftNewApp"
+                },
+                "creationTimestamp": "2017-07-07T14:49:22Z",
+                "labels": {
+                    "app": "nodejs-mongodb-example",
+                    "template": "nodejs-mongodb-example"
+                },
+                "name": "nodejs-mongodb-example",
+                "namespace": "mff",
+                "resourceVersion": "84585",
+                "selfLink": "/oapi/v1/namespaces/mff/buildconfigs/nodejs-mongodb-example",
+                "uid": "76f31d7b-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "failedBuildsHistoryLimit": 5,
+                "nodeSelector": null,
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "nodejs-mongodb-example:latest"
+                    }
+                },
+                "postCommit": {
+                    "script": "npm test"
+                },
+                "resources": {},
+                "runPolicy": "Serial",
+                "source": {
+                    "git": {
+                        "uri": "https://github.com/openshift/nodejs-ex.git"
+                    },
+                    "type": "Git"
+                },
+                "strategy": {
+                    "sourceStrategy": {
+                        "env": [
+                            {
+                                "name": "NPM_MIRROR"
+                            }
+                        ],
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "name": "nodejs:6",
+                            "namespace": "openshift"
+                        }
+                    },
+                    "type": "Source"
+                },
+                "successfulBuildsHistoryLimit": 5,
+                "triggers": [
+                    {
+                        "imageChange": {
+                            "lastTriggeredImageID": "registry.access.redhat.com/rhscl/nodejs-6-rhel7@sha256:b6e89ef453af578cb85c859396af92f9912a0544d6564a2d4b3546c7d63893a0"
+                        },
+                        "type": "ImageChange"
+                    },
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "github": {
+                            "secret": "U4imeiy2DlK4sK71J6VyMYjWAyFAfPvcAUQY7AsF"
+                        },
+                        "type": "GitHub"
+                    },
+                    {
+                        "generic": {
+                            "secret": "Un7Ex4TD1CQIFjhTgSo646xT4KGNlMTky1nLDrBM"
+                        },
+                        "type": "Generic"
+                    }
+                ]
+            },
+            "status": {
+                "lastVersion": 1
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Build",
+            "metadata": {
+                "annotations": {
+                    "openshift.io/build-config.name": "cakephp-mysql-example",
+                    "openshift.io/build.number": "1",
+                    "openshift.io/build.pod-name": "cakephp-mysql-example-1-build"
+                },
+                "creationTimestamp": "2017-07-07T14:49:32Z",
+                "labels": {
+                    "app": "cakephp-mysql-example",
+                    "buildconfig": "cakephp-mysql-example",
+                    "openshift.io/build-config.name": "cakephp-mysql-example",
+                    "openshift.io/build.start-policy": "Serial",
+                    "template": "cakephp-mysql-example"
+                },
+                "name": "cakephp-mysql-example-1",
+                "namespace": "mff",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "build.openshift.io/v1",
+                        "controller": true,
+                        "kind": "BuildConfig",
+                        "name": "cakephp-mysql-example",
+                        "uid": "7c78fc81-6323-11e7-bbf6-02a3eac619d4"
+                    }
+                ],
+                "resourceVersion": "84864",
+                "selfLink": "/oapi/v1/namespaces/mff/builds/cakephp-mysql-example-1",
+                "uid": "7c7db857-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "nodeSelector": null,
+                "output": {
+                    "pushSecret": {
+                        "name": "builder-dockercfg-qrln8"
+                    },
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "cakephp-mysql-example:latest"
+                    }
+                },
+                "postCommit": {
+                    "script": "./lib/Cake/Console/cake test app AllTests"
+                },
+                "resources": {},
+                "revision": {
+                    "git": {
+                        "author": {
+                            "email": "bparees@users.noreply.github.com",
+                            "name": "Ben Parees"
+                        },
+                        "commit": "140a57d25aedff759db651c782832038482cebfd",
+                        "committer": {
+                            "email": "noreply@github.com",
+                            "name": "GitHub"
+                        },
+                        "message": "Merge pull request #74 from coreydaley/bugzilla_1365656_github_webhook_descrip.."
+                    },
+                    "type": "Git"
+                },
+                "serviceAccount": "builder",
+                "source": {
+                    "git": {
+                        "uri": "https://github.com/openshift/cakephp-ex.git"
+                    },
+                    "type": "Git"
+                },
+                "strategy": {
+                    "sourceStrategy": {
+                        "env": [
+                            {
+                                "name": "COMPOSER_MIRROR"
+                            }
+                        ],
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "registry.access.redhat.com/rhscl/php-70-rhel7@sha256:6c9e1044218385ed314324de33c39d40c1051d2f9cf7cbaf053fc51ccd87c087"
+                        }
+                    },
+                    "type": "Source"
+                },
+                "triggeredBy": [
+                    {
+                        "imageChangeBuild": {
+                            "fromRef": {
+                                "kind": "ImageStreamTag",
+                                "name": "php:7.0",
+                                "namespace": "openshift"
+                            },
+                            "imageID": "registry.access.redhat.com/rhscl/php-70-rhel7@sha256:6c9e1044218385ed314324de33c39d40c1051d2f9cf7cbaf053fc51ccd87c087"
+                        },
+                        "message": "Image change"
+                    }
+                ]
+            },
+            "status": {
+                "completionTimestamp": "2017-07-07T14:52:09Z",
+                "config": {
+                    "kind": "BuildConfig",
+                    "name": "cakephp-mysql-example",
+                    "namespace": "mff"
+                },
+                "duration": 157000000000,
+                "output": {
+                    "to": {
+                        "imageDigest": "sha256:81f845044a8acd3d0db7708f4998017eb676878ee1f508f3d6c5c633c5f07d71"
+                    }
+                },
+                "outputDockerImageReference": "docker-registry.default.svc:5000/mff/cakephp-mysql-example:latest",
+                "phase": "Complete",
+                "stages": [
+                    {
+                        "durationMilliseconds": 695,
+                        "name": "FetchInputs",
+                        "startTime": "2017-07-07T14:50:20Z",
+                        "steps": [
+                            {
+                                "durationMilliseconds": 695,
+                                "name": "FetchGitSource",
+                                "startTime": "2017-07-07T14:50:20Z"
+                            }
+                        ]
+                    },
+                    {
+                        "durationMilliseconds": 10195,
+                        "name": "CommitContainer",
+                        "startTime": "2017-07-07T14:51:07Z",
+                        "steps": [
+                            {
+                                "durationMilliseconds": 10195,
+                                "name": "CommitContainer",
+                                "startTime": "2017-07-07T14:51:07Z"
+                            }
+                        ]
+                    },
+                    {
+                        "durationMilliseconds": 23277,
+                        "name": "Assemble",
+                        "startTime": "2017-07-07T14:50:54Z",
+                        "steps": [
+                            {
+                                "durationMilliseconds": 23277,
+                                "name": "AssembleBuildScripts",
+                                "startTime": "2017-07-07T14:50:54Z"
+                            }
+                        ]
+                    },
+                    {
+                        "durationMilliseconds": 3404,
+                        "name": "PostCommit",
+                        "startTime": "2017-07-07T14:51:17Z",
+                        "steps": [
+                            {
+                                "durationMilliseconds": 3404,
+                                "name": "RunPostCommitHook",
+                                "startTime": "2017-07-07T14:51:17Z"
+                            }
+                        ]
+                    },
+                    {
+                        "durationMilliseconds": 44441,
+                        "name": "PushImage",
+                        "startTime": "2017-07-07T14:51:21Z",
+                        "steps": [
+                            {
+                                "durationMilliseconds": 44441,
+                                "name": "PushImage",
+                                "startTime": "2017-07-07T14:51:21Z"
+                            }
+                        ]
+                    }
+                ],
+                "startTimestamp": "2017-07-07T14:49:32Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Build",
+            "metadata": {
+                "annotations": {
+                    "openshift.io/build-config.name": "nodejs-mongodb-example",
+                    "openshift.io/build.number": "1",
+                    "openshift.io/build.pod-name": "nodejs-mongodb-example-1-build"
+                },
+                "creationTimestamp": "2017-07-07T14:49:22Z",
+                "labels": {
+                    "app": "nodejs-mongodb-example",
+                    "buildconfig": "nodejs-mongodb-example",
+                    "openshift.io/build-config.name": "nodejs-mongodb-example",
+                    "openshift.io/build.start-policy": "Serial",
+                    "template": "nodejs-mongodb-example"
+                },
+                "name": "nodejs-mongodb-example-1",
+                "namespace": "mff",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "build.openshift.io/v1",
+                        "controller": true,
+                        "kind": "BuildConfig",
+                        "name": "nodejs-mongodb-example",
+                        "uid": "76f31d7b-6323-11e7-bbf6-02a3eac619d4"
+                    }
+                ],
+                "resourceVersion": "84815",
+                "selfLink": "/oapi/v1/namespaces/mff/builds/nodejs-mongodb-example-1",
+                "uid": "76f99e65-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "nodeSelector": null,
+                "output": {
+                    "pushSecret": {
+                        "name": "builder-dockercfg-qrln8"
+                    },
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "nodejs-mongodb-example:latest"
+                    }
+                },
+                "postCommit": {
+                    "script": "npm test"
+                },
+                "resources": {},
+                "revision": {
+                    "git": {
+                        "author": {
+                            "email": "bparees@users.noreply.github.com",
+                            "name": "Ben Parees"
+                        },
+                        "commit": "f12494cff0ee3a347551e288782d95019df124d8",
+                        "committer": {
+                            "email": "noreply@github.com",
+                            "name": "GitHub"
+                        },
+                        "message": "Merge pull request #128 from coreydaley/bugzilla_1365656_github_webhook_descri.."
+                    },
+                    "type": "Git"
+                },
+                "serviceAccount": "builder",
+                "source": {
+                    "git": {
+                        "uri": "https://github.com/openshift/nodejs-ex.git"
+                    },
+                    "type": "Git"
+                },
+                "strategy": {
+                    "sourceStrategy": {
+                        "env": [
+                            {
+                                "name": "NPM_MIRROR"
+                            }
+                        ],
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "registry.access.redhat.com/rhscl/nodejs-6-rhel7@sha256:b6e89ef453af578cb85c859396af92f9912a0544d6564a2d4b3546c7d63893a0"
+                        }
+                    },
+                    "type": "Source"
+                },
+                "triggeredBy": [
+                    {
+                        "message": "Build configuration change"
+                    }
+                ]
+            },
+            "status": {
+                "completionTimestamp": "2017-07-07T14:51:48Z",
+                "config": {
+                    "kind": "BuildConfig",
+                    "name": "nodejs-mongodb-example",
+                    "namespace": "mff"
+                },
+                "duration": 146000000000,
+                "output": {
+                    "to": {
+                        "imageDigest": "sha256:a5fea2406aadc9b94e5750974ae33edfe3f45350b1e04d46e0960164f4add304"
+                    }
+                },
+                "outputDockerImageReference": "docker-registry.default.svc:5000/mff/nodejs-mongodb-example:latest",
+                "phase": "Complete",
+                "stages": [
+                    {
+                        "durationMilliseconds": 429,
+                        "name": "FetchInputs",
+                        "startTime": "2017-07-07T14:50:18Z",
+                        "steps": [
+                            {
+                                "durationMilliseconds": 429,
+                                "name": "FetchGitSource",
+                                "startTime": "2017-07-07T14:50:18Z"
+                            }
+                        ]
+                    },
+                    {
+                        "durationMilliseconds": 6449,
+                        "name": "CommitContainer",
+                        "startTime": "2017-07-07T14:51:02Z",
+                        "steps": [
+                            {
+                                "durationMilliseconds": 6449,
+                                "name": "CommitContainer",
+                                "startTime": "2017-07-07T14:51:02Z"
+                            }
+                        ]
+                    },
+                    {
+                        "durationMilliseconds": 14590,
+                        "name": "Assemble",
+                        "startTime": "2017-07-07T14:50:54Z",
+                        "steps": [
+                            {
+                                "durationMilliseconds": 14590,
+                                "name": "AssembleBuildScripts",
+                                "startTime": "2017-07-07T14:50:54Z"
+                            }
+                        ]
+                    },
+                    {
+                        "durationMilliseconds": 2972,
+                        "name": "PostCommit",
+                        "startTime": "2017-07-07T14:51:08Z",
+                        "steps": [
+                            {
+                                "durationMilliseconds": 2972,
+                                "name": "RunPostCommitHook",
+                                "startTime": "2017-07-07T14:51:08Z"
+                            }
+                        ]
+                    },
+                    {
+                        "durationMilliseconds": 36385,
+                        "name": "PushImage",
+                        "startTime": "2017-07-07T14:51:11Z",
+                        "steps": [
+                            {
+                                "durationMilliseconds": 36385,
+                                "name": "PushImage",
+                                "startTime": "2017-07-07T14:51:11Z"
+                            }
+                        ]
+                    }
+                ],
+                "startTimestamp": "2017-07-07T14:49:22Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "ImageStream",
+            "metadata": {
+                "annotations": {
+                    "description": "Keeps track of changes in the application image",
+                    "openshift.io/generated-by": "OpenShiftNewApp"
+                },
+                "creationTimestamp": "2017-07-07T14:49:32Z",
+                "generation": 1,
+                "labels": {
+                    "app": "cakephp-mysql-example",
+                    "template": "cakephp-mysql-example"
+                },
+                "name": "cakephp-mysql-example",
+                "namespace": "mff",
+                "resourceVersion": "84844",
+                "selfLink": "/oapi/v1/namespaces/mff/imagestreams/cakephp-mysql-example",
+                "uid": "7c759246-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "lookupPolicy": {
+                    "local": false
+                }
+            },
+            "status": {
+                "dockerImageRepository": "docker-registry.default.svc:5000/mff/cakephp-mysql-example",
+                "tags": [
+                    {
+                        "items": [
+                            {
+                                "created": "2017-07-07T14:52:05Z",
+                                "dockerImageReference": "docker-registry.default.svc:5000/mff/cakephp-mysql-example@sha256:81f845044a8acd3d0db7708f4998017eb676878ee1f508f3d6c5c633c5f07d71",
+                                "generation": 1,
+                                "image": "sha256:81f845044a8acd3d0db7708f4998017eb676878ee1f508f3d6c5c633c5f07d71"
+                            }
+                        ],
+                        "tag": "latest"
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "ImageStream",
+            "metadata": {
+                "annotations": {
+                    "description": "Keeps track of changes in the application image",
+                    "openshift.io/generated-by": "OpenShiftNewApp"
+                },
+                "creationTimestamp": "2017-07-07T14:49:22Z",
+                "generation": 1,
+                "labels": {
+                    "app": "nodejs-mongodb-example",
+                    "template": "nodejs-mongodb-example"
+                },
+                "name": "nodejs-mongodb-example",
+                "namespace": "mff",
+                "resourceVersion": "84798",
+                "selfLink": "/oapi/v1/namespaces/mff/imagestreams/nodejs-mongodb-example",
+                "uid": "76f022bc-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "lookupPolicy": {
+                    "local": false
+                }
+            },
+            "status": {
+                "dockerImageRepository": "docker-registry.default.svc:5000/mff/nodejs-mongodb-example",
+                "tags": [
+                    {
+                        "items": [
+                            {
+                                "created": "2017-07-07T14:51:48Z",
+                                "dockerImageReference": "docker-registry.default.svc:5000/mff/nodejs-mongodb-example@sha256:a5fea2406aadc9b94e5750974ae33edfe3f45350b1e04d46e0960164f4add304",
+                                "generation": 1,
+                                "image": "sha256:a5fea2406aadc9b94e5750974ae33edfe3f45350b1e04d46e0960164f4add304"
+                            }
+                        ],
+                        "tag": "latest"
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "DeploymentConfig",
+            "metadata": {
+                "annotations": {
+                    "description": "Defines how to deploy the application server",
+                    "openshift.io/generated-by": "OpenShiftNewApp"
+                },
+                "creationTimestamp": "2017-07-07T14:49:32Z",
+                "generation": 3,
+                "labels": {
+                    "app": "cakephp-mysql-example",
+                    "template": "cakephp-mysql-example"
+                },
+                "name": "cakephp-mysql-example",
+                "namespace": "mff",
+                "resourceVersion": "84936",
+                "selfLink": "/oapi/v1/namespaces/mff/deploymentconfigs/cakephp-mysql-example",
+                "uid": "7c7a7aac-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "replicas": 1,
+                "selector": {
+                    "name": "cakephp-mysql-example"
+                },
+                "strategy": {
+                    "activeDeadlineSeconds": 21600,
+                    "recreateParams": {
+                        "pre": {
+                            "execNewPod": {
+                                "command": [
+                                    "./migrate-database.sh"
+                                ],
+                                "containerName": "cakephp-mysql-example"
+                            },
+                            "failurePolicy": "Retry"
+                        },
+                        "timeoutSeconds": 600
+                    },
+                    "resources": {},
+                    "type": "Recreate"
+                },
+                "template": {
+                    "metadata": {
+                        "annotations": {
+                            "openshift.io/generated-by": "OpenShiftNewApp"
+                        },
+                        "creationTimestamp": null,
+                        "labels": {
+                            "app": "cakephp-mysql-example",
+                            "name": "cakephp-mysql-example"
+                        },
+                        "name": "cakephp-mysql-example"
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "env": [
+                                    {
+                                        "name": "DATABASE_SERVICE_NAME",
+                                        "value": "mysql"
+                                    },
+                                    {
+                                        "name": "DATABASE_ENGINE",
+                                        "value": "mysql"
+                                    },
+                                    {
+                                        "name": "DATABASE_NAME",
+                                        "value": "default"
+                                    },
+                                    {
+                                        "name": "DATABASE_USER",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "database-user",
+                                                "name": "cakephp-mysql-example"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "DATABASE_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "database-password",
+                                                "name": "cakephp-mysql-example"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "CAKEPHP_SECRET_TOKEN",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "cakephp-secret-token",
+                                                "name": "cakephp-mysql-example"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "CAKEPHP_SECURITY_SALT",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "cakephp-security-salt",
+                                                "name": "cakephp-mysql-example"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "CAKEPHP_SECURITY_CIPHER_SEED",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "cakephp-security-cipher-seed",
+                                                "name": "cakephp-mysql-example"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "OPCACHE_REVALIDATE_FREQ",
+                                        "value": "2"
+                                    }
+                                ],
+                                "image": "docker-registry.default.svc:5000/mff/cakephp-mysql-example@sha256:81f845044a8acd3d0db7708f4998017eb676878ee1f508f3d6c5c633c5f07d71",
+                                "imagePullPolicy": "IfNotPresent",
+                                "livenessProbe": {
+                                    "failureThreshold": 3,
+                                    "httpGet": {
+                                        "path": "/",
+                                        "port": 8080,
+                                        "scheme": "HTTP"
+                                    },
+                                    "initialDelaySeconds": 30,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "name": "cakephp-mysql-example",
+                                "ports": [
+                                    {
+                                        "containerPort": 8080,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "readinessProbe": {
+                                    "failureThreshold": 3,
+                                    "httpGet": {
+                                        "path": "/health.php",
+                                        "port": 8080,
+                                        "scheme": "HTTP"
+                                    },
+                                    "initialDelaySeconds": 3,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "resources": {
+                                    "limits": {
+                                        "memory": "512Mi"
+                                    }
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File"
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {},
+                        "terminationGracePeriodSeconds": 30
+                    }
+                },
+                "test": false,
+                "triggers": [
+                    {
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "cakephp-mysql-example"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "cakephp-mysql-example:latest",
+                                "namespace": "mff"
+                            },
+                            "lastTriggeredImage": "docker-registry.default.svc:5000/mff/cakephp-mysql-example@sha256:81f845044a8acd3d0db7708f4998017eb676878ee1f508f3d6c5c633c5f07d71"
+                        },
+                        "type": "ImageChange"
+                    },
+                    {
+                        "type": "ConfigChange"
+                    }
+                ]
+            },
+            "status": {
+                "availableReplicas": 1,
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2017-07-07T14:52:40Z",
+                        "lastUpdateTime": "2017-07-07T14:52:40Z",
+                        "message": "Deployment config has minimum availability.",
+                        "status": "True",
+                        "type": "Available"
+                    },
+                    {
+                        "lastTransitionTime": "2017-07-07T14:52:30Z",
+                        "lastUpdateTime": "2017-07-07T14:52:41Z",
+                        "message": "replication controller \"cakephp-mysql-example-1\" successfully rolled out",
+                        "reason": "NewReplicationControllerAvailable",
+                        "status": "True",
+                        "type": "Progressing"
+                    }
+                ],
+                "details": {
+                    "causes": [
+                        {
+                            "imageTrigger": {
+                                "from": {
+                                    "kind": "ImageStreamTag",
+                                    "name": "cakephp-mysql-example:latest",
+                                    "namespace": "mff"
+                                }
+                            },
+                            "type": "ImageChange"
+                        }
+                    ],
+                    "message": "image change"
+                },
+                "latestVersion": 1,
+                "observedGeneration": 3,
+                "readyReplicas": 1,
+                "replicas": 1,
+                "unavailableReplicas": 0,
+                "updatedReplicas": 1
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "DeploymentConfig",
+            "metadata": {
+                "annotations": {
+                    "description": "Defines how to deploy the database",
+                    "openshift.io/generated-by": "OpenShiftNewApp"
+                },
+                "creationTimestamp": "2017-07-07T14:49:22Z",
+                "generation": 2,
+                "labels": {
+                    "app": "nodejs-mongodb-example",
+                    "template": "nodejs-mongodb-example"
+                },
+                "name": "mongodb",
+                "namespace": "mff",
+                "resourceVersion": "84759",
+                "selfLink": "/oapi/v1/namespaces/mff/deploymentconfigs/mongodb",
+                "uid": "76f87e81-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "replicas": 1,
+                "selector": {
+                    "name": "mongodb"
+                },
+                "strategy": {
+                    "activeDeadlineSeconds": 21600,
+                    "recreateParams": {
+                        "timeoutSeconds": 600
+                    },
+                    "resources": {},
+                    "type": "Recreate"
+                },
+                "template": {
+                    "metadata": {
+                        "annotations": {
+                            "openshift.io/generated-by": "OpenShiftNewApp"
+                        },
+                        "creationTimestamp": null,
+                        "labels": {
+                            "app": "nodejs-mongodb-example",
+                            "name": "mongodb"
+                        },
+                        "name": "mongodb"
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "env": [
+                                    {
+                                        "name": "MONGODB_USER",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "database-user",
+                                                "name": "nodejs-mongodb-example"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MONGODB_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "database-password",
+                                                "name": "nodejs-mongodb-example"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MONGODB_DATABASE",
+                                        "value": "sampledb"
+                                    },
+                                    {
+                                        "name": "MONGODB_ADMIN_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "database-admin-password",
+                                                "name": "nodejs-mongodb-example"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "image": "registry.access.redhat.com/rhscl/mongodb-32-rhel7@sha256:b7aa23df571fe7f8a9454238a14ae97fe3c20b7315af61f5ef9ff7daa5fe0a91",
+                                "imagePullPolicy": "IfNotPresent",
+                                "livenessProbe": {
+                                    "failureThreshold": 3,
+                                    "initialDelaySeconds": 30,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "tcpSocket": {
+                                        "port": 27017
+                                    },
+                                    "timeoutSeconds": 1
+                                },
+                                "name": "mongodb",
+                                "ports": [
+                                    {
+                                        "containerPort": 27017,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "readinessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "/bin/sh",
+                                            "-i",
+                                            "-c",
+                                            "mongo 127.0.0.1:27017/$MONGODB_DATABASE -u $MONGODB_USER -p $MONGODB_PASSWORD --eval=\"quit()\""
+                                        ]
+                                    },
+                                    "failureThreshold": 3,
+                                    "initialDelaySeconds": 3,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 1
+                                },
+                                "resources": {
+                                    "limits": {
+                                        "memory": "512Mi"
+                                    }
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/var/lib/mongodb/data",
+                                        "name": "mongodb-data"
+                                    }
+                                ]
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {},
+                        "terminationGracePeriodSeconds": 30,
+                        "volumes": [
+                            {
+                                "emptyDir": {},
+                                "name": "mongodb-data"
+                            }
+                        ]
+                    }
+                },
+                "test": false,
+                "triggers": [
+                    {
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "mongodb"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "mongodb:3.2",
+                                "namespace": "openshift"
+                            },
+                            "lastTriggeredImage": "registry.access.redhat.com/rhscl/mongodb-32-rhel7@sha256:b7aa23df571fe7f8a9454238a14ae97fe3c20b7315af61f5ef9ff7daa5fe0a91"
+                        },
+                        "type": "ImageChange"
+                    },
+                    {
+                        "type": "ConfigChange"
+                    }
+                ]
+            },
+            "status": {
+                "availableReplicas": 1,
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2017-07-07T14:51:01Z",
+                        "lastUpdateTime": "2017-07-07T14:51:01Z",
+                        "message": "Deployment config has minimum availability.",
+                        "status": "True",
+                        "type": "Available"
+                    },
+                    {
+                        "lastTransitionTime": "2017-07-07T14:51:02Z",
+                        "lastUpdateTime": "2017-07-07T14:51:02Z",
+                        "message": "replication controller \"mongodb-1\" successfully rolled out",
+                        "reason": "NewReplicationControllerAvailable",
+                        "status": "True",
+                        "type": "Progressing"
+                    }
+                ],
+                "details": {
+                    "causes": [
+                        {
+                            "imageTrigger": {
+                                "from": {
+                                    "kind": "ImageStreamTag",
+                                    "name": "mongodb:3.2",
+                                    "namespace": "openshift"
+                                }
+                            },
+                            "type": "ImageChange"
+                        }
+                    ],
+                    "message": "image change"
+                },
+                "latestVersion": 1,
+                "observedGeneration": 2,
+                "readyReplicas": 1,
+                "replicas": 1,
+                "unavailableReplicas": 0,
+                "updatedReplicas": 1
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "DeploymentConfig",
+            "metadata": {
+                "annotations": {
+                    "description": "Defines how to deploy the database",
+                    "openshift.io/generated-by": "OpenShiftNewApp"
+                },
+                "creationTimestamp": "2017-07-07T14:49:32Z",
+                "generation": 3,
+                "labels": {
+                    "app": "cakephp-mysql-example",
+                    "template": "cakephp-mysql-example"
+                },
+                "name": "mysql",
+                "namespace": "mff",
+                "resourceVersion": "84772",
+                "selfLink": "/oapi/v1/namespaces/mff/deploymentconfigs/mysql",
+                "uid": "7c7d7550-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "replicas": 1,
+                "selector": {
+                    "name": "mysql"
+                },
+                "strategy": {
+                    "activeDeadlineSeconds": 21600,
+                    "recreateParams": {
+                        "timeoutSeconds": 600
+                    },
+                    "resources": {},
+                    "type": "Recreate"
+                },
+                "template": {
+                    "metadata": {
+                        "annotations": {
+                            "openshift.io/generated-by": "OpenShiftNewApp"
+                        },
+                        "creationTimestamp": null,
+                        "labels": {
+                            "app": "cakephp-mysql-example",
+                            "name": "mysql"
+                        },
+                        "name": "mysql"
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "env": [
+                                    {
+                                        "name": "MYSQL_USER",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "database-user",
+                                                "name": "cakephp-mysql-example"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MYSQL_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "database-password",
+                                                "name": "cakephp-mysql-example"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MYSQL_DATABASE",
+                                        "value": "default"
+                                    }
+                                ],
+                                "image": "registry.access.redhat.com/rhscl/mysql-57-rhel7@sha256:65b6211c88280c399ad9294168eb0923e0e69cd468758b0233d599972de1bbd8",
+                                "imagePullPolicy": "IfNotPresent",
+                                "livenessProbe": {
+                                    "failureThreshold": 3,
+                                    "initialDelaySeconds": 30,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "tcpSocket": {
+                                        "port": 3306
+                                    },
+                                    "timeoutSeconds": 1
+                                },
+                                "name": "mysql",
+                                "ports": [
+                                    {
+                                        "containerPort": 3306,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "readinessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "/bin/sh",
+                                            "-i",
+                                            "-c",
+                                            "MYSQL_PWD='OKl1mbyoeKjuUkuA' mysql -h 127.0.0.1 -u cakephp -D default -e 'SELECT 1'"
+                                        ]
+                                    },
+                                    "failureThreshold": 3,
+                                    "initialDelaySeconds": 5,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 1
+                                },
+                                "resources": {
+                                    "limits": {
+                                        "memory": "512Mi"
+                                    }
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/var/lib/mysql/data",
+                                        "name": "data"
+                                    }
+                                ]
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {},
+                        "terminationGracePeriodSeconds": 30,
+                        "volumes": [
+                            {
+                                "emptyDir": {},
+                                "name": "data"
+                            }
+                        ]
+                    }
+                },
+                "test": false,
+                "triggers": [
+                    {
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "mysql"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "mysql:5.7",
+                                "namespace": "openshift"
+                            },
+                            "lastTriggeredImage": "registry.access.redhat.com/rhscl/mysql-57-rhel7@sha256:65b6211c88280c399ad9294168eb0923e0e69cd468758b0233d599972de1bbd8"
+                        },
+                        "type": "ImageChange"
+                    },
+                    {
+                        "type": "ConfigChange"
+                    }
+                ]
+            },
+            "status": {
+                "availableReplicas": 1,
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2017-07-07T14:51:08Z",
+                        "lastUpdateTime": "2017-07-07T14:51:08Z",
+                        "message": "Deployment config has minimum availability.",
+                        "status": "True",
+                        "type": "Available"
+                    },
+                    {
+                        "lastTransitionTime": "2017-07-07T14:51:09Z",
+                        "lastUpdateTime": "2017-07-07T14:51:09Z",
+                        "message": "replication controller \"mysql-1\" successfully rolled out",
+                        "reason": "NewReplicationControllerAvailable",
+                        "status": "True",
+                        "type": "Progressing"
+                    }
+                ],
+                "details": {
+                    "causes": [
+                        {
+                            "imageTrigger": {
+                                "from": {
+                                    "kind": "ImageStreamTag",
+                                    "name": "mysql:5.7",
+                                    "namespace": "openshift"
+                                }
+                            },
+                            "type": "ImageChange"
+                        }
+                    ],
+                    "message": "image change"
+                },
+                "latestVersion": 1,
+                "observedGeneration": 3,
+                "readyReplicas": 1,
+                "replicas": 1,
+                "unavailableReplicas": 0,
+                "updatedReplicas": 1
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "DeploymentConfig",
+            "metadata": {
+                "annotations": {
+                    "description": "Defines how to deploy the application server",
+                    "openshift.io/generated-by": "OpenShiftNewApp"
+                },
+                "creationTimestamp": "2017-07-07T14:49:22Z",
+                "generation": 3,
+                "labels": {
+                    "app": "nodejs-mongodb-example",
+                    "template": "nodejs-mongodb-example"
+                },
+                "name": "nodejs-mongodb-example",
+                "namespace": "mff",
+                "resourceVersion": "84900",
+                "selfLink": "/oapi/v1/namespaces/mff/deploymentconfigs/nodejs-mongodb-example",
+                "uid": "76f4d8ea-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "replicas": 1,
+                "selector": {
+                    "name": "nodejs-mongodb-example"
+                },
+                "strategy": {
+                    "activeDeadlineSeconds": 21600,
+                    "recreateParams": {
+                        "timeoutSeconds": 600
+                    },
+                    "resources": {},
+                    "type": "Recreate"
+                },
+                "template": {
+                    "metadata": {
+                        "annotations": {
+                            "openshift.io/generated-by": "OpenShiftNewApp"
+                        },
+                        "creationTimestamp": null,
+                        "labels": {
+                            "app": "nodejs-mongodb-example",
+                            "name": "nodejs-mongodb-example"
+                        },
+                        "name": "nodejs-mongodb-example"
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "env": [
+                                    {
+                                        "name": "DATABASE_SERVICE_NAME",
+                                        "value": "mongodb"
+                                    },
+                                    {
+                                        "name": "MONGODB_USER",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "database-user",
+                                                "name": "nodejs-mongodb-example"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MONGODB_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "database-password",
+                                                "name": "nodejs-mongodb-example"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MONGODB_DATABASE",
+                                        "value": "sampledb"
+                                    },
+                                    {
+                                        "name": "MONGODB_ADMIN_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "database-admin-password",
+                                                "name": "nodejs-mongodb-example"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "image": "docker-registry.default.svc:5000/mff/nodejs-mongodb-example@sha256:a5fea2406aadc9b94e5750974ae33edfe3f45350b1e04d46e0960164f4add304",
+                                "imagePullPolicy": "IfNotPresent",
+                                "livenessProbe": {
+                                    "failureThreshold": 3,
+                                    "httpGet": {
+                                        "path": "/pagecount",
+                                        "port": 8080,
+                                        "scheme": "HTTP"
+                                    },
+                                    "initialDelaySeconds": 30,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "name": "nodejs-mongodb-example",
+                                "ports": [
+                                    {
+                                        "containerPort": 8080,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "readinessProbe": {
+                                    "failureThreshold": 3,
+                                    "httpGet": {
+                                        "path": "/pagecount",
+                                        "port": 8080,
+                                        "scheme": "HTTP"
+                                    },
+                                    "initialDelaySeconds": 3,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "resources": {
+                                    "limits": {
+                                        "memory": "512Mi"
+                                    }
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File"
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {},
+                        "terminationGracePeriodSeconds": 30
+                    }
+                },
+                "test": false,
+                "triggers": [
+                    {
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "nodejs-mongodb-example"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "nodejs-mongodb-example:latest",
+                                "namespace": "mff"
+                            },
+                            "lastTriggeredImage": "docker-registry.default.svc:5000/mff/nodejs-mongodb-example@sha256:a5fea2406aadc9b94e5750974ae33edfe3f45350b1e04d46e0960164f4add304"
+                        },
+                        "type": "ImageChange"
+                    },
+                    {
+                        "type": "ConfigChange"
+                    }
+                ]
+            },
+            "status": {
+                "availableReplicas": 1,
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2017-07-07T14:52:28Z",
+                        "lastUpdateTime": "2017-07-07T14:52:28Z",
+                        "message": "Deployment config has minimum availability.",
+                        "status": "True",
+                        "type": "Available"
+                    },
+                    {
+                        "lastTransitionTime": "2017-07-07T14:52:29Z",
+                        "lastUpdateTime": "2017-07-07T14:52:29Z",
+                        "message": "replication controller \"nodejs-mongodb-example-1\" successfully rolled out",
+                        "reason": "NewReplicationControllerAvailable",
+                        "status": "True",
+                        "type": "Progressing"
+                    }
+                ],
+                "details": {
+                    "causes": [
+                        {
+                            "imageTrigger": {
+                                "from": {
+                                    "kind": "ImageStreamTag",
+                                    "name": "nodejs-mongodb-example:latest",
+                                    "namespace": "mff"
+                                }
+                            },
+                            "type": "ImageChange"
+                        }
+                    ],
+                    "message": "image change"
+                },
+                "latestVersion": 1,
+                "observedGeneration": 3,
+                "readyReplicas": 1,
+                "replicas": 1,
+                "unavailableReplicas": 0,
+                "updatedReplicas": 1
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "ReplicationController",
+            "metadata": {
+                "annotations": {
+                    "openshift.io/deployer-pod.name": "cakephp-mysql-example-1-deploy",
+                    "openshift.io/deployment-config.latest-version": "1",
+                    "openshift.io/deployment-config.name": "cakephp-mysql-example",
+                    "openshift.io/deployment.phase": "Complete",
+                    "openshift.io/deployment.replicas": "1",
+                    "openshift.io/deployment.status-reason": "image change",
+                    "openshift.io/encoded-deployment-config": "{\"kind\":\"DeploymentConfig\",\"apiVersion\":\"v1\",\"metadata\":{\"name\":\"cakephp-mysql-example\",\"namespace\":\"mff\",\"selfLink\":\"/apis/apps.openshift.io/v1/namespaces/mff/deploymentconfigs/cakephp-mysql-example\",\"uid\":\"7c7a7aac-6323-11e7-bbf6-02a3eac619d4\",\"resourceVersion\":\"84847\",\"generation\":3,\"creationTimestamp\":\"2017-07-07T14:49:32Z\",\"labels\":{\"app\":\"cakephp-mysql-example\",\"template\":\"cakephp-mysql-example\"},\"annotations\":{\"description\":\"Defines how to deploy the application server\",\"openshift.io/generated-by\":\"OpenShiftNewApp\"}},\"spec\":{\"strategy\":{\"type\":\"Recreate\",\"recreateParams\":{\"timeoutSeconds\":600,\"pre\":{\"failurePolicy\":\"Retry\",\"execNewPod\":{\"command\":[\"./migrate-database.sh\"],\"containerName\":\"cakephp-mysql-example\"}}},\"resources\":{},\"activeDeadlineSeconds\":21600},\"triggers\":[{\"type\":\"ImageChange\",\"imageChangeParams\":{\"automatic\":true,\"containerNames\":[\"cakephp-mysql-example\"],\"from\":{\"kind\":\"ImageStreamTag\",\"namespace\":\"mff\",\"name\":\"cakephp-mysql-example:latest\"},\"lastTriggeredImage\":\"docker-registry.default.svc:5000/mff/cakephp-mysql-example@sha256:81f845044a8acd3d0db7708f4998017eb676878ee1f508f3d6c5c633c5f07d71\"}},{\"type\":\"ConfigChange\"}],\"replicas\":1,\"test\":false,\"selector\":{\"name\":\"cakephp-mysql-example\"},\"template\":{\"metadata\":{\"name\":\"cakephp-mysql-example\",\"creationTimestamp\":null,\"labels\":{\"app\":\"cakephp-mysql-example\",\"name\":\"cakephp-mysql-example\"},\"annotations\":{\"openshift.io/generated-by\":\"OpenShiftNewApp\"}},\"spec\":{\"containers\":[{\"name\":\"cakephp-mysql-example\",\"image\":\"docker-registry.default.svc:5000/mff/cakephp-mysql-example@sha256:81f845044a8acd3d0db7708f4998017eb676878ee1f508f3d6c5c633c5f07d71\",\"ports\":[{\"containerPort\":8080,\"protocol\":\"TCP\"}],\"env\":[{\"name\":\"DATABASE_SERVICE_NAME\",\"value\":\"mysql\"},{\"name\":\"DATABASE_ENGINE\",\"value\":\"mysql\"},{\"name\":\"DATABASE_NAME\",\"value\":\"default\"},{\"name\":\"DATABASE_USER\",\"valueFrom\":{\"secretKeyRef\":{\"name\":\"cakephp-mysql-example\",\"key\":\"database-user\"}}},{\"name\":\"DATABASE_PASSWORD\",\"valueFrom\":{\"secretKeyRef\":{\"name\":\"cakephp-mysql-example\",\"key\":\"database-password\"}}},{\"name\":\"CAKEPHP_SECRET_TOKEN\",\"valueFrom\":{\"secretKeyRef\":{\"name\":\"cakephp-mysql-example\",\"key\":\"cakephp-secret-token\"}}},{\"name\":\"CAKEPHP_SECURITY_SALT\",\"valueFrom\":{\"secretKeyRef\":{\"name\":\"cakephp-mysql-example\",\"key\":\"cakephp-security-salt\"}}},{\"name\":\"CAKEPHP_SECURITY_CIPHER_SEED\",\"valueFrom\":{\"secretKeyRef\":{\"name\":\"cakephp-mysql-example\",\"key\":\"cakephp-security-cipher-seed\"}}},{\"name\":\"OPCACHE_REVALIDATE_FREQ\",\"value\":\"2\"}],\"resources\":{\"limits\":{\"memory\":\"512Mi\"}},\"livenessProbe\":{\"httpGet\":{\"path\":\"/\",\"port\":8080,\"scheme\":\"HTTP\"},\"initialDelaySeconds\":30,\"timeoutSeconds\":3,\"periodSeconds\":10,\"successThreshold\":1,\"failureThreshold\":3},\"readinessProbe\":{\"httpGet\":{\"path\":\"/health.php\",\"port\":8080,\"scheme\":\"HTTP\"},\"initialDelaySeconds\":3,\"timeoutSeconds\":3,\"periodSeconds\":10,\"successThreshold\":1,\"failureThreshold\":3},\"terminationMessagePath\":\"/dev/termination-log\",\"terminationMessagePolicy\":\"File\",\"imagePullPolicy\":\"IfNotPresent\"}],\"restartPolicy\":\"Always\",\"terminationGracePeriodSeconds\":30,\"dnsPolicy\":\"ClusterFirst\",\"securityContext\":{},\"schedulerName\":\"default-scheduler\"}}},\"status\":{\"latestVersion\":1,\"observedGeneration\":2,\"replicas\":0,\"updatedReplicas\":0,\"availableReplicas\":0,\"unavailableReplicas\":0,\"details\":{\"message\":\"image change\",\"causes\":[{\"type\":\"ImageChange\",\"imageTrigger\":{\"from\":{\"kind\":\"ImageStreamTag\",\"namespace\":\"mff\",\"name\":\"cakephp-mysql-example:latest\"}}}]},\"conditions\":[{\"type\":\"Available\",\"status\":\"False\",\"lastUpdateTime\":\"2017-07-07T14:49:32Z\",\"lastTransitionTime\":\"2017-07-07T14:49:32Z\",\"message\":\"Deployment config does not have minimum availability.\"}]}}\n"
+                },
+                "creationTimestamp": "2017-07-07T14:52:05Z",
+                "generation": 2,
+                "labels": {
+                    "app": "cakephp-mysql-example",
+                    "openshift.io/deployment-config.name": "cakephp-mysql-example",
+                    "template": "cakephp-mysql-example"
+                },
+                "name": "cakephp-mysql-example-1",
+                "namespace": "mff",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps.openshift.io/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "DeploymentConfig",
+                        "name": "cakephp-mysql-example",
+                        "uid": "7c7a7aac-6323-11e7-bbf6-02a3eac619d4"
+                    }
+                ],
+                "resourceVersion": "84935",
+                "selfLink": "/api/v1/namespaces/mff/replicationcontrollers/cakephp-mysql-example-1",
+                "uid": "d7e1bd9b-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "replicas": 1,
+                "selector": {
+                    "deployment": "cakephp-mysql-example-1",
+                    "deploymentconfig": "cakephp-mysql-example",
+                    "name": "cakephp-mysql-example"
+                },
+                "template": {
+                    "metadata": {
+                        "annotations": {
+                            "openshift.io/deployment-config.latest-version": "1",
+                            "openshift.io/deployment-config.name": "cakephp-mysql-example",
+                            "openshift.io/deployment.name": "cakephp-mysql-example-1",
+                            "openshift.io/generated-by": "OpenShiftNewApp"
+                        },
+                        "creationTimestamp": null,
+                        "labels": {
+                            "app": "cakephp-mysql-example",
+                            "deployment": "cakephp-mysql-example-1",
+                            "deploymentconfig": "cakephp-mysql-example",
+                            "name": "cakephp-mysql-example"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "env": [
+                                    {
+                                        "name": "DATABASE_SERVICE_NAME",
+                                        "value": "mysql"
+                                    },
+                                    {
+                                        "name": "DATABASE_ENGINE",
+                                        "value": "mysql"
+                                    },
+                                    {
+                                        "name": "DATABASE_NAME",
+                                        "value": "default"
+                                    },
+                                    {
+                                        "name": "DATABASE_USER",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "database-user",
+                                                "name": "cakephp-mysql-example"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "DATABASE_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "database-password",
+                                                "name": "cakephp-mysql-example"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "CAKEPHP_SECRET_TOKEN",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "cakephp-secret-token",
+                                                "name": "cakephp-mysql-example"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "CAKEPHP_SECURITY_SALT",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "cakephp-security-salt",
+                                                "name": "cakephp-mysql-example"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "CAKEPHP_SECURITY_CIPHER_SEED",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "cakephp-security-cipher-seed",
+                                                "name": "cakephp-mysql-example"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "OPCACHE_REVALIDATE_FREQ",
+                                        "value": "2"
+                                    }
+                                ],
+                                "image": "docker-registry.default.svc:5000/mff/cakephp-mysql-example@sha256:81f845044a8acd3d0db7708f4998017eb676878ee1f508f3d6c5c633c5f07d71",
+                                "imagePullPolicy": "IfNotPresent",
+                                "livenessProbe": {
+                                    "failureThreshold": 3,
+                                    "httpGet": {
+                                        "path": "/",
+                                        "port": 8080,
+                                        "scheme": "HTTP"
+                                    },
+                                    "initialDelaySeconds": 30,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "name": "cakephp-mysql-example",
+                                "ports": [
+                                    {
+                                        "containerPort": 8080,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "readinessProbe": {
+                                    "failureThreshold": 3,
+                                    "httpGet": {
+                                        "path": "/health.php",
+                                        "port": 8080,
+                                        "scheme": "HTTP"
+                                    },
+                                    "initialDelaySeconds": 3,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "resources": {
+                                    "limits": {
+                                        "memory": "512Mi"
+                                    }
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File"
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {},
+                        "terminationGracePeriodSeconds": 30
+                    }
+                }
+            },
+            "status": {
+                "availableReplicas": 1,
+                "fullyLabeledReplicas": 1,
+                "observedGeneration": 2,
+                "readyReplicas": 1,
+                "replicas": 1
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "ReplicationController",
+            "metadata": {
+                "annotations": {
+                    "openshift.io/deployer-pod.name": "mongodb-1-deploy",
+                    "openshift.io/deployment-config.latest-version": "1",
+                    "openshift.io/deployment-config.name": "mongodb",
+                    "openshift.io/deployment.phase": "Complete",
+                    "openshift.io/deployment.replicas": "1",
+                    "openshift.io/deployment.status-reason": "image change",
+                    "openshift.io/encoded-deployment-config": "{\"kind\":\"DeploymentConfig\",\"apiVersion\":\"v1\",\"metadata\":{\"name\":\"mongodb\",\"namespace\":\"mff\",\"selfLink\":\"/apis/apps.openshift.io/v1/namespaces/mff/deploymentconfigs/mongodb\",\"uid\":\"76f87e81-6323-11e7-bbf6-02a3eac619d4\",\"resourceVersion\":\"84592\",\"generation\":2,\"creationTimestamp\":\"2017-07-07T14:49:22Z\",\"labels\":{\"app\":\"nodejs-mongodb-example\",\"template\":\"nodejs-mongodb-example\"},\"annotations\":{\"description\":\"Defines how to deploy the database\",\"openshift.io/generated-by\":\"OpenShiftNewApp\"}},\"spec\":{\"strategy\":{\"type\":\"Recreate\",\"recreateParams\":{\"timeoutSeconds\":600},\"resources\":{},\"activeDeadlineSeconds\":21600},\"triggers\":[{\"type\":\"ImageChange\",\"imageChangeParams\":{\"automatic\":true,\"containerNames\":[\"mongodb\"],\"from\":{\"kind\":\"ImageStreamTag\",\"namespace\":\"openshift\",\"name\":\"mongodb:3.2\"},\"lastTriggeredImage\":\"registry.access.redhat.com/rhscl/mongodb-32-rhel7@sha256:b7aa23df571fe7f8a9454238a14ae97fe3c20b7315af61f5ef9ff7daa5fe0a91\"}},{\"type\":\"ConfigChange\"}],\"replicas\":1,\"test\":false,\"selector\":{\"name\":\"mongodb\"},\"template\":{\"metadata\":{\"name\":\"mongodb\",\"creationTimestamp\":null,\"labels\":{\"app\":\"nodejs-mongodb-example\",\"name\":\"mongodb\"},\"annotations\":{\"openshift.io/generated-by\":\"OpenShiftNewApp\"}},\"spec\":{\"volumes\":[{\"name\":\"mongodb-data\",\"emptyDir\":{}}],\"containers\":[{\"name\":\"mongodb\",\"image\":\"registry.access.redhat.com/rhscl/mongodb-32-rhel7@sha256:b7aa23df571fe7f8a9454238a14ae97fe3c20b7315af61f5ef9ff7daa5fe0a91\",\"ports\":[{\"containerPort\":27017,\"protocol\":\"TCP\"}],\"env\":[{\"name\":\"MONGODB_USER\",\"valueFrom\":{\"secretKeyRef\":{\"name\":\"nodejs-mongodb-example\",\"key\":\"database-user\"}}},{\"name\":\"MONGODB_PASSWORD\",\"valueFrom\":{\"secretKeyRef\":{\"name\":\"nodejs-mongodb-example\",\"key\":\"database-password\"}}},{\"name\":\"MONGODB_DATABASE\",\"value\":\"sampledb\"},{\"name\":\"MONGODB_ADMIN_PASSWORD\",\"valueFrom\":{\"secretKeyRef\":{\"name\":\"nodejs-mongodb-example\",\"key\":\"database-admin-password\"}}}],\"resources\":{\"limits\":{\"memory\":\"512Mi\"}},\"volumeMounts\":[{\"name\":\"mongodb-data\",\"mountPath\":\"/var/lib/mongodb/data\"}],\"livenessProbe\":{\"tcpSocket\":{\"port\":27017},\"initialDelaySeconds\":30,\"timeoutSeconds\":1,\"periodSeconds\":10,\"successThreshold\":1,\"failureThreshold\":3},\"readinessProbe\":{\"exec\":{\"command\":[\"/bin/sh\",\"-i\",\"-c\",\"mongo 127.0.0.1:27017/$MONGODB_DATABASE -u $MONGODB_USER -p $MONGODB_PASSWORD --eval=\\\"quit()\\\"\"]},\"initialDelaySeconds\":3,\"timeoutSeconds\":1,\"periodSeconds\":10,\"successThreshold\":1,\"failureThreshold\":3},\"terminationMessagePath\":\"/dev/termination-log\",\"terminationMessagePolicy\":\"File\",\"imagePullPolicy\":\"IfNotPresent\"}],\"restartPolicy\":\"Always\",\"terminationGracePeriodSeconds\":30,\"dnsPolicy\":\"ClusterFirst\",\"securityContext\":{},\"schedulerName\":\"default-scheduler\"}}},\"status\":{\"latestVersion\":1,\"observedGeneration\":1,\"replicas\":0,\"updatedReplicas\":0,\"availableReplicas\":0,\"unavailableReplicas\":0,\"details\":{\"message\":\"image change\",\"causes\":[{\"type\":\"ImageChange\",\"imageTrigger\":{\"from\":{\"kind\":\"ImageStreamTag\",\"namespace\":\"openshift\",\"name\":\"mongodb:3.2\"}}}]},\"conditions\":[{\"type\":\"Available\",\"status\":\"False\",\"lastUpdateTime\":\"2017-07-07T14:49:22Z\",\"lastTransitionTime\":\"2017-07-07T14:49:22Z\",\"message\":\"Deployment config does not have minimum availability.\"}]}}\n"
+                },
+                "creationTimestamp": "2017-07-07T14:49:22Z",
+                "generation": 2,
+                "labels": {
+                    "app": "nodejs-mongodb-example",
+                    "openshift.io/deployment-config.name": "mongodb",
+                    "template": "nodejs-mongodb-example"
+                },
+                "name": "mongodb-1",
+                "namespace": "mff",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps.openshift.io/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "DeploymentConfig",
+                        "name": "mongodb",
+                        "uid": "76f87e81-6323-11e7-bbf6-02a3eac619d4"
+                    }
+                ],
+                "resourceVersion": "84758",
+                "selfLink": "/api/v1/namespaces/mff/replicationcontrollers/mongodb-1",
+                "uid": "76fe9e97-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "replicas": 1,
+                "selector": {
+                    "deployment": "mongodb-1",
+                    "deploymentconfig": "mongodb",
+                    "name": "mongodb"
+                },
+                "template": {
+                    "metadata": {
+                        "annotations": {
+                            "openshift.io/deployment-config.latest-version": "1",
+                            "openshift.io/deployment-config.name": "mongodb",
+                            "openshift.io/deployment.name": "mongodb-1",
+                            "openshift.io/generated-by": "OpenShiftNewApp"
+                        },
+                        "creationTimestamp": null,
+                        "labels": {
+                            "app": "nodejs-mongodb-example",
+                            "deployment": "mongodb-1",
+                            "deploymentconfig": "mongodb",
+                            "name": "mongodb"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "env": [
+                                    {
+                                        "name": "MONGODB_USER",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "database-user",
+                                                "name": "nodejs-mongodb-example"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MONGODB_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "database-password",
+                                                "name": "nodejs-mongodb-example"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MONGODB_DATABASE",
+                                        "value": "sampledb"
+                                    },
+                                    {
+                                        "name": "MONGODB_ADMIN_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "database-admin-password",
+                                                "name": "nodejs-mongodb-example"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "image": "registry.access.redhat.com/rhscl/mongodb-32-rhel7@sha256:b7aa23df571fe7f8a9454238a14ae97fe3c20b7315af61f5ef9ff7daa5fe0a91",
+                                "imagePullPolicy": "IfNotPresent",
+                                "livenessProbe": {
+                                    "failureThreshold": 3,
+                                    "initialDelaySeconds": 30,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "tcpSocket": {
+                                        "port": 27017
+                                    },
+                                    "timeoutSeconds": 1
+                                },
+                                "name": "mongodb",
+                                "ports": [
+                                    {
+                                        "containerPort": 27017,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "readinessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "/bin/sh",
+                                            "-i",
+                                            "-c",
+                                            "mongo 127.0.0.1:27017/$MONGODB_DATABASE -u $MONGODB_USER -p $MONGODB_PASSWORD --eval=\"quit()\""
+                                        ]
+                                    },
+                                    "failureThreshold": 3,
+                                    "initialDelaySeconds": 3,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 1
+                                },
+                                "resources": {
+                                    "limits": {
+                                        "memory": "512Mi"
+                                    }
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/var/lib/mongodb/data",
+                                        "name": "mongodb-data"
+                                    }
+                                ]
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {},
+                        "terminationGracePeriodSeconds": 30,
+                        "volumes": [
+                            {
+                                "emptyDir": {},
+                                "name": "mongodb-data"
+                            }
+                        ]
+                    }
+                }
+            },
+            "status": {
+                "availableReplicas": 1,
+                "fullyLabeledReplicas": 1,
+                "observedGeneration": 2,
+                "readyReplicas": 1,
+                "replicas": 1
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "ReplicationController",
+            "metadata": {
+                "annotations": {
+                    "openshift.io/deployer-pod.name": "mysql-1-deploy",
+                    "openshift.io/deployment-config.latest-version": "1",
+                    "openshift.io/deployment-config.name": "mysql",
+                    "openshift.io/deployment.phase": "Complete",
+                    "openshift.io/deployment.replicas": "1",
+                    "openshift.io/deployment.status-reason": "image change",
+                    "openshift.io/encoded-deployment-config": "{\"kind\":\"DeploymentConfig\",\"apiVersion\":\"v1\",\"metadata\":{\"name\":\"mysql\",\"namespace\":\"mff\",\"selfLink\":\"/apis/apps.openshift.io/v1/namespaces/mff/deploymentconfigs/mysql\",\"uid\":\"7c7d7550-6323-11e7-bbf6-02a3eac619d4\",\"resourceVersion\":\"84631\",\"generation\":3,\"creationTimestamp\":\"2017-07-07T14:49:32Z\",\"labels\":{\"app\":\"cakephp-mysql-example\",\"template\":\"cakephp-mysql-example\"},\"annotations\":{\"description\":\"Defines how to deploy the database\",\"openshift.io/generated-by\":\"OpenShiftNewApp\"}},\"spec\":{\"strategy\":{\"type\":\"Recreate\",\"recreateParams\":{\"timeoutSeconds\":600},\"resources\":{},\"activeDeadlineSeconds\":21600},\"triggers\":[{\"type\":\"ImageChange\",\"imageChangeParams\":{\"automatic\":true,\"containerNames\":[\"mysql\"],\"from\":{\"kind\":\"ImageStreamTag\",\"namespace\":\"openshift\",\"name\":\"mysql:5.7\"},\"lastTriggeredImage\":\"registry.access.redhat.com/rhscl/mysql-57-rhel7@sha256:65b6211c88280c399ad9294168eb0923e0e69cd468758b0233d599972de1bbd8\"}},{\"type\":\"ConfigChange\"}],\"replicas\":1,\"test\":false,\"selector\":{\"name\":\"mysql\"},\"template\":{\"metadata\":{\"name\":\"mysql\",\"creationTimestamp\":null,\"labels\":{\"app\":\"cakephp-mysql-example\",\"name\":\"mysql\"},\"annotations\":{\"openshift.io/generated-by\":\"OpenShiftNewApp\"}},\"spec\":{\"volumes\":[{\"name\":\"data\",\"emptyDir\":{}}],\"containers\":[{\"name\":\"mysql\",\"image\":\"registry.access.redhat.com/rhscl/mysql-57-rhel7@sha256:65b6211c88280c399ad9294168eb0923e0e69cd468758b0233d599972de1bbd8\",\"ports\":[{\"containerPort\":3306,\"protocol\":\"TCP\"}],\"env\":[{\"name\":\"MYSQL_USER\",\"valueFrom\":{\"secretKeyRef\":{\"name\":\"cakephp-mysql-example\",\"key\":\"database-user\"}}},{\"name\":\"MYSQL_PASSWORD\",\"valueFrom\":{\"secretKeyRef\":{\"name\":\"cakephp-mysql-example\",\"key\":\"database-password\"}}},{\"name\":\"MYSQL_DATABASE\",\"value\":\"default\"}],\"resources\":{\"limits\":{\"memory\":\"512Mi\"}},\"volumeMounts\":[{\"name\":\"data\",\"mountPath\":\"/var/lib/mysql/data\"}],\"livenessProbe\":{\"tcpSocket\":{\"port\":3306},\"initialDelaySeconds\":30,\"timeoutSeconds\":1,\"periodSeconds\":10,\"successThreshold\":1,\"failureThreshold\":3},\"readinessProbe\":{\"exec\":{\"command\":[\"/bin/sh\",\"-i\",\"-c\",\"MYSQL_PWD='OKl1mbyoeKjuUkuA' mysql -h 127.0.0.1 -u cakephp -D default -e 'SELECT 1'\"]},\"initialDelaySeconds\":5,\"timeoutSeconds\":1,\"periodSeconds\":10,\"successThreshold\":1,\"failureThreshold\":3},\"terminationMessagePath\":\"/dev/termination-log\",\"terminationMessagePolicy\":\"File\",\"imagePullPolicy\":\"IfNotPresent\"}],\"restartPolicy\":\"Always\",\"terminationGracePeriodSeconds\":30,\"dnsPolicy\":\"ClusterFirst\",\"securityContext\":{},\"schedulerName\":\"default-scheduler\"}}},\"status\":{\"latestVersion\":1,\"observedGeneration\":2,\"replicas\":0,\"updatedReplicas\":0,\"availableReplicas\":0,\"unavailableReplicas\":0,\"details\":{\"message\":\"image change\",\"causes\":[{\"type\":\"ImageChange\",\"imageTrigger\":{\"from\":{\"kind\":\"ImageStreamTag\",\"namespace\":\"openshift\",\"name\":\"mysql:5.7\"}}}]},\"conditions\":[{\"type\":\"Available\",\"status\":\"False\",\"lastUpdateTime\":\"2017-07-07T14:49:32Z\",\"lastTransitionTime\":\"2017-07-07T14:49:32Z\",\"message\":\"Deployment config does not have minimum availability.\"}]}}\n"
+                },
+                "creationTimestamp": "2017-07-07T14:49:32Z",
+                "generation": 2,
+                "labels": {
+                    "app": "cakephp-mysql-example",
+                    "openshift.io/deployment-config.name": "mysql",
+                    "template": "cakephp-mysql-example"
+                },
+                "name": "mysql-1",
+                "namespace": "mff",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps.openshift.io/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "DeploymentConfig",
+                        "name": "mysql",
+                        "uid": "7c7d7550-6323-11e7-bbf6-02a3eac619d4"
+                    }
+                ],
+                "resourceVersion": "84771",
+                "selfLink": "/api/v1/namespaces/mff/replicationcontrollers/mysql-1",
+                "uid": "7c8536b1-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "replicas": 1,
+                "selector": {
+                    "deployment": "mysql-1",
+                    "deploymentconfig": "mysql",
+                    "name": "mysql"
+                },
+                "template": {
+                    "metadata": {
+                        "annotations": {
+                            "openshift.io/deployment-config.latest-version": "1",
+                            "openshift.io/deployment-config.name": "mysql",
+                            "openshift.io/deployment.name": "mysql-1",
+                            "openshift.io/generated-by": "OpenShiftNewApp"
+                        },
+                        "creationTimestamp": null,
+                        "labels": {
+                            "app": "cakephp-mysql-example",
+                            "deployment": "mysql-1",
+                            "deploymentconfig": "mysql",
+                            "name": "mysql"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "env": [
+                                    {
+                                        "name": "MYSQL_USER",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "database-user",
+                                                "name": "cakephp-mysql-example"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MYSQL_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "database-password",
+                                                "name": "cakephp-mysql-example"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MYSQL_DATABASE",
+                                        "value": "default"
+                                    }
+                                ],
+                                "image": "registry.access.redhat.com/rhscl/mysql-57-rhel7@sha256:65b6211c88280c399ad9294168eb0923e0e69cd468758b0233d599972de1bbd8",
+                                "imagePullPolicy": "IfNotPresent",
+                                "livenessProbe": {
+                                    "failureThreshold": 3,
+                                    "initialDelaySeconds": 30,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "tcpSocket": {
+                                        "port": 3306
+                                    },
+                                    "timeoutSeconds": 1
+                                },
+                                "name": "mysql",
+                                "ports": [
+                                    {
+                                        "containerPort": 3306,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "readinessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "/bin/sh",
+                                            "-i",
+                                            "-c",
+                                            "MYSQL_PWD='OKl1mbyoeKjuUkuA' mysql -h 127.0.0.1 -u cakephp -D default -e 'SELECT 1'"
+                                        ]
+                                    },
+                                    "failureThreshold": 3,
+                                    "initialDelaySeconds": 5,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 1
+                                },
+                                "resources": {
+                                    "limits": {
+                                        "memory": "512Mi"
+                                    }
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/var/lib/mysql/data",
+                                        "name": "data"
+                                    }
+                                ]
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {},
+                        "terminationGracePeriodSeconds": 30,
+                        "volumes": [
+                            {
+                                "emptyDir": {},
+                                "name": "data"
+                            }
+                        ]
+                    }
+                }
+            },
+            "status": {
+                "availableReplicas": 1,
+                "fullyLabeledReplicas": 1,
+                "observedGeneration": 2,
+                "readyReplicas": 1,
+                "replicas": 1
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "ReplicationController",
+            "metadata": {
+                "annotations": {
+                    "openshift.io/deployer-pod.name": "nodejs-mongodb-example-1-deploy",
+                    "openshift.io/deployment-config.latest-version": "1",
+                    "openshift.io/deployment-config.name": "nodejs-mongodb-example",
+                    "openshift.io/deployment.phase": "Complete",
+                    "openshift.io/deployment.replicas": "1",
+                    "openshift.io/deployment.status-reason": "image change",
+                    "openshift.io/encoded-deployment-config": "{\"kind\":\"DeploymentConfig\",\"apiVersion\":\"v1\",\"metadata\":{\"name\":\"nodejs-mongodb-example\",\"namespace\":\"mff\",\"selfLink\":\"/apis/apps.openshift.io/v1/namespaces/mff/deploymentconfigs/nodejs-mongodb-example\",\"uid\":\"76f4d8ea-6323-11e7-bbf6-02a3eac619d4\",\"resourceVersion\":\"84801\",\"generation\":3,\"creationTimestamp\":\"2017-07-07T14:49:22Z\",\"labels\":{\"app\":\"nodejs-mongodb-example\",\"template\":\"nodejs-mongodb-example\"},\"annotations\":{\"description\":\"Defines how to deploy the application server\",\"openshift.io/generated-by\":\"OpenShiftNewApp\"}},\"spec\":{\"strategy\":{\"type\":\"Recreate\",\"recreateParams\":{\"timeoutSeconds\":600},\"resources\":{},\"activeDeadlineSeconds\":21600},\"triggers\":[{\"type\":\"ImageChange\",\"imageChangeParams\":{\"automatic\":true,\"containerNames\":[\"nodejs-mongodb-example\"],\"from\":{\"kind\":\"ImageStreamTag\",\"namespace\":\"mff\",\"name\":\"nodejs-mongodb-example:latest\"},\"lastTriggeredImage\":\"docker-registry.default.svc:5000/mff/nodejs-mongodb-example@sha256:a5fea2406aadc9b94e5750974ae33edfe3f45350b1e04d46e0960164f4add304\"}},{\"type\":\"ConfigChange\"}],\"replicas\":1,\"test\":false,\"selector\":{\"name\":\"nodejs-mongodb-example\"},\"template\":{\"metadata\":{\"name\":\"nodejs-mongodb-example\",\"creationTimestamp\":null,\"labels\":{\"app\":\"nodejs-mongodb-example\",\"name\":\"nodejs-mongodb-example\"},\"annotations\":{\"openshift.io/generated-by\":\"OpenShiftNewApp\"}},\"spec\":{\"containers\":[{\"name\":\"nodejs-mongodb-example\",\"image\":\"docker-registry.default.svc:5000/mff/nodejs-mongodb-example@sha256:a5fea2406aadc9b94e5750974ae33edfe3f45350b1e04d46e0960164f4add304\",\"ports\":[{\"containerPort\":8080,\"protocol\":\"TCP\"}],\"env\":[{\"name\":\"DATABASE_SERVICE_NAME\",\"value\":\"mongodb\"},{\"name\":\"MONGODB_USER\",\"valueFrom\":{\"secretKeyRef\":{\"name\":\"nodejs-mongodb-example\",\"key\":\"database-user\"}}},{\"name\":\"MONGODB_PASSWORD\",\"valueFrom\":{\"secretKeyRef\":{\"name\":\"nodejs-mongodb-example\",\"key\":\"database-password\"}}},{\"name\":\"MONGODB_DATABASE\",\"value\":\"sampledb\"},{\"name\":\"MONGODB_ADMIN_PASSWORD\",\"valueFrom\":{\"secretKeyRef\":{\"name\":\"nodejs-mongodb-example\",\"key\":\"database-admin-password\"}}}],\"resources\":{\"limits\":{\"memory\":\"512Mi\"}},\"livenessProbe\":{\"httpGet\":{\"path\":\"/pagecount\",\"port\":8080,\"scheme\":\"HTTP\"},\"initialDelaySeconds\":30,\"timeoutSeconds\":3,\"periodSeconds\":10,\"successThreshold\":1,\"failureThreshold\":3},\"readinessProbe\":{\"httpGet\":{\"path\":\"/pagecount\",\"port\":8080,\"scheme\":\"HTTP\"},\"initialDelaySeconds\":3,\"timeoutSeconds\":3,\"periodSeconds\":10,\"successThreshold\":1,\"failureThreshold\":3},\"terminationMessagePath\":\"/dev/termination-log\",\"terminationMessagePolicy\":\"File\",\"imagePullPolicy\":\"IfNotPresent\"}],\"restartPolicy\":\"Always\",\"terminationGracePeriodSeconds\":30,\"dnsPolicy\":\"ClusterFirst\",\"securityContext\":{},\"schedulerName\":\"default-scheduler\"}}},\"status\":{\"latestVersion\":1,\"observedGeneration\":2,\"replicas\":0,\"updatedReplicas\":0,\"availableReplicas\":0,\"unavailableReplicas\":0,\"details\":{\"message\":\"image change\",\"causes\":[{\"type\":\"ImageChange\",\"imageTrigger\":{\"from\":{\"kind\":\"ImageStreamTag\",\"namespace\":\"mff\",\"name\":\"nodejs-mongodb-example:latest\"}}}]},\"conditions\":[{\"type\":\"Available\",\"status\":\"False\",\"lastUpdateTime\":\"2017-07-07T14:49:22Z\",\"lastTransitionTime\":\"2017-07-07T14:49:22Z\",\"message\":\"Deployment config does not have minimum availability.\"}]}}\n"
+                },
+                "creationTimestamp": "2017-07-07T14:51:48Z",
+                "generation": 2,
+                "labels": {
+                    "app": "nodejs-mongodb-example",
+                    "openshift.io/deployment-config.name": "nodejs-mongodb-example",
+                    "template": "nodejs-mongodb-example"
+                },
+                "name": "nodejs-mongodb-example-1",
+                "namespace": "mff",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps.openshift.io/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "DeploymentConfig",
+                        "name": "nodejs-mongodb-example",
+                        "uid": "76f4d8ea-6323-11e7-bbf6-02a3eac619d4"
+                    }
+                ],
+                "resourceVersion": "84899",
+                "selfLink": "/api/v1/namespaces/mff/replicationcontrollers/nodejs-mongodb-example-1",
+                "uid": "cda65591-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "replicas": 1,
+                "selector": {
+                    "deployment": "nodejs-mongodb-example-1",
+                    "deploymentconfig": "nodejs-mongodb-example",
+                    "name": "nodejs-mongodb-example"
+                },
+                "template": {
+                    "metadata": {
+                        "annotations": {
+                            "openshift.io/deployment-config.latest-version": "1",
+                            "openshift.io/deployment-config.name": "nodejs-mongodb-example",
+                            "openshift.io/deployment.name": "nodejs-mongodb-example-1",
+                            "openshift.io/generated-by": "OpenShiftNewApp"
+                        },
+                        "creationTimestamp": null,
+                        "labels": {
+                            "app": "nodejs-mongodb-example",
+                            "deployment": "nodejs-mongodb-example-1",
+                            "deploymentconfig": "nodejs-mongodb-example",
+                            "name": "nodejs-mongodb-example"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "env": [
+                                    {
+                                        "name": "DATABASE_SERVICE_NAME",
+                                        "value": "mongodb"
+                                    },
+                                    {
+                                        "name": "MONGODB_USER",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "database-user",
+                                                "name": "nodejs-mongodb-example"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MONGODB_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "database-password",
+                                                "name": "nodejs-mongodb-example"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "MONGODB_DATABASE",
+                                        "value": "sampledb"
+                                    },
+                                    {
+                                        "name": "MONGODB_ADMIN_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "database-admin-password",
+                                                "name": "nodejs-mongodb-example"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "image": "docker-registry.default.svc:5000/mff/nodejs-mongodb-example@sha256:a5fea2406aadc9b94e5750974ae33edfe3f45350b1e04d46e0960164f4add304",
+                                "imagePullPolicy": "IfNotPresent",
+                                "livenessProbe": {
+                                    "failureThreshold": 3,
+                                    "httpGet": {
+                                        "path": "/pagecount",
+                                        "port": 8080,
+                                        "scheme": "HTTP"
+                                    },
+                                    "initialDelaySeconds": 30,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "name": "nodejs-mongodb-example",
+                                "ports": [
+                                    {
+                                        "containerPort": 8080,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "readinessProbe": {
+                                    "failureThreshold": 3,
+                                    "httpGet": {
+                                        "path": "/pagecount",
+                                        "port": 8080,
+                                        "scheme": "HTTP"
+                                    },
+                                    "initialDelaySeconds": 3,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "resources": {
+                                    "limits": {
+                                        "memory": "512Mi"
+                                    }
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File"
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {},
+                        "terminationGracePeriodSeconds": 30
+                    }
+                }
+            },
+            "status": {
+                "availableReplicas": 1,
+                "fullyLabeledReplicas": 1,
+                "observedGeneration": 2,
+                "readyReplicas": 1,
+                "replicas": 1
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Route",
+            "metadata": {
+                "annotations": {
+                    "openshift.io/generated-by": "OpenShiftNewApp",
+                    "openshift.io/host.generated": "true",
+                    "template.openshift.io/expose-uri": "http://{.spec.host}{.spec.path}"
+                },
+                "creationTimestamp": "2017-07-07T14:49:32Z",
+                "labels": {
+                    "app": "cakephp-mysql-example",
+                    "template": "cakephp-mysql-example"
+                },
+                "name": "cakephp-mysql-example",
+                "namespace": "mff",
+                "resourceVersion": "84615",
+                "selfLink": "/oapi/v1/namespaces/mff/routes/cakephp-mysql-example",
+                "uid": "7c748d29-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "host": "cakephp-mysql-example-mff.0707-x8y.qe.rhcloud.com",
+                "to": {
+                    "kind": "Service",
+                    "name": "cakephp-mysql-example",
+                    "weight": 100
+                },
+                "wildcardPolicy": "None"
+            },
+            "status": {
+                "ingress": [
+                    {
+                        "conditions": [
+                            {
+                                "lastTransitionTime": "2017-07-07T14:49:32Z",
+                                "status": "True",
+                                "type": "Admitted"
+                            }
+                        ],
+                        "host": "cakephp-mysql-example-mff.0707-x8y.qe.rhcloud.com",
+                        "routerName": "router",
+                        "wildcardPolicy": "None"
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Route",
+            "metadata": {
+                "annotations": {
+                    "openshift.io/generated-by": "OpenShiftNewApp",
+                    "openshift.io/host.generated": "true",
+                    "template.openshift.io/expose-uri": "http://{.spec.host}{.spec.path}"
+                },
+                "creationTimestamp": "2017-07-07T14:49:22Z",
+                "labels": {
+                    "app": "nodejs-mongodb-example",
+                    "template": "nodejs-mongodb-example"
+                },
+                "name": "nodejs-mongodb-example",
+                "namespace": "mff",
+                "resourceVersion": "84577",
+                "selfLink": "/oapi/v1/namespaces/mff/routes/nodejs-mongodb-example",
+                "uid": "76eea3dc-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "host": "nodejs-mongodb-example-mff.0707-x8y.qe.rhcloud.com",
+                "to": {
+                    "kind": "Service",
+                    "name": "nodejs-mongodb-example",
+                    "weight": 100
+                },
+                "wildcardPolicy": "None"
+            },
+            "status": {
+                "ingress": [
+                    {
+                        "conditions": [
+                            {
+                                "lastTransitionTime": "2017-07-07T14:49:22Z",
+                                "status": "True",
+                                "type": "Admitted"
+                            }
+                        ],
+                        "host": "nodejs-mongodb-example-mff.0707-x8y.qe.rhcloud.com",
+                        "routerName": "router",
+                        "wildcardPolicy": "None"
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "annotations": {
+                    "description": "Exposes and load balances the application pods",
+                    "openshift.io/generated-by": "OpenShiftNewApp",
+                    "service.alpha.openshift.io/dependencies": "[{\"name\": \"mysql\", \"kind\": \"Service\"}]"
+                },
+                "creationTimestamp": "2017-07-07T14:49:32Z",
+                "labels": {
+                    "app": "cakephp-mysql-example",
+                    "template": "cakephp-mysql-example"
+                },
+                "name": "cakephp-mysql-example",
+                "namespace": "mff",
+                "resourceVersion": "84611",
+                "selfLink": "/api/v1/namespaces/mff/services/cakephp-mysql-example",
+                "uid": "7c736539-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "clusterIP": "172.26.217.96",
+                "ports": [
+                    {
+                        "name": "web",
+                        "port": 8080,
+                        "protocol": "TCP",
+                        "targetPort": 8080
+                    }
+                ],
+                "selector": {
+                    "name": "cakephp-mysql-example"
+                },
+                "sessionAffinity": "None",
+                "type": "ClusterIP"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "annotations": {
+                    "description": "Exposes the database server",
+                    "openshift.io/generated-by": "OpenShiftNewApp"
+                },
+                "creationTimestamp": "2017-07-07T14:49:22Z",
+                "labels": {
+                    "app": "nodejs-mongodb-example",
+                    "template": "nodejs-mongodb-example"
+                },
+                "name": "mongodb",
+                "namespace": "mff",
+                "resourceVersion": "84583",
+                "selfLink": "/api/v1/namespaces/mff/services/mongodb",
+                "uid": "76f685f4-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "clusterIP": "172.26.176.106",
+                "ports": [
+                    {
+                        "name": "mongodb",
+                        "port": 27017,
+                        "protocol": "TCP",
+                        "targetPort": 27017
+                    }
+                ],
+                "selector": {
+                    "name": "mongodb"
+                },
+                "sessionAffinity": "None",
+                "type": "ClusterIP"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "annotations": {
+                    "description": "Exposes the database server",
+                    "openshift.io/generated-by": "OpenShiftNewApp"
+                },
+                "creationTimestamp": "2017-07-07T14:49:32Z",
+                "labels": {
+                    "app": "cakephp-mysql-example",
+                    "template": "cakephp-mysql-example"
+                },
+                "name": "mysql",
+                "namespace": "mff",
+                "resourceVersion": "84620",
+                "selfLink": "/api/v1/namespaces/mff/services/mysql",
+                "uid": "7c7c4a26-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "clusterIP": "172.26.177.213",
+                "ports": [
+                    {
+                        "name": "mysql",
+                        "port": 3306,
+                        "protocol": "TCP",
+                        "targetPort": 3306
+                    }
+                ],
+                "selector": {
+                    "name": "mysql"
+                },
+                "sessionAffinity": "None",
+                "type": "ClusterIP"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "annotations": {
+                    "description": "Exposes and load balances the application pods",
+                    "openshift.io/generated-by": "OpenShiftNewApp",
+                    "service.alpha.openshift.io/dependencies": "[{\"name\": \"mongodb\", \"kind\": \"Service\"}]"
+                },
+                "creationTimestamp": "2017-07-07T14:49:22Z",
+                "labels": {
+                    "app": "nodejs-mongodb-example",
+                    "template": "nodejs-mongodb-example"
+                },
+                "name": "nodejs-mongodb-example",
+                "namespace": "mff",
+                "resourceVersion": "84573",
+                "selfLink": "/api/v1/namespaces/mff/services/nodejs-mongodb-example",
+                "uid": "76edaf0f-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "clusterIP": "172.27.185.137",
+                "ports": [
+                    {
+                        "name": "web",
+                        "port": 8080,
+                        "protocol": "TCP",
+                        "targetPort": 8080
+                    }
+                ],
+                "selector": {
+                    "name": "nodejs-mongodb-example"
+                },
+                "sessionAffinity": "None",
+                "type": "ClusterIP"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "openshift.io/build.name": "cakephp-mysql-example-1",
+                    "openshift.io/scc": "privileged"
+                },
+                "creationTimestamp": "2017-07-07T14:49:32Z",
+                "labels": {
+                    "openshift.io/build.name": "cakephp-mysql-example-1"
+                },
+                "name": "cakephp-mysql-example-1-build",
+                "namespace": "mff",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "build.openshift.io/v1",
+                        "controller": true,
+                        "kind": "Build",
+                        "name": "cakephp-mysql-example-1",
+                        "uid": "7c7db857-6323-11e7-bbf6-02a3eac619d4"
+                    }
+                ],
+                "resourceVersion": "84863",
+                "selfLink": "/api/v1/namespaces/mff/pods/cakephp-mysql-example-1-build",
+                "uid": "7c815fbe-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "args": [
+                            "--loglevel=0"
+                        ],
+                        "env": [
+                            {
+                                "name": "BUILD",
+                                "value": "{\"kind\":\"Build\",\"apiVersion\":\"v1\",\"metadata\":{\"name\":\"cakephp-mysql-example-1\",\"namespace\":\"mff\",\"selfLink\":\"/apis/build.openshift.io/v1/namespaces/mff/builds/cakephp-mysql-example-1\",\"uid\":\"7c7db857-6323-11e7-bbf6-02a3eac619d4\",\"resourceVersion\":\"84623\",\"creationTimestamp\":\"2017-07-07T14:49:32Z\",\"labels\":{\"app\":\"cakephp-mysql-example\",\"buildconfig\":\"cakephp-mysql-example\",\"openshift.io/build-config.name\":\"cakephp-mysql-example\",\"openshift.io/build.start-policy\":\"Serial\",\"template\":\"cakephp-mysql-example\"},\"annotations\":{\"openshift.io/build-config.name\":\"cakephp-mysql-example\",\"openshift.io/build.number\":\"1\"},\"ownerReferences\":[{\"apiVersion\":\"build.openshift.io/v1\",\"kind\":\"BuildConfig\",\"name\":\"cakephp-mysql-example\",\"uid\":\"7c78fc81-6323-11e7-bbf6-02a3eac619d4\",\"controller\":true}]},\"spec\":{\"serviceAccount\":\"builder\",\"source\":{\"type\":\"Git\",\"git\":{\"uri\":\"https://github.com/openshift/cakephp-ex.git\",\"noProxy\":\".cluster.local,.svc,ip-172-31-42-92.us-west-2.compute.internal\"}},\"strategy\":{\"type\":\"Source\",\"sourceStrategy\":{\"from\":{\"kind\":\"DockerImage\",\"name\":\"registry.access.redhat.com/rhscl/php-70-rhel7@sha256:6c9e1044218385ed314324de33c39d40c1051d2f9cf7cbaf053fc51ccd87c087\"},\"env\":[{\"name\":\"COMPOSER_MIRROR\"},{\"name\":\"NO_PROXY\",\"value\":\".cluster.local,.svc,ip-172-31-42-92.us-west-2.compute.internal\"},{\"name\":\"no_proxy\",\"value\":\".cluster.local,.svc,ip-172-31-42-92.us-west-2.compute.internal\"}]}},\"output\":{\"to\":{\"kind\":\"DockerImage\",\"name\":\"docker-registry.default.svc:5000/mff/cakephp-mysql-example:latest\"},\"pushSecret\":{\"name\":\"builder-dockercfg-qrln8\"}},\"resources\":{},\"postCommit\":{\"script\":\"./lib/Cake/Console/cake test app AllTests\"},\"nodeSelector\":null,\"triggeredBy\":[{\"message\":\"Image change\",\"imageChangeBuild\":{\"imageID\":\"registry.access.redhat.com/rhscl/php-70-rhel7@sha256:6c9e1044218385ed314324de33c39d40c1051d2f9cf7cbaf053fc51ccd87c087\",\"fromRef\":{\"kind\":\"ImageStreamTag\",\"namespace\":\"openshift\",\"name\":\"php:7.0\"}}}]},\"status\":{\"phase\":\"New\",\"outputDockerImageReference\":\"docker-registry.default.svc:5000/mff/cakephp-mysql-example:latest\",\"config\":{\"kind\":\"BuildConfig\",\"namespace\":\"mff\",\"name\":\"cakephp-mysql-example\"},\"output\":{}}}\n"
+                            },
+                            {
+                                "name": "SOURCE_REPOSITORY",
+                                "value": "https://github.com/openshift/cakephp-ex.git"
+                            },
+                            {
+                                "name": "SOURCE_URI",
+                                "value": "https://github.com/openshift/cakephp-ex.git"
+                            },
+                            {
+                                "name": "ORIGIN_VERSION",
+                                "value": "v3.6.133"
+                            },
+                            {
+                                "name": "ALLOWED_UIDS",
+                                "value": "1-"
+                            },
+                            {
+                                "name": "DROP_CAPS",
+                                "value": "KILL,MKNOD,SETGID,SETUID,SYS_CHROOT"
+                            },
+                            {
+                                "name": "PUSH_DOCKERCFG_PATH",
+                                "value": "/var/run/secrets/openshift.io/push"
+                            }
+                        ],
+                        "image": "registry.ops.openshift.com/openshift3/ose-sti-builder:v3.6.133",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "sti-build",
+                        "resources": {},
+                        "securityContext": {
+                            "privileged": true
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/docker.sock",
+                                "name": "docker-socket"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/openshift.io/push",
+                                "name": "builder-dockercfg-qrln8-push",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "builder-token-xt920",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "imagePullSecrets": [
+                    {
+                        "name": "builder-dockercfg-qrln8"
+                    }
+                ],
+                "nodeName": "ip-172-31-61-63.us-west-2.compute.internal",
+                "nodeSelector": {
+                    "region": "primary"
+                },
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "serviceAccount": "builder",
+                "serviceAccountName": "builder",
+                "terminationGracePeriodSeconds": 30,
+                "volumes": [
+                    {
+                        "hostPath": {
+                            "path": "/var/run/docker.sock"
+                        },
+                        "name": "docker-socket"
+                    },
+                    {
+                        "name": "builder-dockercfg-qrln8-push",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "builder-dockercfg-qrln8"
+                        }
+                    },
+                    {
+                        "name": "builder-token-xt920",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "builder-token-xt920"
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-07-07T14:49:32Z",
+                        "reason": "PodCompleted",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-07-07T14:52:09Z",
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-07-07T14:49:32Z",
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "containerID": "docker://261fc2f2084d760e2af24640ab5f7452eaccfb457009ae1ab31e35a83035d40a",
+                        "image": "registry.ops.openshift.com/openshift3/ose-sti-builder:v3.6.133",
+                        "imageID": "docker-pullable://registry.ops.openshift.com/openshift3/ose-sti-builder@sha256:fa8d09bde054ce9145e427451ecc360fe080f27c023110f569d34b173ec0206c",
+                        "lastState": {},
+                        "name": "sti-build",
+                        "ready": false,
+                        "restartCount": 0,
+                        "state": {
+                            "terminated": {
+                                "containerID": "docker://261fc2f2084d760e2af24640ab5f7452eaccfb457009ae1ab31e35a83035d40a",
+                                "exitCode": 0,
+                                "finishedAt": "2017-07-07T14:52:05Z",
+                                "reason": "Completed",
+                                "startedAt": "2017-07-07T14:50:19Z"
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "172.31.61.63",
+                "phase": "Succeeded",
+                "podIP": "172.20.3.233",
+                "qosClass": "BestEffort",
+                "startTime": "2017-07-07T14:49:32Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicationController\",\"namespace\":\"mff\",\"name\":\"cakephp-mysql-example-1\",\"uid\":\"d7e1bd9b-6323-11e7-bbf6-02a3eac619d4\",\"apiVersion\":\"v1\",\"resourceVersion\":\"84909\"}}\n",
+                    "openshift.io/deployment-config.latest-version": "1",
+                    "openshift.io/deployment-config.name": "cakephp-mysql-example",
+                    "openshift.io/deployment.name": "cakephp-mysql-example-1",
+                    "openshift.io/generated-by": "OpenShiftNewApp",
+                    "openshift.io/scc": "restricted"
+                },
+                "creationTimestamp": "2017-07-07T14:52:30Z",
+                "generateName": "cakephp-mysql-example-1-",
+                "labels": {
+                    "app": "cakephp-mysql-example",
+                    "deployment": "cakephp-mysql-example-1",
+                    "deploymentconfig": "cakephp-mysql-example",
+                    "name": "cakephp-mysql-example"
+                },
+                "name": "cakephp-mysql-example-1-g4sx9",
+                "namespace": "mff",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "ReplicationController",
+                        "name": "cakephp-mysql-example-1",
+                        "uid": "d7e1bd9b-6323-11e7-bbf6-02a3eac619d4"
+                    }
+                ],
+                "resourceVersion": "84930",
+                "selfLink": "/api/v1/namespaces/mff/pods/cakephp-mysql-example-1-g4sx9",
+                "uid": "e70b62af-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "env": [
+                            {
+                                "name": "DATABASE_SERVICE_NAME",
+                                "value": "mysql"
+                            },
+                            {
+                                "name": "DATABASE_ENGINE",
+                                "value": "mysql"
+                            },
+                            {
+                                "name": "DATABASE_NAME",
+                                "value": "default"
+                            },
+                            {
+                                "name": "DATABASE_USER",
+                                "valueFrom": {
+                                    "secretKeyRef": {
+                                        "key": "database-user",
+                                        "name": "cakephp-mysql-example"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "DATABASE_PASSWORD",
+                                "valueFrom": {
+                                    "secretKeyRef": {
+                                        "key": "database-password",
+                                        "name": "cakephp-mysql-example"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "CAKEPHP_SECRET_TOKEN",
+                                "valueFrom": {
+                                    "secretKeyRef": {
+                                        "key": "cakephp-secret-token",
+                                        "name": "cakephp-mysql-example"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "CAKEPHP_SECURITY_SALT",
+                                "valueFrom": {
+                                    "secretKeyRef": {
+                                        "key": "cakephp-security-salt",
+                                        "name": "cakephp-mysql-example"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "CAKEPHP_SECURITY_CIPHER_SEED",
+                                "valueFrom": {
+                                    "secretKeyRef": {
+                                        "key": "cakephp-security-cipher-seed",
+                                        "name": "cakephp-mysql-example"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "OPCACHE_REVALIDATE_FREQ",
+                                "value": "2"
+                            }
+                        ],
+                        "image": "docker-registry.default.svc:5000/mff/cakephp-mysql-example@sha256:81f845044a8acd3d0db7708f4998017eb676878ee1f508f3d6c5c633c5f07d71",
+                        "imagePullPolicy": "IfNotPresent",
+                        "livenessProbe": {
+                            "failureThreshold": 3,
+                            "httpGet": {
+                                "path": "/",
+                                "port": 8080,
+                                "scheme": "HTTP"
+                            },
+                            "initialDelaySeconds": 30,
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "name": "cakephp-mysql-example",
+                        "ports": [
+                            {
+                                "containerPort": 8080,
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "httpGet": {
+                                "path": "/health.php",
+                                "port": 8080,
+                                "scheme": "HTTP"
+                            },
+                            "initialDelaySeconds": 3,
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "resources": {
+                            "limits": {
+                                "memory": "512Mi"
+                            },
+                            "requests": {
+                                "memory": "512Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "capabilities": {
+                                "drop": [
+                                    "KILL",
+                                    "MKNOD",
+                                    "SETGID",
+                                    "SETUID",
+                                    "SYS_CHROOT"
+                                ]
+                            },
+                            "privileged": false,
+                            "runAsUser": 1002070000,
+                            "seLinuxOptions": {
+                                "level": "s0:c46,c0"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "default-token-wjpzr",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "imagePullSecrets": [
+                    {
+                        "name": "default-dockercfg-99ddd"
+                    }
+                ],
+                "nodeName": "ip-172-31-61-63.us-west-2.compute.internal",
+                "nodeSelector": {
+                    "region": "primary"
+                },
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "fsGroup": 1002070000,
+                    "seLinuxOptions": {
+                        "level": "s0:c46,c0"
+                    }
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "volumes": [
+                    {
+                        "name": "default-token-wjpzr",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "default-token-wjpzr"
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-07-07T14:52:30Z",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-07-07T14:52:40Z",
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-07-07T14:52:30Z",
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "containerID": "docker://8c2c9cbe4c56d93066eb6e275f43e22f945a8e8c7a6e055c2622bf64f2f08b29",
+                        "image": "docker-registry.default.svc:5000/mff/cakephp-mysql-example:latest",
+                        "imageID": "docker-pullable://docker-registry.default.svc:5000/mff/cakephp-mysql-example@sha256:81f845044a8acd3d0db7708f4998017eb676878ee1f508f3d6c5c633c5f07d71",
+                        "lastState": {},
+                        "name": "cakephp-mysql-example",
+                        "ready": true,
+                        "restartCount": 0,
+                        "state": {
+                            "running": {
+                                "startedAt": "2017-07-07T14:52:35Z"
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "172.31.61.63",
+                "phase": "Running",
+                "podIP": "172.20.3.237",
+                "qosClass": "Burstable",
+                "startTime": "2017-07-07T14:52:30Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicationController\",\"namespace\":\"mff\",\"name\":\"mongodb-1\",\"uid\":\"76fe9e97-6323-11e7-bbf6-02a3eac619d4\",\"apiVersion\":\"v1\",\"resourceVersion\":\"84705\"}}\n",
+                    "openshift.io/deployment-config.latest-version": "1",
+                    "openshift.io/deployment-config.name": "mongodb",
+                    "openshift.io/deployment.name": "mongodb-1",
+                    "openshift.io/generated-by": "OpenShiftNewApp",
+                    "openshift.io/scc": "restricted"
+                },
+                "creationTimestamp": "2017-07-07T14:50:20Z",
+                "generateName": "mongodb-1-",
+                "labels": {
+                    "app": "nodejs-mongodb-example",
+                    "deployment": "mongodb-1",
+                    "deploymentconfig": "mongodb",
+                    "name": "mongodb"
+                },
+                "name": "mongodb-1-shdk6",
+                "namespace": "mff",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "ReplicationController",
+                        "name": "mongodb-1",
+                        "uid": "76fe9e97-6323-11e7-bbf6-02a3eac619d4"
+                    }
+                ],
+                "resourceVersion": "84753",
+                "selfLink": "/api/v1/namespaces/mff/pods/mongodb-1-shdk6",
+                "uid": "9992457d-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "env": [
+                            {
+                                "name": "MONGODB_USER",
+                                "valueFrom": {
+                                    "secretKeyRef": {
+                                        "key": "database-user",
+                                        "name": "nodejs-mongodb-example"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "MONGODB_PASSWORD",
+                                "valueFrom": {
+                                    "secretKeyRef": {
+                                        "key": "database-password",
+                                        "name": "nodejs-mongodb-example"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "MONGODB_DATABASE",
+                                "value": "sampledb"
+                            },
+                            {
+                                "name": "MONGODB_ADMIN_PASSWORD",
+                                "valueFrom": {
+                                    "secretKeyRef": {
+                                        "key": "database-admin-password",
+                                        "name": "nodejs-mongodb-example"
+                                    }
+                                }
+                            }
+                        ],
+                        "image": "registry.access.redhat.com/rhscl/mongodb-32-rhel7@sha256:b7aa23df571fe7f8a9454238a14ae97fe3c20b7315af61f5ef9ff7daa5fe0a91",
+                        "imagePullPolicy": "IfNotPresent",
+                        "livenessProbe": {
+                            "failureThreshold": 3,
+                            "initialDelaySeconds": 30,
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "tcpSocket": {
+                                "port": 27017
+                            },
+                            "timeoutSeconds": 1
+                        },
+                        "name": "mongodb",
+                        "ports": [
+                            {
+                                "containerPort": 27017,
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "exec": {
+                                "command": [
+                                    "/bin/sh",
+                                    "-i",
+                                    "-c",
+                                    "mongo 127.0.0.1:27017/$MONGODB_DATABASE -u $MONGODB_USER -p $MONGODB_PASSWORD --eval=\"quit()\""
+                                ]
+                            },
+                            "failureThreshold": 3,
+                            "initialDelaySeconds": 3,
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 1
+                        },
+                        "resources": {
+                            "limits": {
+                                "memory": "512Mi"
+                            },
+                            "requests": {
+                                "memory": "512Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "capabilities": {
+                                "drop": [
+                                    "KILL",
+                                    "MKNOD",
+                                    "SETGID",
+                                    "SETUID",
+                                    "SYS_CHROOT"
+                                ]
+                            },
+                            "privileged": false,
+                            "runAsUser": 1002070000,
+                            "seLinuxOptions": {
+                                "level": "s0:c46,c0"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/lib/mongodb/data",
+                                "name": "mongodb-data"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "default-token-wjpzr",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "imagePullSecrets": [
+                    {
+                        "name": "default-dockercfg-99ddd"
+                    }
+                ],
+                "nodeName": "ip-172-31-55-76.us-west-2.compute.internal",
+                "nodeSelector": {
+                    "region": "primary"
+                },
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "fsGroup": 1002070000,
+                    "seLinuxOptions": {
+                        "level": "s0:c46,c0"
+                    }
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "volumes": [
+                    {
+                        "emptyDir": {},
+                        "name": "mongodb-data"
+                    },
+                    {
+                        "name": "default-token-wjpzr",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "default-token-wjpzr"
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-07-07T14:50:20Z",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-07-07T14:51:01Z",
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-07-07T14:50:20Z",
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "containerID": "docker://97de264b6d829520d40cee22a80c9e17a1eeee402a6a652488dfcb9371ceb434",
+                        "image": "registry.access.redhat.com/rhscl/mongodb-32-rhel7@sha256:b7aa23df571fe7f8a9454238a14ae97fe3c20b7315af61f5ef9ff7daa5fe0a91",
+                        "imageID": "docker-pullable://registry.access.redhat.com/rhscl/mongodb-32-rhel7@sha256:b7aa23df571fe7f8a9454238a14ae97fe3c20b7315af61f5ef9ff7daa5fe0a91",
+                        "lastState": {},
+                        "name": "mongodb",
+                        "ready": true,
+                        "restartCount": 0,
+                        "state": {
+                            "running": {
+                                "startedAt": "2017-07-07T14:50:48Z"
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "172.31.55.76",
+                "phase": "Running",
+                "podIP": "172.20.2.235",
+                "qosClass": "Burstable",
+                "startTime": "2017-07-07T14:50:20Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicationController\",\"namespace\":\"mff\",\"name\":\"mysql-1\",\"uid\":\"7c8536b1-6323-11e7-bbf6-02a3eac619d4\",\"apiVersion\":\"v1\",\"resourceVersion\":\"84680\"}}\n",
+                    "openshift.io/deployment-config.latest-version": "1",
+                    "openshift.io/deployment-config.name": "mysql",
+                    "openshift.io/deployment.name": "mysql-1",
+                    "openshift.io/generated-by": "OpenShiftNewApp",
+                    "openshift.io/scc": "restricted"
+                },
+                "creationTimestamp": "2017-07-07T14:50:18Z",
+                "generateName": "mysql-1-",
+                "labels": {
+                    "app": "cakephp-mysql-example",
+                    "deployment": "mysql-1",
+                    "deploymentconfig": "mysql",
+                    "name": "mysql"
+                },
+                "name": "mysql-1-m8tqb",
+                "namespace": "mff",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "ReplicationController",
+                        "name": "mysql-1",
+                        "uid": "7c8536b1-6323-11e7-bbf6-02a3eac619d4"
+                    }
+                ],
+                "resourceVersion": "84766",
+                "selfLink": "/api/v1/namespaces/mff/pods/mysql-1-m8tqb",
+                "uid": "980a5d4b-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "env": [
+                            {
+                                "name": "MYSQL_USER",
+                                "valueFrom": {
+                                    "secretKeyRef": {
+                                        "key": "database-user",
+                                        "name": "cakephp-mysql-example"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "MYSQL_PASSWORD",
+                                "valueFrom": {
+                                    "secretKeyRef": {
+                                        "key": "database-password",
+                                        "name": "cakephp-mysql-example"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "MYSQL_DATABASE",
+                                "value": "default"
+                            }
+                        ],
+                        "image": "registry.access.redhat.com/rhscl/mysql-57-rhel7@sha256:65b6211c88280c399ad9294168eb0923e0e69cd468758b0233d599972de1bbd8",
+                        "imagePullPolicy": "IfNotPresent",
+                        "livenessProbe": {
+                            "failureThreshold": 3,
+                            "initialDelaySeconds": 30,
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "tcpSocket": {
+                                "port": 3306
+                            },
+                            "timeoutSeconds": 1
+                        },
+                        "name": "mysql",
+                        "ports": [
+                            {
+                                "containerPort": 3306,
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "exec": {
+                                "command": [
+                                    "/bin/sh",
+                                    "-i",
+                                    "-c",
+                                    "MYSQL_PWD='OKl1mbyoeKjuUkuA' mysql -h 127.0.0.1 -u cakephp -D default -e 'SELECT 1'"
+                                ]
+                            },
+                            "failureThreshold": 3,
+                            "initialDelaySeconds": 5,
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 1
+                        },
+                        "resources": {
+                            "limits": {
+                                "memory": "512Mi"
+                            },
+                            "requests": {
+                                "memory": "512Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "capabilities": {
+                                "drop": [
+                                    "KILL",
+                                    "MKNOD",
+                                    "SETGID",
+                                    "SETUID",
+                                    "SYS_CHROOT"
+                                ]
+                            },
+                            "privileged": false,
+                            "runAsUser": 1002070000,
+                            "seLinuxOptions": {
+                                "level": "s0:c46,c0"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/lib/mysql/data",
+                                "name": "data"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "default-token-wjpzr",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "imagePullSecrets": [
+                    {
+                        "name": "default-dockercfg-99ddd"
+                    }
+                ],
+                "nodeName": "ip-172-31-61-63.us-west-2.compute.internal",
+                "nodeSelector": {
+                    "region": "primary"
+                },
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "fsGroup": 1002070000,
+                    "seLinuxOptions": {
+                        "level": "s0:c46,c0"
+                    }
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "volumes": [
+                    {
+                        "emptyDir": {},
+                        "name": "data"
+                    },
+                    {
+                        "name": "default-token-wjpzr",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "default-token-wjpzr"
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-07-07T14:50:18Z",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-07-07T14:51:08Z",
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-07-07T14:50:18Z",
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "containerID": "docker://8d2fba670a29bd045595d93210bd4f0a5d940ae236d1e233a663d092cb6bc638",
+                        "image": "registry.access.redhat.com/rhscl/mysql-57-rhel7@sha256:65b6211c88280c399ad9294168eb0923e0e69cd468758b0233d599972de1bbd8",
+                        "imageID": "docker-pullable://registry.access.redhat.com/rhscl/mysql-57-rhel7@sha256:65b6211c88280c399ad9294168eb0923e0e69cd468758b0233d599972de1bbd8",
+                        "lastState": {},
+                        "name": "mysql",
+                        "ready": true,
+                        "restartCount": 0,
+                        "state": {
+                            "running": {
+                                "startedAt": "2017-07-07T14:50:49Z"
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "172.31.61.63",
+                "phase": "Running",
+                "podIP": "172.20.3.234",
+                "qosClass": "Burstable",
+                "startTime": "2017-07-07T14:50:18Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/created-by": "{\"kind\":\"SerializedReference\",\"apiVersion\":\"v1\",\"reference\":{\"kind\":\"ReplicationController\",\"namespace\":\"mff\",\"name\":\"nodejs-mongodb-example-1\",\"uid\":\"cda65591-6323-11e7-bbf6-02a3eac619d4\",\"apiVersion\":\"v1\",\"resourceVersion\":\"84826\"}}\n",
+                    "openshift.io/deployment-config.latest-version": "1",
+                    "openshift.io/deployment-config.name": "nodejs-mongodb-example",
+                    "openshift.io/deployment.name": "nodejs-mongodb-example-1",
+                    "openshift.io/generated-by": "OpenShiftNewApp",
+                    "openshift.io/scc": "restricted"
+                },
+                "creationTimestamp": "2017-07-07T14:51:58Z",
+                "generateName": "nodejs-mongodb-example-1-",
+                "labels": {
+                    "app": "nodejs-mongodb-example",
+                    "deployment": "nodejs-mongodb-example-1",
+                    "deploymentconfig": "nodejs-mongodb-example",
+                    "name": "nodejs-mongodb-example"
+                },
+                "name": "nodejs-mongodb-example-1-098p7",
+                "namespace": "mff",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "ReplicationController",
+                        "name": "nodejs-mongodb-example-1",
+                        "uid": "cda65591-6323-11e7-bbf6-02a3eac619d4"
+                    }
+                ],
+                "resourceVersion": "84892",
+                "selfLink": "/api/v1/namespaces/mff/pods/nodejs-mongodb-example-1-098p7",
+                "uid": "d3a254ae-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "env": [
+                            {
+                                "name": "DATABASE_SERVICE_NAME",
+                                "value": "mongodb"
+                            },
+                            {
+                                "name": "MONGODB_USER",
+                                "valueFrom": {
+                                    "secretKeyRef": {
+                                        "key": "database-user",
+                                        "name": "nodejs-mongodb-example"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "MONGODB_PASSWORD",
+                                "valueFrom": {
+                                    "secretKeyRef": {
+                                        "key": "database-password",
+                                        "name": "nodejs-mongodb-example"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "MONGODB_DATABASE",
+                                "value": "sampledb"
+                            },
+                            {
+                                "name": "MONGODB_ADMIN_PASSWORD",
+                                "valueFrom": {
+                                    "secretKeyRef": {
+                                        "key": "database-admin-password",
+                                        "name": "nodejs-mongodb-example"
+                                    }
+                                }
+                            }
+                        ],
+                        "image": "docker-registry.default.svc:5000/mff/nodejs-mongodb-example@sha256:a5fea2406aadc9b94e5750974ae33edfe3f45350b1e04d46e0960164f4add304",
+                        "imagePullPolicy": "IfNotPresent",
+                        "livenessProbe": {
+                            "failureThreshold": 3,
+                            "httpGet": {
+                                "path": "/pagecount",
+                                "port": 8080,
+                                "scheme": "HTTP"
+                            },
+                            "initialDelaySeconds": 30,
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "name": "nodejs-mongodb-example",
+                        "ports": [
+                            {
+                                "containerPort": 8080,
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "httpGet": {
+                                "path": "/pagecount",
+                                "port": 8080,
+                                "scheme": "HTTP"
+                            },
+                            "initialDelaySeconds": 3,
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "resources": {
+                            "limits": {
+                                "memory": "512Mi"
+                            },
+                            "requests": {
+                                "memory": "512Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "capabilities": {
+                                "drop": [
+                                    "KILL",
+                                    "MKNOD",
+                                    "SETGID",
+                                    "SETUID",
+                                    "SYS_CHROOT"
+                                ]
+                            },
+                            "privileged": false,
+                            "runAsUser": 1002070000,
+                            "seLinuxOptions": {
+                                "level": "s0:c46,c0"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "default-token-wjpzr",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "imagePullSecrets": [
+                    {
+                        "name": "default-dockercfg-99ddd"
+                    }
+                ],
+                "nodeName": "ip-172-31-55-76.us-west-2.compute.internal",
+                "nodeSelector": {
+                    "region": "primary"
+                },
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "fsGroup": 1002070000,
+                    "seLinuxOptions": {
+                        "level": "s0:c46,c0"
+                    }
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "volumes": [
+                    {
+                        "name": "default-token-wjpzr",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "default-token-wjpzr"
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-07-07T14:51:58Z",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-07-07T14:52:28Z",
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-07-07T14:51:58Z",
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "containerID": "docker://942fc311155c92401989144d12822a4cd0d5422d2477814da1583463fef1165f",
+                        "image": "docker-registry.default.svc:5000/mff/nodejs-mongodb-example@sha256:a5fea2406aadc9b94e5750974ae33edfe3f45350b1e04d46e0960164f4add304",
+                        "imageID": "docker-pullable://docker-registry.default.svc:5000/mff/nodejs-mongodb-example@sha256:a5fea2406aadc9b94e5750974ae33edfe3f45350b1e04d46e0960164f4add304",
+                        "lastState": {},
+                        "name": "nodejs-mongodb-example",
+                        "ready": true,
+                        "restartCount": 0,
+                        "state": {
+                            "running": {
+                                "startedAt": "2017-07-07T14:52:23Z"
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "172.31.55.76",
+                "phase": "Running",
+                "podIP": "172.20.2.236",
+                "qosClass": "Burstable",
+                "startTime": "2017-07-07T14:51:58Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "openshift.io/build.name": "nodejs-mongodb-example-1",
+                    "openshift.io/scc": "privileged"
+                },
+                "creationTimestamp": "2017-07-07T14:49:22Z",
+                "labels": {
+                    "openshift.io/build.name": "nodejs-mongodb-example-1"
+                },
+                "name": "nodejs-mongodb-example-1-build",
+                "namespace": "mff",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "build.openshift.io/v1",
+                        "controller": true,
+                        "kind": "Build",
+                        "name": "nodejs-mongodb-example-1",
+                        "uid": "76f99e65-6323-11e7-bbf6-02a3eac619d4"
+                    }
+                ],
+                "resourceVersion": "84814",
+                "selfLink": "/api/v1/namespaces/mff/pods/nodejs-mongodb-example-1-build",
+                "uid": "76fbaa79-6323-11e7-bbf6-02a3eac619d4"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "args": [
+                            "--loglevel=0"
+                        ],
+                        "env": [
+                            {
+                                "name": "BUILD",
+                                "value": "{\"kind\":\"Build\",\"apiVersion\":\"v1\",\"metadata\":{\"name\":\"nodejs-mongodb-example-1\",\"namespace\":\"mff\",\"selfLink\":\"/apis/build.openshift.io/v1/namespaces/mff/builds/nodejs-mongodb-example-1\",\"uid\":\"76f99e65-6323-11e7-bbf6-02a3eac619d4\",\"resourceVersion\":\"84586\",\"creationTimestamp\":\"2017-07-07T14:49:22Z\",\"labels\":{\"app\":\"nodejs-mongodb-example\",\"buildconfig\":\"nodejs-mongodb-example\",\"openshift.io/build-config.name\":\"nodejs-mongodb-example\",\"openshift.io/build.start-policy\":\"Serial\",\"template\":\"nodejs-mongodb-example\"},\"annotations\":{\"openshift.io/build-config.name\":\"nodejs-mongodb-example\",\"openshift.io/build.number\":\"1\"},\"ownerReferences\":[{\"apiVersion\":\"build.openshift.io/v1\",\"kind\":\"BuildConfig\",\"name\":\"nodejs-mongodb-example\",\"uid\":\"76f31d7b-6323-11e7-bbf6-02a3eac619d4\",\"controller\":true}]},\"spec\":{\"serviceAccount\":\"builder\",\"source\":{\"type\":\"Git\",\"git\":{\"uri\":\"https://github.com/openshift/nodejs-ex.git\",\"noProxy\":\".cluster.local,.svc,ip-172-31-42-92.us-west-2.compute.internal\"}},\"strategy\":{\"type\":\"Source\",\"sourceStrategy\":{\"from\":{\"kind\":\"DockerImage\",\"name\":\"registry.access.redhat.com/rhscl/nodejs-6-rhel7@sha256:b6e89ef453af578cb85c859396af92f9912a0544d6564a2d4b3546c7d63893a0\"},\"env\":[{\"name\":\"NPM_MIRROR\"},{\"name\":\"NO_PROXY\",\"value\":\".cluster.local,.svc,ip-172-31-42-92.us-west-2.compute.internal\"},{\"name\":\"no_proxy\",\"value\":\".cluster.local,.svc,ip-172-31-42-92.us-west-2.compute.internal\"}]}},\"output\":{\"to\":{\"kind\":\"DockerImage\",\"name\":\"docker-registry.default.svc:5000/mff/nodejs-mongodb-example:latest\"},\"pushSecret\":{\"name\":\"builder-dockercfg-qrln8\"}},\"resources\":{},\"postCommit\":{\"script\":\"npm test\"},\"nodeSelector\":null,\"triggeredBy\":[{\"message\":\"Build configuration change\"}]},\"status\":{\"phase\":\"New\",\"outputDockerImageReference\":\"docker-registry.default.svc:5000/mff/nodejs-mongodb-example:latest\",\"config\":{\"kind\":\"BuildConfig\",\"namespace\":\"mff\",\"name\":\"nodejs-mongodb-example\"},\"output\":{}}}\n"
+                            },
+                            {
+                                "name": "SOURCE_REPOSITORY",
+                                "value": "https://github.com/openshift/nodejs-ex.git"
+                            },
+                            {
+                                "name": "SOURCE_URI",
+                                "value": "https://github.com/openshift/nodejs-ex.git"
+                            },
+                            {
+                                "name": "ORIGIN_VERSION",
+                                "value": "v3.6.133"
+                            },
+                            {
+                                "name": "ALLOWED_UIDS",
+                                "value": "1-"
+                            },
+                            {
+                                "name": "DROP_CAPS",
+                                "value": "KILL,MKNOD,SETGID,SETUID,SYS_CHROOT"
+                            },
+                            {
+                                "name": "PUSH_DOCKERCFG_PATH",
+                                "value": "/var/run/secrets/openshift.io/push"
+                            }
+                        ],
+                        "image": "registry.ops.openshift.com/openshift3/ose-sti-builder:v3.6.133",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "sti-build",
+                        "resources": {},
+                        "securityContext": {
+                            "privileged": true
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/docker.sock",
+                                "name": "docker-socket"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/openshift.io/push",
+                                "name": "builder-dockercfg-qrln8-push",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "builder-token-xt920",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "imagePullSecrets": [
+                    {
+                        "name": "builder-dockercfg-qrln8"
+                    }
+                ],
+                "nodeName": "ip-172-31-61-63.us-west-2.compute.internal",
+                "nodeSelector": {
+                    "region": "primary"
+                },
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "serviceAccount": "builder",
+                "serviceAccountName": "builder",
+                "terminationGracePeriodSeconds": 30,
+                "volumes": [
+                    {
+                        "hostPath": {
+                            "path": "/var/run/docker.sock"
+                        },
+                        "name": "docker-socket"
+                    },
+                    {
+                        "name": "builder-dockercfg-qrln8-push",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "builder-dockercfg-qrln8"
+                        }
+                    },
+                    {
+                        "name": "builder-token-xt920",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "builder-token-xt920"
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-07-07T14:49:22Z",
+                        "reason": "PodCompleted",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-07-07T14:51:48Z",
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2017-07-07T14:49:22Z",
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "containerID": "docker://297786f5a333220db843d473bcb232163b6ec34efc764206d80f7b16184dab78",
+                        "image": "registry.ops.openshift.com/openshift3/ose-sti-builder:v3.6.133",
+                        "imageID": "docker-pullable://registry.ops.openshift.com/openshift3/ose-sti-builder@sha256:fa8d09bde054ce9145e427451ecc360fe080f27c023110f569d34b173ec0206c",
+                        "lastState": {},
+                        "name": "sti-build",
+                        "ready": false,
+                        "restartCount": 0,
+                        "state": {
+                            "terminated": {
+                                "containerID": "docker://297786f5a333220db843d473bcb232163b6ec34efc764206d80f7b16184dab78",
+                                "exitCode": 0,
+                                "finishedAt": "2017-07-07T14:51:48Z",
+                                "reason": "Completed",
+                                "startedAt": "2017-07-07T14:50:17Z"
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "172.31.61.63",
+                "phase": "Succeeded",
+                "podIP": "172.20.3.232",
+                "qosClass": "BestEffort",
+                "startTime": "2017-07-07T14:49:22Z"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {},
+    "resourceVersion": "",
+    "selfLink": ""
+}

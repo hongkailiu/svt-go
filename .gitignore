@@ -17,3 +17,5 @@
 .idea/
 *.iml
 svt-go
+
+build/

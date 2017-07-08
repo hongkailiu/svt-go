@@ -9,7 +9,8 @@ before_install:
   - go get github.com/mattn/goveralls
 
 script:
-  - go test -v $(go list ./... | grep -v /vendor/)
+  #- go test -v $(go list ./... | grep -v /vendor/)
+  - make test
 
 after_success:
-  - COVERALLS=true ./test-coverage.sh
+  - make COVERALLS=true coveralls

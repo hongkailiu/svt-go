@@ -21,8 +21,8 @@ fi
 rm -rf "${RELEASE_DIR}"
 mkdir -p "${RELEASE_DIR}"
 readonly REPO_NAME="svt-release"
-readonly GH_TOKEN="00f5a07b85fd0251251e68c2c81600714c9e7fd5"
-readonly REPO_URL="https://${GH_TOKEN}@github.com/cduser/${REPO_NAME}.git"
+readonly GH_TOKEN="eb6f4de9002f7a1f1d5e0377d02d19123656085e"
+readonly REPO_URL="https://${GH_TOKEN}:x-oauth-basic@github.com/cduser/${REPO_NAME}.git"
 
 readonly CURRENT_DIR="$(pwd)"
 cd "${RELEASE_DIR}" || exit 1
@@ -35,7 +35,7 @@ git add "${PKG_BASENAME}"
 if [[ -n "${TRAVIS}" ]]; then
   echo "release by travis ci to branch: travis_${TRAVIS_BUILD_NUMBER}"
   git config user.email "cduser@@users.noreply.github.com"
-  git config --global user.name "CD User"
+  git config user.name "CD User"
   msg_body="TRAVIS_BUILD_NUMBER: ${TRAVIS_BUILD_NUMBER}\nTRAVIS_BUILD_ID: ${TRAVIS_BUILD_ID}"
   git commit -m "travis: ${PKG_BASENAME}" -m "${msg_body}"
   git push origin "HEAD:travis_${TRAVIS_BUILD_NUMBER}"

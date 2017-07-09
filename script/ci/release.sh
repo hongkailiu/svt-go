@@ -33,10 +33,11 @@ git checkout -b tempB
 cp -f "${PKG_FULLNAME}" .
 git add "${PKG_BASENAME}"
 if [[ -n "${TRAVIS}" ]]; then
-  echo "release by travis ci to branch: dev_${HOSTNAME}_${USERNAME}"
+  echo "release by travis ci to branch: travis_${TRAVIS_BUILD_NUMBER}"
   msg_body="TRAVIS_BUILD_NUMBER: ${TRAVIS_BUILD_NUMBER}\nTRAVIS_BUILD_ID: ${TRAVIS_BUILD_ID}"
   git commit -m "travis: ${PKG_BASENAME}" -m "${msg_body}"
-  git checkout -b
+  git config user.email "cduser@@users.noreply.github.com"
+  git config --global user.name "CD User"
   git push origin "HEAD:travis_${TRAVIS_BUILD_NUMBER}"
 else
   echo "release by dev to branch: dev_${HOSTNAME}_${USERNAME}"

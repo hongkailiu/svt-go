@@ -3,7 +3,7 @@
 set -e
 
 echo "RELEASE: ${PKG_FULLNAME}"
-if [[ ! -n "${RELEASE}" ]]; then
+if [[ "${RELEASE}" -ne "true" ]]; then
   echo "skip release"
   exit 0
 fi
@@ -43,8 +43,9 @@ if [[ -n "${TRAVIS}" ]]; then
   echo "release by travis ci to branch: travis_${TRAVIS_BUILD_NUMBER}"
   git config user.email "cduser@@users.noreply.github.com"
   git config user.name "CD User"
-  msg_body="TRAVIS_BUILD_NUMBER: ${TRAVIS_BUILD_NUMBER}\nTRAVIS_BUILD_ID: ${TRAVIS_BUILD_ID}"
-  git commit -m "travis: ${PKG_BASENAME}" -m "${msg_body}"
+  msg_body_line1="TRAVIS_BUILD_NUMBER: ${TRAVIS_BUILD_NUMBER}"
+  msg_body_line2="TRAVIS_BUILD_ID: ${TRAVIS_BUILD_ID}"
+  git commit -m "travis: ${PKG_BASENAME}" -m "${msg_body_line1}" -m "${msg_body_line2}"
   git push origin "HEAD:travis_${TRAVIS_BUILD_NUMBER}"
 else
   echo "release by dev to branch: dev_${HOSTNAME}_${USERNAME}"

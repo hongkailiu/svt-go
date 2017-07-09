@@ -2,12 +2,18 @@
 
 set -e
 
-echo "RELEASE: ${PKG_FULLNAME}"
-if [[ "${RELEASE}" -ne "true" ]]; then
-  echo "skip release"
+readonly GO_VERSION="$(go version)"
+echo "go version: ${GO_VERSION}"
+if [[ ! "${GO_VERSION}" == *"go1.8"* ]]; then
+  echo "skip release up to go version"
   exit 0
 fi
 
+echo "RELEASE VAR: ${RELEASE}"
+if [[ "${RELEASE}" != "true" ]]; then
+  echo "skip release up to env var value"
+  exit 0
+fi
 
 readonly SOURCE_FOLDER="$(dirname "$(readlink -f "${0}")")"
 readonly APP_FOLDER="$(dirname "$(dirname "${SOURCE_FOLDER}")")"
@@ -43,6 +49,7 @@ if [[ -n "${TRAVIS}" ]]; then
   echo "release by travis ci to branch: travis_${TRAVIS_BUILD_NUMBER}"
   git config user.email "cduser@@users.noreply.github.com"
   git config user.name "CD User"
+  $'first line\nsecond line'
   msg_body_line1="TRAVIS_BUILD_NUMBER: ${TRAVIS_BUILD_NUMBER}"
   msg_body_line2="TRAVIS_BUILD_ID: ${TRAVIS_BUILD_ID}"
   git commit -m "travis: ${PKG_BASENAME}" -m "${msg_body_line1}" -m "${msg_body_line2}"

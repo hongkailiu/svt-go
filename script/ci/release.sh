@@ -2,6 +2,13 @@
 
 set -e
 
+echo "RELEASE: ${PKG_FULLNAME}"
+if [[ ! -n "${RELEASE}" ]]; then
+  echo "skip release"
+  exit 0
+fi
+
+
 readonly SOURCE_FOLDER="$(dirname "$(readlink -f "${0}")")"
 readonly APP_FOLDER="$(dirname "$(dirname "${SOURCE_FOLDER}")")"
 readonly BUILD_DIR="${APP_FOLDER}/build"

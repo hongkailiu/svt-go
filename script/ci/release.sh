@@ -27,7 +27,6 @@ readonly REPO_URL="https://${GH_TOKEN}@github.com/cduser/${REPO_NAME}.git"
 readonly CURRENT_DIR="$(pwd)"
 cd "${RELEASE_DIR}" || exit 1
 
-echo "aaa..."
 git clone "${REPO_URL}"
 cd "${REPO_NAME}"
 git checkout -b tempB

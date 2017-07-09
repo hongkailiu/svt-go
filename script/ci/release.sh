@@ -21,7 +21,7 @@ fi
 rm -rf "${RELEASE_DIR}"
 mkdir -p "${RELEASE_DIR}"
 readonly REPO_NAME="svt-release"
-readonly GH_TOKEN="df14ce4d4468fcd4050e56e28c7ac118a8c0a6c2"
+readonly GH_TOKEN="00f5a07b85fd0251251e68c2c81600714c9e7fd5"
 readonly REPO_URL="https://${GH_TOKEN}@github.com/cduser/${REPO_NAME}.git"
 
 readonly CURRENT_DIR="$(pwd)"

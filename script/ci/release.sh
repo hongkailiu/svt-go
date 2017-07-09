@@ -49,7 +49,6 @@ if [[ -n "${TRAVIS}" ]]; then
   echo "release by travis ci to branch: travis_${TRAVIS_BUILD_NUMBER}"
   git config user.email "cduser@@users.noreply.github.com"
   git config user.name "CD User"
-  $'first line\nsecond line'
   msg_body_line1="TRAVIS_BUILD_NUMBER: ${TRAVIS_BUILD_NUMBER}"
   msg_body_line2="TRAVIS_BUILD_ID: ${TRAVIS_BUILD_ID}"
   msg_body_line3="TRAVIS_JOB_NUMBER: ${TRAVIS_JOB_NUMBER}"

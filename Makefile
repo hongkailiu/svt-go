@@ -18,9 +18,9 @@ coveralls:
 	./script/ci/coveralls.sh
 
 .PHONY : package
-package:
+package: build
 	./script/ci/package.sh
 
 .PHONY : release
-release:
+release: package
 	./script/ci/release.sh

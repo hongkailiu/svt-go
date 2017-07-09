@@ -7,6 +7,7 @@ readonly ACC_FILE="${BUILD_DIR}/coverage/acc.out"
 
 if [[ ! -f "${ACC_FILE}" ]]; then
   echo "acc_file does not exits: ${ACC_FILE}"
+  exit 1
 fi
 
 if [[ -n "${COVERALLS}" ]]; then

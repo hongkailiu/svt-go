@@ -16,3 +16,11 @@ test:
 .PHONY : coveralls
 coveralls:
 	./script/ci/coveralls.sh
+
+.PHONY : package
+package:
+	./script/ci/package.sh
+
+.PHONY : release
+release:
+	./script/ci/release.sh

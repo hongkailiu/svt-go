@@ -18,6 +18,11 @@
     $ go get github.com/tools/godep
     ```
 
+# Get Code
+
+```sh
+$ go get github.com/hongkailiu/svt-go
+```
 
 # Get Dependencies
 

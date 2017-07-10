@@ -3,6 +3,8 @@
 # workaround for issue https://github.com/mattn/goveralls/issues/20
 # https://raw.githubusercontent.com/gopns/gopns/master/test-coverage.sh
 
+set -e
+
 readonly SOURCE_FOLDER="$(dirname "$(readlink -f "${0}")")"
 readonly APP_FOLDER="$(dirname "$(dirname "${SOURCE_FOLDER}")")"
 readonly BUILD_DIR="${APP_FOLDER}/build"

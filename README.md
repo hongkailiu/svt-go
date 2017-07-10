@@ -42,7 +42,7 @@ $ make test
 
 ```sh
 $ make clean package
-$ ll build/svt*.tar.gz
+$ ls build/svt*.tar.gz
 ```
 
 # Release

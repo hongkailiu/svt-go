@@ -24,3 +24,7 @@ package: build
 .PHONY : release
 release: package
 	./script/ci/release.sh
+
+.PHONY : godep_save
+godep_save:
+	godep save ./...

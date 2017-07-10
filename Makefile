@@ -3,7 +3,7 @@ all : build
 
 .PHONY : build
 build:
-	go build -o build/svt github.com/hongkailiu/svt-go/main
+	go build -o build/svt github.com/hongkailiu/svt-go
 
 .PHONY : clean
 clean:

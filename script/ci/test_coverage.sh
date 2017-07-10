@@ -30,6 +30,6 @@ do
         fi
     fi
 done << EOF
-$(find ./* -maxdepth 10 -type d -not -path "./vendor*")
+$(find . -maxdepth 10 -type d -not -path "./vendor*")
 EOF
 cd "${CURRENT_DIR}" || exit 1

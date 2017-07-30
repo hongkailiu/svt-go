@@ -46,7 +46,7 @@ $ make test
 ```
 
 ## run tests in a pkg
-Eg, in <code>http</code> package
+Eg, run tests in <code>http</code> package
 
 ```sh
 $ go test "github.com/hongkailiu/svt-go/http"

@@ -3,7 +3,7 @@ all : build
 
 .PHONY : build
 build:
-	go build -o build/svt github.com/hongkailiu/svt-go
+	./script/ci/build.sh
 
 .PHONY : clean
 clean:

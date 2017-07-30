@@ -11,7 +11,7 @@ import (
 func rootHandler(w http.ResponseWriter, r *http.Request) {
 	infoP := GetInfo()
 	if json, error := json.Marshal(infoP); error != nil {
-		log.Fatal(error)
+		log.Critical(error)
 		http.Error(w, error.Error(), 500)
 	} else {
 		w.Write(json)

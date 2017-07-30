@@ -24,6 +24,11 @@
 			"Rev": "782f4967f2dc4564575ca782fe2d04090b5faca8"
 		},
 		{
+			"ImportPath": "github.com/gorilla/mux",
+			"Comment": "v1.4.0-13-gac112f7",
+			"Rev": "ac112f7d75a0714af1bd86ab17749b31f7809640"
+		},
+		{
 			"ImportPath": "github.com/op/go-logging",
 			"Comment": "v1-7-g970db52",
 			"Rev": "970db520ece77730c7e4724c61121037378659d9"

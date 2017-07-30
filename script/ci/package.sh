@@ -25,5 +25,5 @@ cp -rf "${APP_FOLDER}/conf" "${PKG_DIR}/"
 
 readonly CURRENT_DIR="$(pwd)"
 cd "${BUILD_DIR}" || exit 1
-tar -czf "${PKG_FULLNAME}" --transform "s/${PKG_DIR_NAME}/svt1/" "${PKG_DIR_NAME}"
+tar -czf "${PKG_FULLNAME}" --transform "s/${PKG_DIR_NAME}/svt/" "${PKG_DIR_NAME}"
 cd "${CURRENT_DIR}" || exit 1

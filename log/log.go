@@ -43,3 +43,7 @@ func Error(args ...interface{}) {
 func Critical(args ...interface{}) {
 	log.Critical(args)
 }
+
+func Fatal(args ...interface{}) {
+	log.Fatal(args)
+}

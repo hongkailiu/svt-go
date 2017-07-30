@@ -39,8 +39,17 @@ $ ./build/svt
 
 # Run Tests
 
+## run all tests
+
 ```sh
 $ make test
+```
+
+## run tests in a pkg
+Eg, in <code>http</code> package
+
+```sh
+$ go test "github.com/hongkailiu/svt-go/http"
 ```
 
 # Package

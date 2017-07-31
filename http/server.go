@@ -44,7 +44,7 @@ func foldersHandler(w http.ResponseWriter, r *http.Request) {
 	if path == "" {
 		dir, _ := filepath.Abs(filepath.Dir(os.Args[0]))
 		log.Info("dir: " + dir)
-		path=dir
+		path = dir
 	}
 
 	result := []string{}
@@ -67,9 +67,8 @@ func foldersHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 type Server struct {
-	Port  int
+	Port int
 }
-
 
 func (s Server) Run() {
 	r := mux.NewRouter()

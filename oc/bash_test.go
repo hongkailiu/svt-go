@@ -47,7 +47,7 @@ func TestRunCommandNotExist(t *testing.T) {
 
 func runAndCheckError(t *testing.T, str string, wg *sync.WaitGroup, keywords string) {
 	assert := assert.New(t)
-	_, err := oc.RunCommand(str, wg)
+	_, err := oc.RunCommandWithWG(str, wg)
 	if err == nil {
 		log.Fatal("error should show up!")
 	}
@@ -56,7 +56,7 @@ func runAndCheckError(t *testing.T, str string, wg *sync.WaitGroup, keywords str
 
 func runAndCheckOutput(t *testing.T, str string, wg *sync.WaitGroup, expectedOutput []byte) {
 	assert := assert.New(t)
-	out, err := oc.RunCommand(str, wg)
+	out, err := oc.RunCommandWithWG(str, wg)
 	if err != nil {
 		log.Fatal(fmt.Sprintf("%s", err.Error()))
 	}

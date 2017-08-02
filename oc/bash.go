@@ -24,13 +24,3 @@ func RunCommandWithWG(cmd string, wg *sync.WaitGroup) ([]byte, error) {
 func RunCommand(cmd string) ([]byte, error) {
 	return RunCommandWithWG(cmd, nil)
 }
-
-type BashResult struct {
-	Output []byte
-	Error error
-}
-
-func RunCommandReturnOneUnit(cmd string) BashResult {
-	output, err := RunCommandWithWG(cmd, nil)
-	return BashResult{Output:output, Error:err}
-}

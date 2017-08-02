@@ -25,21 +25,21 @@ func TestBashPool(t *testing.T) {
 		assert.Fail(fmt.Sprintf("file is not deleted: %s", tmpfile.Name()))
 	}
 
-	StartPool(0)
+	StartPool(10)
 
 	defer ClosePool()
 
 	var command = fmt.Sprintf("touch %s", tmpfile.Name())
 
-	result,error := SendWork2Pool(command)
-	if error != nil {
+	result := QueueInPool(command)
+	result.Wait()
+	if err := result.Error(); err != nil {
 		assert.Fail(err.Error())
 	}
 
-	br, _ := result.(BashResult)
-	if br.Error != nil {
-		assert.Fail(err.Error())
-	}
+	// do stuff with user
+	output := result.Value().([]byte)
+	assert.Empty(output)
 
 	if _, err := os.Stat(tmpfile.Name()); os.IsNotExist(err) {
 		assert.Fail(fmt.Sprintf("file is not created: %s", tmpfile.Name()))

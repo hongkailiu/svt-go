@@ -1,42 +1,31 @@
 package oc
 
 import (
-	"runtime"
-	"github.com/jeffail/tunny"
+	"gopkg.in/go-playground/pool.v3"
 	"github.com/hongkailiu/svt-go/log"
 )
 
 var (
-	pool *(tunny.WorkPool)
+	myPool pool.Pool
 )
 
-func StartPool(number int) {
-
-	numCPUs := runtime.NumCPU()
-	runtime.GOMAXPROCS(numCPUs + 1) // numCPUs hot threads + one for async tasks.
-
-	if number == 0 {
-		number = numCPUs
-	}
-
-	p, error := tunny.CreatePool(number, func(object interface{}) interface{} {
-		input, _ := object.(string)
-		log.Debug("input: " + input)
-		return RunCommandReturnOneUnit(input)
-	}).Open()
-
-	if error != nil {
-		log.Fatal(error)
-	}
-
-	pool = p
+func StartPool(number uint) {
+	myPool = pool.NewLimited(number)
 
 }
 
-func SendWork2Pool(command string) (interface{}, error) {
-	return (*pool).SendWork(command)
+func runCommand(command string) pool.WorkFunc {
+
+	return func(wu pool.WorkUnit) (interface{}, error) {
+		log.Debug("command received: " + command)
+		return RunCommand(command)
+	}
+}
+
+func QueueInPool(command string) pool.WorkUnit {
+	return myPool.Queue(runCommand(command))
 }
 
 func ClosePool() {
-	(*pool).Close()
+	myPool.Close()
 }

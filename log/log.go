@@ -14,9 +14,7 @@ var format = logging.MustStringFormatter(
 func init() {
 	backend := logging.NewLogBackend(os.Stdout, "", 0)
 	backendFormatter := logging.NewBackendFormatter(backend, format)
-	//backend1Leveled := logging.AddModuleLevel(backend1)
-	//backend1Leveled.SetLevel(logging.ERROR, "")
-	//logging.SetBackend(backend1Leveled, backend1Formatter)
+	logging.SetLevel(logging.DEBUG, "")
 	logging.SetBackend(backendFormatter)
 }
 

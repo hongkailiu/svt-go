@@ -5,28 +5,16 @@ import (
 	"fmt"
 )
 
-var (
-	oc = myOC{}
-)
-
-func init() {
-	oc.PoolSize = 10
-}
-
 type OC interface {
 	SetPoolSize(size uint)
+	WhoAmI() error
 	IsProjectExisting(project string) (bool, error)
 	CreateProject(project string) error
 	label(k Kind, name string, key string, value string) error
 }
 
-type myOC struct {
-	PoolSize uint
-}
-
 func SetPoolSize(size uint) {
-	oc.PoolSize = size
-	StartPool(oc.PoolSize)
+	StartPool(size)
 }
 
 func IsProjectExisting(project string) (bool, error) {
@@ -34,9 +22,24 @@ func IsProjectExisting(project string) (bool, error) {
 	result.Wait()
 	if err := result.Error(); err != nil {
 		log.Critical(err.Error())
+		return false, err
 	}
 
 	output := result.Value().([]byte)
 	log.Debug(string(output))
+	// TODO
 	return false, nil
+}
+
+func WhoAmI() error {
+	result := QueueInPool("oc whoami")
+	result.Wait()
+	if err := result.Error(); err != nil {
+		log.Critical(err.Error())
+		return err
+	}
+
+	output := result.Value().([]byte)
+	log.Info( fmt.Sprintf("%q", string(output)))
+	return nil
 }

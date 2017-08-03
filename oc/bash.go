@@ -21,7 +21,7 @@ func RunCommandWithWG(cmd string, wg *sync.WaitGroup) ([]byte, error) {
 
 	out, err := command.Output()
 	if err != nil {
-		log.Critical(fmt.Sprintf("error occurred when executing command: %s",  stderr.String()))
+		log.Critical(fmt.Sprintf("error occurred when executing command: %q",  stderr.String()))
 	}
 	if wg != nil {
 		wg.Done()

@@ -29,6 +29,8 @@ func (cl myClusterLoader) Run(args Args) error {
 	log.Debug(*configP)
 	oc.SetPoolSize(args.PoolSize)
 
+	oc.WhoAmI()
+
 	for i, project := range (*configP).Projects {
 		oc.IsProjectExisting(fmt.Sprintf("%s%d", project.Basename, i))
 	}

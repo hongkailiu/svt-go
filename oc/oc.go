@@ -3,15 +3,8 @@ package oc
 import (
 	"github.com/hongkailiu/svt-go/log"
 	"fmt"
+	"strings"
 )
-
-type OC interface {
-	SetPoolSize(size uint)
-	WhoAmI() error
-	IsProjectExisting(project string) (bool, error)
-	CreateProject(project string) error
-	label(k Kind, name string, key string, value string) error
-}
 
 func SetPoolSize(size uint) {
 	StartPool(size)
@@ -26,9 +19,8 @@ func IsProjectExisting(project string) (bool, error) {
 	}
 
 	output := result.Value().([]byte)
-	log.Debug(string(output))
-	// TODO
-	return false, nil
+	log.Debug(fmt.Sprintf("%q", string(output)))
+	return true, nil
 }
 
 func WhoAmI() error {
@@ -40,6 +32,34 @@ func WhoAmI() error {
 	}
 
 	output := result.Value().([]byte)
-	log.Info( fmt.Sprintf("%q", string(output)))
+	log.Info(fmt.Sprintf("%q", string(output)))
+	return nil
+}
+
+
+func CreateProject(project string) error {
+	result := QueueInPool(fmt.Sprintf("oc new-project %s", project))
+	result.Wait()
+	if err := result.Error(); err != nil {
+		log.Critical(err.Error())
+		return err
+	}
+
+	output := result.Value().([]byte)
+	log.Debug(fmt.Sprintf("%q", string(output)))
+	return nil
+}
+
+func Label(k Kind, name string, key string, value string, others string) error {
+	command := fmt.Sprintf("oc label %s %s %s=%s %s", strings.ToLower(k.String()), name, key, value, others)
+	result := QueueInPool(command)
+	result.Wait()
+	if err := result.Error(); err != nil {
+		log.Critical(err.Error())
+		return err
+	}
+
+	output := result.Value().([]byte)
+	log.Debug(fmt.Sprintf("%q", string(output)))
 	return nil
 }

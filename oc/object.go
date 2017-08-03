@@ -12,6 +12,7 @@ const (
 	// iota is reset to 0
 	pod Kind = iota
 	build
+	Namespace
 	unknown
 )
 
@@ -23,6 +24,9 @@ func (kind Kind) String() string {
 
 	case build:
 		return "Build"
+
+	case Namespace:
+		return "Namespace"
 	}
 
 	return "Unknown"

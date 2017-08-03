@@ -32,7 +32,16 @@ func (cl myClusterLoader) Run(args Args) error {
 	oc.WhoAmI()
 
 	for i, project := range (*configP).Projects {
-		oc.IsProjectExisting(fmt.Sprintf("%s%d", project.Basename, i))
+		projectName := fmt.Sprintf("%s%d", project.Basename, i)
+		isExisting, _ := oc.IsProjectExisting(projectName)
+		log.Debug(fmt.Sprintf("isExisting: %t", isExisting))
+		if !isExisting {
+			oc.CreateProject(projectName)
+			oc.Label(oc.Namespace, projectName, "purpose", "test", "--overwrite")
+
+		} else {
+			log.Fatal(fmt.Sprintf("project %s already exitsed", projectName))
+		}
 	}
 
 

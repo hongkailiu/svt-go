@@ -50,7 +50,7 @@ func ParseAndRun() {
 		log.Debug("ConfigFileString: " + configFileString)
 		log.Debug(fmt.Sprintf("Processes: %d", poolSize))
 
-		args :=cluster_loader.Args{PoolSize:poolSize, ConfigFile:configFileString}
+		args := cluster_loader.Args{PoolSize:uint(poolSize), ConfigFile:configFileString}
 
 		log.Debug(args)
 		err := cluster_loader.GetClusterLoader().Run(args)

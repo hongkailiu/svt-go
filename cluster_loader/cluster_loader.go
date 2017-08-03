@@ -1,7 +1,7 @@
 package cluster_loader
 
-type ClustreLoader interface {
-	run() error
+type ClusterLoader interface {
+	Run(args Args) error
 }
 
 type Args struct {
@@ -9,6 +9,15 @@ type Args struct {
 	ConfigFile string
 }
 
-type MyClusterLoader struct {
+type myClusterLoader struct {
 
+}
+
+
+func (cl myClusterLoader) Run(args Args) error {
+	return nil
+}
+
+func GetClusterLoader() ClusterLoader {
+	return myClusterLoader{}
 }

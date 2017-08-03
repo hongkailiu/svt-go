@@ -53,6 +53,12 @@ func ParseAndRun() {
 		args :=cluster_loader.Args{PoolSize:poolSize, ConfigFile:configFileString}
 
 		log.Debug(args)
+		err := cluster_loader.GetClusterLoader().Run(args)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
 
 	}
 

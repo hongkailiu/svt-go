@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/hongkailiu/svt-go.svg?branch=master)](https://travis-ci.org/hongkailiu/svt-go)
 [![Coverage Status](https://coveralls.io/repos/github/hongkailiu/svt-go/badge.svg?branch=master)](https://coveralls.io/github/hongkailiu/svt-go?branch=master)
 
-# Prerequisites
+## Prerequisites
 
 * [Go-lang](https://golang.org/)
 
@@ -18,19 +18,19 @@
     $ go get github.com/tools/godep
     ```
 
-# Get Code
+## Get Code
 
 ```sh
 $ go get github.com/hongkailiu/svt-go
 ```
 
-# Get Dependencies
+## Get Dependencies
 
 ```sh
 $ godep restore
 ```
 
-# Build and Run
+## Build and Run
 
 ```sh
 $ make build
@@ -43,29 +43,29 @@ For example, we can run node-virtical test by:
 # ./build/svt clusterLoader --file=conf/nodeVertical.yaml
 ```
 
-# Run Tests
+## Run Tests
 
-## run all tests
+### run all tests
 
 ```sh
 $ make test
 ```
 
-## run tests in a pkg
+### run tests in a pkg
 Eg, run tests in <code>http</code> package
 
 ```sh
 $ go test "github.com/hongkailiu/svt-go/http"
 ```
 
-# Package
+## Package
 
 ```sh
 $ make clean package
 $ ls build/svt*.tar.gz
 ```
 
-# Release
+## Release
 
 See <code>.travis.yml</code> for details.
 
@@ -73,3 +73,5 @@ The packaged artifact is released to [svt-release](https://github.com/cduser/svt
 Note that in order to activate the release we need to turn on
 <code>${RELEASE}</code> on travis-ci.
 
+## Try the release version.
+See [the wiki page](https://github.com/hongkailiu/svt-go/wiki).

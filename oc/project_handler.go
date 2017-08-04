@@ -13,6 +13,7 @@ import (
 	"os"
 	"io/ioutil"
 	"regexp"
+	"container/list"
 )
 
 type projectHandler struct {
@@ -39,41 +40,43 @@ func (ph *projectHandler) handleTemplates(projectName string) error {
 	stepSize := ph.tuningSet.PodsInTuningSet.Stepping.StepSize
 	pause := ph.tuningSet.PodsInTuningSet.Stepping.Pause
 	delay := ph.tuningSet.PodsInTuningSet.RateLimit.Delay
-	podNames := []string{}
+	podNames := list.New()
 	for _, template := range *(ph.templates) {
 		for i := 1; i <= template.Number; i++ {
-			if err := handleTemplate(projectName, i-1, template, &podNames); err !=nil {
+			if err := handleTemplate(projectName, i-1, template, podNames); err !=nil {
 				log.Critical(err)
 			}
 			if i % stepSize == 0 {
+				checkPods(projectName, podNames)
 				sleep(pause)
 			}
 			sleep(delay)
 		}
+		checkPods(projectName, podNames)
 	}
-	checkPods(projectName, podNames)
 	return nil
 }
-func checkPods(projectName string, podNames []string) {
+func checkPods(projectName string, podNames *list.List) {
+	log.Debug(fmt.Sprintf("podNames.Len(): %d", podNames.Len()))
 	log.Debug(fmt.Sprintf("%q", podNames))
-	notRunningPodNames := []string{}
-	if len(podNames) > 0 {
-		for _, podName := range podNames {
+	if podNames.Len() > 0 {
+		for e := podNames.Front(); e != nil; e = e.Next() {
+			podName :=e.Value.(string)
 			running, err := isPodRunning(projectName, podName)
 			if err != nil {
 				log.Critical(err)
 				return
 			}
-			if !running {
-				notRunningPodNames = append(notRunningPodNames, podName)
+			if running {
+				podNames.Remove(e)
 			}
 		}
-		checkPods(projectName, notRunningPodNames)
+		checkPods(projectName, podNames)
 	}
 }
 
 
-func handleTemplate(projectName string, i int, t task.Template, podNames *([]string)) error {
+func handleTemplate(projectName string, i int, t task.Template, podNames *list.List) error {
 	m := make(map[string]string)
 	m["IDENTIFIER"] = strconv.Itoa(i)
 	m["NAMESPACE"] = projectName
@@ -115,7 +118,7 @@ func handleTemplate(projectName string, i int, t task.Template, podNames *([]str
 	lines := strings.Split(outputStr,"\n")
 	for _, line := range lines {
 		if podName:=getPodName(line); podName!="" {
-			*podNames = append(*podNames, podName)
+			podNames.PushBack(podName)
 		}
 	}
 

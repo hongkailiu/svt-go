@@ -22,6 +22,7 @@ readonly PKG_FULLNAME="${BUILD_DIR}/${PKG_BASENAME}"
 
 cp -f "${BUILD_FILE}" "${PKG_DIR}/"
 cp -rf "${APP_FOLDER}/conf" "${PKG_DIR}/"
+cp -rf "${APP_FOLDER}/content" "${PKG_DIR}/"
 
 readonly CURRENT_DIR="$(pwd)"
 cd "${BUILD_DIR}" || exit 1

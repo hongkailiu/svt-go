@@ -9,4 +9,5 @@ readonly VERSION="$(git describe --tags --always --dirty)"
 printf "${VERSION}" > "${VERSION_FILE}"
 
 cp -rf "${APP_FOLDER}/conf" "${BUILD_DIR}/"
+cp -rf "${APP_FOLDER}/content" "${BUILD_DIR}/"
 go build -o "${BUILD_DIR}/svt" github.com/hongkailiu/svt-go

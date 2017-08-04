@@ -57,7 +57,7 @@ func (ph *projectHandler) handleTemplates(projectName string) error {
 	return nil
 }
 func checkPods(projectName string, podNames *list.List) {
-	log.Debug(fmt.Sprintf("podNames.Len(): %d", podNames.Len()))
+	log.Info(fmt.Sprintf("projectName: %s with podNames.Len(): %d", projectName, podNames.Len()))
 	log.Debug(fmt.Sprintf("%q", podNames))
 	if podNames.Len() > 0 {
 		for e := podNames.Front(); e != nil; e = e.Next() {

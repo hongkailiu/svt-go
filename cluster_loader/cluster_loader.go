@@ -41,8 +41,11 @@ func (cl myClusterLoader) Run(args Args) error {
 	for _, project := range configP.Projects {
 		tuning := project.Tuning
 		tuningSet := findTuningSet(tuning, configP.TuningSets)
-		wg.Add(1)
-		oc.HandleProject(&project, &wg, tuningSet)
+		for i := 0; i < project.Number; i++ {
+			projectName := fmt.Sprintf("%s%d", project.Basename, i)
+			wg.Add(1)
+			oc.HandleProject(projectName, &(project.Templates), &wg, tuningSet)
+		}
 	}
 	log.Info("wait until all projects are handled ...")
 	wg.Wait()

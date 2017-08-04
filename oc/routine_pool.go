@@ -25,7 +25,7 @@ func runCommand(command string) pool.WorkFunc {
 func handleProject(ph *projectHandler) pool.WorkFunc {
 
 	return func(wu pool.WorkUnit) (interface{}, error) {
-		log.Debug("Basename received: " + ph.project.Basename)
+		log.Debug("projectName received: " + ph.projectName)
 		return nil, ph.handle()
 	}
 }

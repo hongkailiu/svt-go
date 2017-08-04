@@ -16,7 +16,8 @@ import (
 )
 
 type projectHandler struct {
-	project *task.Project
+	projectName string
+	templates *[]task.Template
 	wg *sync.WaitGroup
 	tuningSet *task.TuningSet
 }
@@ -24,17 +25,13 @@ type projectHandler struct {
 
 func (ph *projectHandler) handle() error {
 	defer ph.wg.Done()
-	log.Debug(fmt.Sprintf("handle project: %s", ph.project.Basename))
-	for i := 0; i < ph.project.Number; i++ {
-		projectName := fmt.Sprintf("%s%d", ph.project.Basename, i)
-		ph.handleTemplates(projectName)
-
-	}
+	log.Debug(fmt.Sprintf("handle project: %s", ph.projectName))
+	ph.handleTemplates(ph.projectName)
 	return nil
 }
 
-func HandleProject(p *task.Project, wg *sync.WaitGroup, tuningSet *task.TuningSet) {
-	ph:=projectHandler{project:p, wg:wg, tuningSet:tuningSet}
+func HandleProject(projectName string, templates *[]task.Template, wg *sync.WaitGroup, tuningSet *task.TuningSet) {
+	ph:=projectHandler{projectName:projectName, templates:templates, wg:wg, tuningSet:tuningSet}
 	queueProjectInPool(&ph)
 }
 
@@ -43,7 +40,7 @@ func (ph *projectHandler) handleTemplates(projectName string) error {
 	pause := ph.tuningSet.PodsInTuningSet.Stepping.Pause
 	delay := ph.tuningSet.PodsInTuningSet.RateLimit.Delay
 	podNames := []string{}
-	for _, template := range ph.project.Templates {
+	for _, template := range *(ph.templates) {
 		for i := 1; i <= template.Number; i++ {
 			if err := handleTemplate(projectName, i-1, template, &podNames); err !=nil {
 				log.Critical(err)

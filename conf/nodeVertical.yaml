@@ -4,7 +4,7 @@ projects:
     tuning: default
     templates:
           -
-            num: 60
+            num: 6
             file: ../content/pod.pause.template.json
           
 quotas:

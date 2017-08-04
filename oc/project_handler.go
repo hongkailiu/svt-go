@@ -12,6 +12,7 @@ import (
 	"path/filepath"
 	"os"
 	"io/ioutil"
+	"regexp"
 )
 
 type projectHandler struct {
@@ -41,9 +42,10 @@ func (ph *projectHandler) handleTemplates(projectName string) error {
 	stepSize := ph.tuningSet.PodsInTuningSet.Stepping.StepSize
 	pause := ph.tuningSet.PodsInTuningSet.Stepping.Pause
 	delay := ph.tuningSet.PodsInTuningSet.RateLimit.Delay
+	podNames := []string{}
 	for _, template := range ph.project.Templates {
 		for i := 1; i <= template.Number; i++ {
-			if err := handleTemplate(projectName, i-1, template); err !=nil {
+			if err := handleTemplate(projectName, i-1, template, &podNames); err !=nil {
 				log.Critical(err)
 			}
 			if i % stepSize == 0 {
@@ -52,11 +54,29 @@ func (ph *projectHandler) handleTemplates(projectName string) error {
 			sleep(delay)
 		}
 	}
+	checkPods(projectName, podNames)
 	return nil
+}
+func checkPods(projectName string, podNames []string) {
+	log.Debug(fmt.Sprintf("%q", podNames))
+	notRunningPodNames := []string{}
+	if len(podNames) > 0 {
+		for _, podName := range podNames {
+			running, err := isPodRunning(projectName, podName)
+			if err != nil {
+				log.Critical(err)
+				return
+			}
+			if !running {
+				notRunningPodNames = append(notRunningPodNames, podName)
+			}
+		}
+		checkPods(projectName, notRunningPodNames)
+	}
 }
 
 
-func handleTemplate(projectName string, i int, t task.Template) error {
+func handleTemplate(projectName string, i int, t task.Template, podNames *([]string)) error {
 	m := make(map[string]string)
 	m["IDENTIFIER"] = strconv.Itoa(i)
 	m["NAMESPACE"] = projectName
@@ -90,9 +110,28 @@ func handleTemplate(projectName string, i int, t task.Template) error {
 		return err
 	}
 
-	create(tmpfile.Name())
+	output, err = create(tmpfile.Name())
+	if err != nil {
+		return err
+	}
+	outputStr := string(output)
+	lines := strings.Split(outputStr,"\n")
+	for _, line := range lines {
+		if podName:=getPodName(line); podName!="" {
+			*podNames = append(*podNames, podName)
+		}
+	}
 
 	return nil
+}
+
+func getPodName(line string) string {
+	if strings.HasPrefix(line, "pod") {
+		re := regexp.MustCompile("\".*\"")
+		result := re.FindString(line)
+		return result[1 : len(result)-1]
+	}
+	return ""
 }
 
 func sleep(timeS string) error {

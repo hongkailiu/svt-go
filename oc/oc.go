@@ -94,3 +94,16 @@ func create(file string) ([]byte, error) {
 	log.Debug(fmt.Sprintf("%q", string(output)))
 	return output, nil
 }
+
+func isPodRunning(project string, pod string) (bool, error) {
+	result := QueueCommandInPool(fmt.Sprintf("oc get pod -n %s %s", project, pod))
+	result.Wait()
+	if err := result.Error(); err != nil {
+		log.Critical(err.Error())
+		return false, err
+	}
+
+	output := string(result.Value().([]byte))
+	log.Debug(fmt.Sprintf("%q", output))
+	return strings.Contains(output, " Running "), nil
+}

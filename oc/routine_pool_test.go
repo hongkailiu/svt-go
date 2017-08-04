@@ -31,7 +31,7 @@ func TestBashPool(t *testing.T) {
 
 	var command = fmt.Sprintf("touch %s", tmpfile.Name())
 
-	result := QueueInPool(command)
+	result := QueueCommandInPool(command)
 	result.Wait()
 	if err := result.Error(); err != nil {
 		assert.Fail(err.Error())

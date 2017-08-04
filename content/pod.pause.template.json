@@ -1,0 +1,57 @@
+{
+  "kind": "Template",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "pod-pause",
+    "creationTimestamp": null
+  },
+  "objects": [{
+    "kind": "Pod",
+    "apiVersion": "v1",
+    "metadata": {
+      "name": "pausepod${IDENTIFIER}",
+      "namespace": "${NAMESPACE}",
+      "creationTimestamp": null,
+      "labels": {
+        "name": "pause-amd64"
+      }
+    },
+    "spec": {
+
+      "containers": [{
+        "name": "pause-amd64",
+        "image": "gcr.io/google_containers/pause-amd64:3.0",
+        "ports": [{
+          "containerPort": 8080,
+          "protocol": "TCP"
+        }],
+        "terminationMessagePath": "/dev/termination-log",
+        "imagePullPolicy": "IfNotPresent",
+        "capabilities": {},
+        "securityContext": {
+          "capabilities": {},
+          "privileged": false
+        }
+      }],
+      "restartPolicy": "Always",
+      "dnsPolicy": "ClusterFirst",
+      "serviceAccount": ""
+
+
+    },
+    "status": {}
+  }],
+  "parameters": [{
+    "name": "IDENTIFIER",
+    "description": "Number to append to the name of resources",
+    "value": "0",
+    "required": true
+  },
+    {
+      "name": "NAMESPACE",
+      "description": "namespace",
+      "value": "test-project",
+      "required": false
+    }
+  ]
+}

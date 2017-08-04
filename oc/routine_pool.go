@@ -22,8 +22,20 @@ func runCommand(command string) pool.WorkFunc {
 	}
 }
 
-func QueueInPool(command string) pool.WorkUnit {
+func handleProject(ph *projectHandler) pool.WorkFunc {
+
+	return func(wu pool.WorkUnit) (interface{}, error) {
+		log.Debug("Basename received: " + ph.project.Basename)
+		return nil, ph.handle()
+	}
+}
+
+func QueueCommandInPool(command string) pool.WorkUnit {
 	return myPool.Queue(runCommand(command))
+}
+
+func queueProjectInPool(ph *projectHandler) pool.WorkUnit {
+	return myPool.Queue(handleProject(ph))
 }
 
 func ClosePool() {

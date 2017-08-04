@@ -2,14 +2,10 @@ projects:
   - num: 1
     basename: clusterproject
     tuning: default
-    pods:
-      - total: 500
-      - num: 100
-        image: gcr.io/google_containers/pause-amd64:3.0
-        basename: pausepods
-        file: content/pod-pause.json
-        storage:
-          - type: none
+    templates:
+          -
+            num: 60
+            file: ../content/pod.pause.template.json
           
 quotas:
   - name: default

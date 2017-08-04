@@ -48,11 +48,7 @@ type User struct {
 type Template struct {
 	Number   int `yaml:"num"`
 	File     string `yaml:"file"`
-	Parameters    []Parameter `yaml:"parameters"`
-}
-
-type Parameter struct {
-	EnvValue     string `yaml:"ENV_VALUE"`
+	Parameters    map[string]string `yaml:"parameters"`
 }
 
 type Quota struct {

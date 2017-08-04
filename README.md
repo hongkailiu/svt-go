@@ -37,6 +37,12 @@ $ make build
 $ ./build/svt
 ```
 
+For example, we can run node-virtical test by:
+
+```sh
+# ./build/svt clusterLoader --file=conf/nodeVertical.yaml
+```
+
 # Run Tests
 
 ## run all tests

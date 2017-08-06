@@ -1,0 +1,52 @@
+{
+  "kind": "Template",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "service-default",
+    "creationTimestamp": null
+  },
+  "objects": [
+    {
+      "kind": "Service",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "${BASENAME}${IDENTIFIER}",
+        "namespace": "${NAMESPACE}",
+        "labels": {
+          "name": "hello-openshift"
+        }
+      },
+      "spec": {
+        "selector": {
+          "name": "hello-openshift"
+        },
+        "ports": [
+          {
+            "protocol": "TCP",
+            "port": 8080,
+            "targetPort": 8080
+          }
+        ]
+      }
+    }
+  ],
+  "parameters": [{
+    "name": "IDENTIFIER",
+    "description": "Number to append to the name of resources",
+    "value": "0",
+    "required": true
+  },
+    {
+      "name": "NAMESPACE",
+      "description": "namespace",
+      "value": "test-project",
+      "required": false
+    },
+    {
+      "name": "BASENAME",
+      "description": "object basename",
+      "value": "default-test-service",
+      "required": false
+    }
+  ]
+}

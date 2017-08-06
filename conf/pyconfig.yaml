@@ -1,37 +1,49 @@
+#Note
+#- storage is not supported yet
+#- user is not supported yet
+#
+#for the python version users:
+#need to use template in json format
+#do not use the objects directly
+#template file has to be path and cannot 'default' will be treated as path too
 projects:
   - num: 1
     basename: clusterproject
     ifexists: default
     tuning: default
     quota: default
-    users:
-      - num: 2
-        role: admin
-        basename: demo
-        password: demo
-        userpassfile: /etc/origin/openshift-passwd
-    services:
-      - num: 3
-        file: default
-        basename: testservice
-    rcs:
-      - num: 2
-        replicas: 5
-        file: default
-        basename: testrc
-        image: openshift/hello-openshift:v1.0.6
-    pods:
-      - total: 10
-      - num: 40
-        image: openshift/hello-openshift:v1.0.6
-        basename: hellopods
-        file: default
-        storage:
-          - type: none 
-      - num: 60
-        image: rhscl/python-34-rhel7:latest
-        basename: pyrhelpods
-        file: default
+    #users:
+    #  - num: 2
+    #    role: admin
+    #    basename: demo
+    #    password: demo
+    #    userpassfile: /etc/origin/openshift-passwd
+    templates:
+      -
+        num: 3
+        file: content/svc.default.template.json
+        parameters:
+          BASENAME: testservice
+      -
+        num: 2
+        file: content/rc.default.template.json
+        parameters:
+          IMAGE: openshift/hello-openshift:v1.0.6
+          REPLICAS: 5
+          BASENAME: testrc
+      -
+        num: 4
+        file: content/pod.default.template.json
+        parameters:
+          IMAGE: openshift/hello-openshift:v1.0.6
+          BASENAME: hellopods
+      -
+        num: 6
+        file: content/pod.default.template.json
+        parameters:
+          #image is not replaced in pod object in the python version
+          #IMAGE: rhscl/python-34-rhel7:latest
+          BASENAME: pyrhelpods
 
 quotas:
   - name: default

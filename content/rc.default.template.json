@@ -1,0 +1,78 @@
+{
+  "kind": "Template",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "rc-default",
+    "creationTimestamp": null
+  },
+  "objects": [
+    {
+      "apiVersion": "v1",
+      "kind": "ReplicationController",
+      "metadata": {
+        "name": "${BASENAME}${IDENTIFIER}",
+        "namespace": "${NAMESPACE}"
+      },
+      "spec": {
+        "replicas": "${REPLICAS}",
+        "selector": {
+          "name": "frontend"
+        },
+        "template": {
+          "metadata": {
+            "labels": {
+              "name": "frontend"
+            }
+          },
+          "spec": {
+            "containers": [
+              {
+                "image": "${IMAGE}",
+                "name": "helloworld",
+                "ports": [
+                  {
+                    "containerPort": 8080,
+                    "protocol": "TCP"
+                  }
+                ]
+              }
+            ],
+            "restartPolicy": "Always"
+          }
+        }
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "name": "IDENTIFIER",
+      "description": "Number to append to the name of resources",
+      "value": "0",
+      "required": true
+    },
+    {
+      "name": "NAMESPACE",
+      "description": "namespace",
+      "value": "test-project",
+      "required": false
+    },
+    {
+      "name": "IMAGE",
+      "description": "image",
+      "value": "openshift/hello-openshift",
+      "required": false
+    },
+    {
+      "name": "REPLICAS",
+      "description": "number of replicas",
+      "value": "1",
+      "required": false
+    },
+    {
+      "name": "BASENAME",
+      "description": "object basename",
+      "value": "default-test-rc",
+      "required": false
+    }
+  ]
+}

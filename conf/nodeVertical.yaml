@@ -3,9 +3,9 @@ projects:
     basename: clusterproject
     tuning: default
     templates:
-          -
-            num: 496
-            file: content/pod.pause.template.json
+      -
+       num: 496
+       file: content/pod.pause.template.json
           
 quotas:
   - name: default

@@ -1,0 +1,48 @@
+{
+  "kind": "Template",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "quota-default",
+    "creationTimestamp": null
+  },
+  "objects": [
+    {
+      "apiVersion": "v1",
+      "kind": "ResourceQuota",
+      "metadata": {
+        "name": "${BASENAME}${IDENTIFIER}",
+        "namespace": "${NAMESPACE}"
+      },
+      "spec": {
+        "hard": {
+          "memory": "1Gi",
+          "cpu": "20",
+          "pods": "10",
+          "services": "5",
+          "replicationcontrollers":"5",
+          "resourcequotas":"1"
+        }
+      }
+    }
+
+  ],
+  "parameters": [{
+    "name": "IDENTIFIER",
+    "description": "Number to append to the name of resources",
+    "value": "0",
+    "required": true
+  },
+    {
+      "name": "NAMESPACE",
+      "description": "namespace",
+      "value": "test-project",
+      "required": false
+    },
+    {
+      "name": "BASENAME",
+      "description": "object basename",
+      "value": "default-test-quota",
+      "required": false
+    }
+  ]
+}

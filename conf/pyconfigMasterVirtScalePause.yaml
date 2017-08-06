@@ -2,12 +2,12 @@ projects:
   - num: 3
     basename: c
     tuning: default
-    users:
-      - num: 1
-        role: admin
-        basename: demo
-        password: demo
-        userpassfile: /etc/origin/openshift-passwd
+    #users:
+    #  - num: 1
+    #    role: admin
+    #    basename: demo
+    #    password: demo
+    #    userpassfile: /etc/origin/openshift-passwd
     templates:
       -
         num: 3

@@ -9,7 +9,7 @@
     "kind": "Pod",
     "apiVersion": "v1",
     "metadata": {
-      "name": "pausepod${IDENTIFIER}",
+      "name": "${BASENAME}${IDENTIFIER}",
       "namespace": "${NAMESPACE}",
       "creationTimestamp": null,
       "labels": {
@@ -51,6 +51,12 @@
       "name": "NAMESPACE",
       "description": "namespace",
       "value": "test-project",
+      "required": false
+    },
+    {
+      "name": "BASENAME",
+      "description": "object basename",
+      "value": "pausepod",
       "required": false
     }
   ]

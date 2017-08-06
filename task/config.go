@@ -24,7 +24,6 @@ func LoadFromFile(file string) (*Config, error) {
 
 type Config struct {
 	Projects   []Project `yaml:"projects"`
-	Quotas     []Quota `yaml:"quotas"`
 	TuningSets []TuningSet `yaml:"tuningsets"`
 }
 
@@ -49,11 +48,6 @@ type Template struct {
 	Number   int `yaml:"num"`
 	File     string `yaml:"file"`
 	Parameters    map[string]string `yaml:"parameters"`
-}
-
-type Quota struct {
-	Name string `yaml:"name"`
-	File string `yaml:"file"`
 }
 
 type TuningSet struct {

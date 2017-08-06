@@ -7,10 +7,6 @@ projects:
        num: 496
        file: content/pod.pause.template.json
           
-quotas:
-  - name: default
-    file: default
-
 tuningsets:
   - name: default
     pods:

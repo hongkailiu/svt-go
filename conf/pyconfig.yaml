@@ -6,12 +6,12 @@
 #need to use template in json format
 #do not use the objects directly
 #template file has to be path and cannot 'default' will be treated as path too
+#quota is treated as template too
 projects:
   - num: 1
     basename: clusterproject
     ifexists: default
     tuning: default
-    quota: default
     #users:
     #  - num: 2
     #    role: admin
@@ -19,6 +19,11 @@ projects:
     #    password: demo
     #    userpassfile: /etc/origin/openshift-passwd
     templates:
+      -
+        num: 1
+        file: content/quota.default.template.json
+        parameters:
+          BASENAME: default
       -
         num: 3
         file: content/svc.default.template.json
@@ -44,10 +49,6 @@ projects:
           #image is not replaced in pod object in the python version
           #IMAGE: rhscl/python-34-rhel7:latest
           BASENAME: pyrhelpods
-
-quotas:
-  - name: default
-    file: default
 
 tuningsets:
   - name: default

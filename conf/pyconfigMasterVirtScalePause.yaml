@@ -43,5 +43,4 @@ tuningsets:
         pause: 10 s
       rate_limit:
         delay: 250 ms
-quotas:
-  - name: default
+

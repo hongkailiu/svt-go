@@ -8,9 +8,8 @@ import (
 	"os"
 	"strings"
 	"fmt"
+	"github.com/hongkailiu/svt-go/version"
 )
-
-const AppVersion = "0.0.1-SNAPSHOT"
 
 var (
 	httpCommand = kingpin.Command("http", "Start http server.")
@@ -25,7 +24,7 @@ func init() {
 }
 
 func ParseAndRun() {
-	kingpin.Version(AppVersion)
+	kingpin.Version(version.GetVersion())
 	switch kingpin.Parse() {
 	case "http":
 		log.Debug("aaa")

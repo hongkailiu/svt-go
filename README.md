@@ -37,10 +37,38 @@ $ make build
 $ ./build/svt
 ```
 
+### Cluster Loader
 For example, we can run node-virtical test by:
 
 ```sh
 # ./build/svt clusterLoader --file=conf/nodeVertical.yaml
+```
+
+See [doc](doc/cluster_loader.md) for more information.
+
+
+### Web app
+A web application implemented with GoLang:
+
+```sh
+$ ./build/svt http
+$ # in another terminal
+$ curl localhost:8080
+{
+  "version": "0.0.2-3-g2375151-dirty",
+  "ips": ["127.0.0.1", "::1", "192.168.31.163", "fe80::f2d5:bfff:fe5c:1b01", "192.168.122.1", "10.10.120.59"],
+  "now": "2017-08-05T14:48:09.441967753-04:00"
+}
+```
+
+
+It can log according posting http requests, to test oc-logging, and
+report the host ips, to test loading-balancing of oc-services.
+
+The docker image containing it is pushed to docker hub:
+
+```sh
+$ docker run -d -p 8080:8080 docker.io/hongkailiu/svt-go:http
 ```
 
 ## Run Tests
@@ -69,9 +97,10 @@ $ ls build/svt*.tar.gz
 
 See <code>.travis.yml</code> for details.
 
-The packaged artifact is released to [svt-release](https://github.com/cduser/svt-release) repo.
+The packaged artifact is released to
+[svt-release](https://github.com/cduser/svt-release) repo.
 Note that in order to activate the release we need to turn on
 <code>${RELEASE}</code> on travis-ci.
 
-## Try the release version.
+## Try the release version
 See [the wiki page](https://github.com/hongkailiu/svt-go/wiki).

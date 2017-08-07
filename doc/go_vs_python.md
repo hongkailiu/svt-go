@@ -13,7 +13,8 @@ All objects for a project are create via templates, which means that
 each template will be processed before being used to create objects.
 
 The <code>NAMESPACE</code> is a parameter of a template like <code>IDENTIFIER</code>
-in the python version. This will save the time of loading json and injecting it.
+in the python version. This will save the time of loading json and injecting
+variables into it.
 
 Quotas are no longer needed since they are templates anyway.
 

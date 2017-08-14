@@ -32,6 +32,10 @@ do
         fi
     fi
 done << EOF
-$(find . -maxdepth 10 -type d -not -path "./vendor*")
+$(find . -maxdepth 10 -type d -not -path "./vendor*" -not -path "./extended*")
 EOF
 cd "${CURRENT_DIR}" || exit 1
+
+echo "run extended tests"
+ginkgo -v extended/
+

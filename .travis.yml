@@ -10,8 +10,6 @@ before_install:
   - go get github.com/onsi/ginkgo/ginkgo
 
 script:
-  - echo "${GOPATH}"
-  - ls -al "${GOPATH}/bin"
   - make test
 
 after_success:

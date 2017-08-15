@@ -37,5 +37,8 @@ EOF
 cd "${CURRENT_DIR}" || exit 1
 
 echo "run extended tests"
-"${GOPATH}/bin/ginkgo" -v -p -stream extended/
-
+if [[ -n "${TRAVIS}" ]]; then
+  "${HOME}/gopath/bin/ginkgo" -v -p -stream extended/
+else
+  ginkgo -v -p -stream extended/
+fi

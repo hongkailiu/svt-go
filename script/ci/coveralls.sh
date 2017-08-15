@@ -12,5 +12,6 @@ fi
 
 if [[ -n "${COVERALLS}" ]]; then
   echo "uploading results (${ACC_FILE}) to coveralls.io ..."
-  "${GOPATH}/bin/goveralls" -coverprofile="${ACC_FILE}" -service travis-ci
+  ###support only travis-ci build
+  "${HOME}/gopath/bin/goveralls" -coverprofile="${ACC_FILE}" -service travis-ci
 fi

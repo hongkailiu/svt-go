@@ -9,7 +9,8 @@ before_install:
   - go get github.com/mattn/goveralls
 
 script:
-  - echo ${GOPATH}
+  - echo "${GOPATH}"
+  - ls -al "${GOPATH}/bin"
   - make test
 
 after_success:

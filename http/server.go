@@ -10,10 +10,6 @@ import (
 	"os"
 )
 
-var (
-	server *http.Server
-)
-
 func rootHandler(w http.ResponseWriter, r *http.Request) {
 	infoP := GetInfo()
 	if json, error := json.Marshal(infoP); error != nil {
@@ -71,6 +67,7 @@ func foldersHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 type Server struct {
+	server *http.Server
 	Port int
 }
 
@@ -82,14 +79,14 @@ func (s Server) Run() {
 	r.HandleFunc("/folders", foldersHandler).Methods("GET")
 
 	// Bind to a port and pass our router in
-	server = &(http.Server{Addr: fmt.Sprintf(":%d", s.Port), Handler: r})
-	log.Fatal(server.ListenAndServe())
+	s.server = &(http.Server{Addr: fmt.Sprintf(":%d", s.Port), Handler: r})
+	log.Fatal(s.server.ListenAndServe())
 }
 
 func (s Server) Stop() {
-	if server!=nil {
-		server.Close()
-		server = nil
+	if s.server!=nil {
+		s.server.Close()
+		s.server = nil
 	}
 }
 

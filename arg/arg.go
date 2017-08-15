@@ -28,7 +28,7 @@ func ParseAndRun() {
 	switch kingpin.Parse() {
 	case "http":
 		log.Debug("aaa")
-		http.Server{8080}.Run()
+		http.Server{Port:8080}.Run()
 	case "clusterLoader":
 		log.Debug("bbb")
 		log.Debug("CLFile: " + *clFile)

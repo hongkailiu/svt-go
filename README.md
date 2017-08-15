@@ -104,3 +104,7 @@ Note that in order to activate the release we need to turn on
 
 ## Try the release version
 See [the wiki page](https://github.com/hongkailiu/svt-go/wiki).
+
+## Extended test
+Functional tests on svt-go. It uses test framework _ginkgo_.
+Check [Makefile](makefile) to see how to build and run extended test.

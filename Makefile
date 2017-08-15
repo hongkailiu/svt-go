@@ -28,3 +28,11 @@ release: package
 .PHONY : godep_save
 godep_save:
 	godep save ./...
+
+.PHONY : build_extended_test
+build_extended_test:
+	ginkgo build extended/
+
+.PHONY : run_extended_test
+run_extended_test: build_extended_test
+	ginkgo -v -p extended/extended.test

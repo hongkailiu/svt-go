@@ -9,24 +9,25 @@ import (
 	. "github.com/onsi/gomega"
 	"fmt"
 	"encoding/json"
+	"github.com/onsi/ginkgo/config"
 )
 
 var (
-	unitUnderTest  myHttp.Server
+	server myHttp.Server
 	port int
 )
 
 
 var _ = BeforeSuite(func() {
-	port = rand.Intn(100) + 10000
+	port = rand.Intn(100) + 10000 + config.GinkgoConfig.ParallelNode
 	By(fmt.Sprintf("Starting http server with port %d ...", port))
-	unitUnderTest = myHttp.Server{Port:port}
-	go unitUnderTest.Run()
+	server := myHttp.Server{Port:port}
+	go server.Run()
 })
 
 var _ = AfterSuite(func() {
 	By("Stopping http server ...")
-	unitUnderTest.Stop()
+	server.Stop()
 })
 
 var _ = Describe("Http", func() {

@@ -37,5 +37,5 @@ EOF
 cd "${CURRENT_DIR}" || exit 1
 
 echo "run extended tests"
-ginkgo -v extended/
+"${GOPATH}/bin/ginkgo" -v extended/
 

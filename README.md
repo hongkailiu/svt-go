@@ -5,7 +5,7 @@
 
 ## Prerequisites
 
-* [Go-lang](https://golang.org/)
+* [Go-lang](https://golang.org/): <code>${GOROOT}/bin</code> is [configure](https://golang.org/doc/install#install) as a part of <code>${PATH}</code>. 
 
     ```sh
     $ go version
@@ -17,6 +17,13 @@
     ```sh
     $ go get github.com/tools/godep
     ```
+
+* [ginkgo](https://onsi.github.io/ginkgo/): Needed only for test.
+
+    ```sh
+    $ go get github.com/onsi/ginkgo/ginkgo
+    ```
+
 
 ## Get Code
 

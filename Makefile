@@ -8,6 +8,8 @@ build:
 .PHONY : clean
 clean:
 	rm -rf ./build/*
+	rm -f ./extended/junit_*.xml
+	rm -f ./extended/extended.test
 
 .PHONY : test
 test:

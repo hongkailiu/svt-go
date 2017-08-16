@@ -20,3 +20,4 @@ svt-go
 
 build/
 conf/version
+extended/junit_*.xml

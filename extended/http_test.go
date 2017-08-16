@@ -30,7 +30,7 @@ var _ = AfterSuite(func() {
 	server.Stop()
 })
 
-var _ = Describe("Http", func() {
+var _ = Describe("[Http] Http", func() {
 
 	var (
 		resp *resty.Response

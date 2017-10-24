@@ -60,6 +60,8 @@ See [doc](doc/cluster_loader.md) for more information.
 $ AWS_ACCESS_KEY_ID=aaa AWS_SECRET_ACCESS_KEY=bbb ./build/svt invGen
 ```
 
+The output is _/tmp/2.file_.
+
 ### Web app
 A web application implemented with GoLang:
 

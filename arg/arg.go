@@ -15,7 +15,6 @@ import (
 var (
 	httpCommand = kingpin.Command("http", "Start http server.")
 	clusterLoaderCommand = kingpin.Command("clusterLoader", "Run cluster loader.")
-	versionCommand = kingpin.Command("version", "Show version info.")
 	clFile = clusterLoaderCommand.Flag("file", "Config file.").Default("conf/pyconfig.yaml").Short('f').String()
 	poolSizeP = clusterLoaderCommand.Flag("pool", "Go routine pool size.").Default("10").Short('p').Int()
 

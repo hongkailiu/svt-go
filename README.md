@@ -54,6 +54,12 @@ For example, we can run node-virtical test by:
 See [doc](doc/cluster_loader.md) for more information.
 
 
+### Inventory File Generator
+
+```sh
+$ AWS_ACCESS_KEY_ID=aaa AWS_SECRET_ACCESS_KEY=bbb ./build/svt invGen
+```
+
 ### Web app
 A web application implemented with GoLang:
 

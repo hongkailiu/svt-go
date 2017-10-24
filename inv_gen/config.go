@@ -1,6 +1,9 @@
 package inv_gen
 
-import "github.com/hongkailiu/svt-go/log"
+import (
+	"net"
+	"github.com/hongkailiu/svt-go/log"
+)
 
 type Hosts struct {
 	master_nodes   map[string]struct{}
@@ -16,6 +19,8 @@ func (hosts Hosts) addNodes(role string, nodes []string) {
 	switch role {
 	case master_key:
 		addAllNodes(&(hosts.master_nodes), nodes)
+	case infra_key:
+		addAllNodes(&(hosts.infra_nodes), nodes)
 	case etcd_key:
 		addAllNodes(&(hosts.etcd_nodes), nodes)
 	case compute_key:
@@ -45,13 +50,19 @@ func addNode(mP *map[string]struct{}, node string) {
 	}
 }
 
-func (hosts Hosts) genInv(varString string, path string) {
-	log.Debug("===master")
-	for k, v := range hosts.master_nodes {
-		log.Debug("k:", k, "v:", v)
+func (hosts Hosts) getSubDomain() string {
+	result :=""
+	for k := range hosts.infra_nodes {
+		log.Info("ttt:", k)
+		ips, err := net.LookupIP(k)
+		if err != nil {
+
+		} else {
+			if len(ips)>0 {
+				//return string(ips[0])
+				return ips[0].String() + ".xip.io"
+			}
+		}
 	}
-	log.Debug("===etcd")
-	for k, v := range hosts.etcd_nodes {
-		log.Debug("k:", k, "v:", v)
-	}
+	return result
 }

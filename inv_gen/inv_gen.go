@@ -94,6 +94,10 @@ func (ig myInventoryGenerator) Run(args Args) error {
 			log.Info("333")
 			hostM.addNodes(compute_key, getNodes(v))
 		}
+		if strings.Contains(kString, glusterfs_key) {
+			log.Info("333")
+			hostM.addNodes(glusterfs_key, getNodes(v))
+		}
 	}
 
 	return hostM.genInv(args.ConfigFile, "/tmp/2.file")

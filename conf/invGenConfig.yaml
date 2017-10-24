@@ -1,0 +1,87 @@
+#lb_master_infra_node_etcd_glusterfs:
+#  hosts:
+#    - localhost
+
+master_etcd:
+  - localhost0
+
+infra:
+  - localhost1
+
+compute:
+  - localhost2
+  - localhost3
+
+###Do not modify this line:  begin###
+vars:
+  #
+  ansible_ssh_user: root
+  openshift_cloudprovider_kind: aws
+  openshift_cloudprovider_aws_access_key: secret
+  openshift_cloudprovider_aws_secret_key: secret
+  openshift_master_default_subdomain_enable: true
+  openshift_master_default_subdomain: "${auto-gen}"
+  #
+  openshift_auth_type: allowall
+  openshift_master_identity_providers: [{'name': 'allow_all', 'login': 'true', 'challenge': 'true', 'kind': 'AllowAllPasswordIdentityProvider'}]
+  deployment_type: openshift-enterprise
+  openshift_cockpit_deployer_prefix: registry.ops.openshift.com/openshift3/
+  osm_cockpit_plugins: ['cockpit-kubernetes']
+  osm_use_cockpit: false
+  oreg_url: registry.ops.openshift.com/openshift3/ose-${component}:${version}
+  openshift_docker_additional_registries: registry.ops.openshift.com
+  openshift_docker_insecure_registries: registry.ops.openshift.com
+  openshift_docker_options: "--log-opt max-size=10M --log-opt max-file=3 --signature-verification=false"
+  use_cluster_metrics: true
+  openshift_master_cluster_method: native
+  openshift_master_dynamic_provisioning_enabled: true
+  osm_default_node_selector: region=primary
+  openshift_disable_check: disk_availability,memory_availability
+  openshift_master_portal_net: 172.24.0.0/14
+  openshift_portal_net: 172.24.0.0/14
+  osm_cluster_network_cidr: 172.20.0.0/14
+  osm_host_subnet_length: 9
+  openshift_node_kubelet_args: {"pods-per-core": ["0"], "max-pods": ["510"],"minimum-container-ttl-duration": ["10s"], "maximum-dead-containers-per-container": ["1"], "maximum-dead-containers": ["20"], "image-gc-high-threshold": ["80"], "image-gc-low-threshold": ["70"]}
+  openshift_registry_selector: "region=infra,zone=default"
+  openshift_hosted_router_selector: "region=infra,zone=default"
+  openshift_hosted_router_registryurl: registry.ops.openshift.com/openshift3/ose-${component}:${version}
+  debug_level: 2
+  openshift_set_hostname: true
+  openshift_override_hostname_check: true
+  os_sdn_network_plugin_name: redhat/openshift-ovs-networkpolicy
+  #
+  openshift_hosted_router_replicas: 1
+  openshift_hosted_registry_storage_kind: object
+  openshift_hosted_registry_storage_provider: s3
+  openshift_hosted_registry_storage_s3_accesskey: secret
+  openshift_hosted_registry_storage_s3_secretkey: secret
+  openshift_hosted_registry_storage_s3_bucket: aoe-svt-test
+  openshift_hosted_registry_storage_s3_region: us-west-2
+  openshift_hosted_registry_replicas: 1
+  #
+  openshift_metrics_install_metrics: false
+  openshift_metrics_image_prefix: registry.ops.openshift.com/openshift3/
+  openshift_metrics_image_version: v3.7.0
+  openshift_metrics_cassandra_storage_type: dynamic
+  openshift_metrics_cassandra_pvc_size: 25Gi
+  #
+  openshift_logging_install_logging: false
+  openshift_logging_image_prefix: registry.ops.openshift.com/openshift3/
+  openshift_logging_image_version: v3.7.0
+  openshift_logging_storage_kind: dynamic
+  openshift_logging_es_pvc_size: 50Gi
+  openshift_logging_es_pvc_dynamic: true
+  #
+  openshift_use_system_containers: true
+  system_images_registry: registry.ops.openshift.com
+  #
+  openshift_image_tag: v3.7.0-0.153.0
+  #
+  glusterfs_devices: ["/dev/xvdf"]
+  openshift_storage_glusterfs_wipe: true
+  openshift_storage_glusterfs_image: registry.access.redhat.com/rhgs3/rhgs-server-rhel7
+  openshift_storage_glusterfs_version: latest
+  openshift_storage_glusterfs_heketi_image: registry.access.redhat.com/rhgs3/rhgs-volmanager-rhel7
+  openshift_storage_glusterfs_heketi_version: latest
+  openshift_hosted_registry_glusterfs_swap: true
+###Do not modify this line:  end###

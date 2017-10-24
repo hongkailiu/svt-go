@@ -9,6 +9,7 @@ import (
 	"strings"
 	"fmt"
 	"github.com/hongkailiu/svt-go/version"
+	"github.com/hongkailiu/svt-go/inv_gen"
 )
 
 var (
@@ -17,6 +18,9 @@ var (
 	versionCommand = kingpin.Command("version", "Show version info.")
 	clFile = clusterLoaderCommand.Flag("file", "Config file.").Default("conf/pyconfig.yaml").Short('f').String()
 	poolSizeP = clusterLoaderCommand.Flag("pool", "Go routine pool size.").Default("10").Short('p').Int()
+
+	invGenCommand = kingpin.Command("invGen", "Generate inventory file for openshift-ansible.")
+	igFile = invGenCommand.Flag("file", "Config file.").Default("conf/invGenConfig.yaml").Short('f').String()
 )
 
 func init() {
@@ -36,15 +40,10 @@ func ParseAndRun() {
 		configFileString := *clFile
 		poolSize := *poolSizeP
 
-		if !strings.HasPrefix(configFileString, string(os.PathSeparator)) &&
-			!strings.HasPrefix(configFileString, "~") {
-			dir, err := os.Getwd()
-			if err != nil {
-				log.Fatal(err)
-			}
-			configFileString = dir + string(os.PathSeparator) + *clFile
+		configFileString, err := handleRelativePath(configFileString)
+		if err != nil {
+			log.Fatal(err)
 		}
-
 
 		log.Debug("ConfigFileString: " + configFileString)
 		log.Debug(fmt.Sprintf("Processes: %d", poolSize))
@@ -52,13 +51,43 @@ func ParseAndRun() {
 		args := cluster_loader.Args{PoolSize:uint(poolSize), ConfigFile:configFileString}
 
 		log.Debug(args)
-		err := cluster_loader.GetClusterLoader().Run(args)
+		err = cluster_loader.GetClusterLoader().Run(args)
 
 		if err != nil {
 			log.Fatal(err)
 		}
 
+	case "invGen":
+		log.Debug("ccc")
+		log.Debug("igFile: " + *igFile)
+		configFileString := *igFile
 
+		configFileString, err := handleRelativePath(configFileString)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		args := inv_gen.Args{ConfigFile:configFileString}
+
+		log.Debug(args)
+		err = inv_gen.GetInventoryGenerator().Run(args)
+
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 
+}
+
+
+func handleRelativePath(configFileString string) (string, error) {
+	if !strings.HasPrefix(configFileString, string(os.PathSeparator)) &&
+		!strings.HasPrefix(configFileString, "~") {
+		dir, err := os.Getwd()
+		if err != nil {
+			return "", err
+		}
+		return dir + string(os.PathSeparator) + configFileString, nil
+	}
+	return configFileString, nil
 }

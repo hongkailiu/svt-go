@@ -235,6 +235,12 @@ func (hosts Hosts) genInv(configFile string, invFile string) error {
 		line := k + " " + openshift_public_hostname + "=" + k + " " + "openshift_node_labels=\"{'region': 'primary', 'zone': 'default'}\""
 		buffer.WriteString(line + new_line)
 	}
+
+	for k, v := range hosts.glusterfs_nodes {
+		log.Debug("k:", k, "v:", v)
+		line := k + " " + openshift_public_hostname + "=" + k + " " + "openshift_node_labels=\"{'region': 'primary', 'zone': 'default'}\""
+		buffer.WriteString(line + new_line)
+	}
 	log.Debug("===glusterfs")
 	buffer.WriteString(new_line)
 	buffer.WriteString("[glusterfs]" + new_line)

@@ -3,14 +3,19 @@
 #    - localhost
 
 master_etcd:
-  - localhost0
+  - ec2-54-149-54-239.us-west-2.compute.amazonaws.com
 
 infra:
-  - ec2-54-187-180-160.us-west-2.compute.amazonaws.com
+  - ec2-34-209-54-124.us-west-2.compute.amazonaws.com
 
 compute:
-  - localhost2
-  - localhost3
+  - ec2-54-202-45-241.us-west-2.compute.amazonaws.com
+  - ec2-54-186-81-191.us-west-2.compute.amazonaws.com
+
+glusterfs:
+  - ec2-54-149-128-130.us-west-2.compute.amazonaws.com
+  - ec2-54-213-118-178.us-west-2.compute.amazonaws.com
+  - ec2-34-209-150-209.us-west-2.compute.amazonaws.com
 
 ###Do not modify this line:  begin###
 vars:
@@ -22,6 +27,7 @@ vars:
   openshift_cloudprovider_aws_secret_key: "${auto-gen}"
   openshift_master_default_subdomain_enable: true
   openshift_master_default_subdomain: "${auto-gen}"
+  openshift_clusterid: qe-hongkliu-aws-test
   #
   openshift_auth_type: allowall
   openshift_master_identity_providers: [{'name': 'allow_all', 'login': 'true', 'challenge': 'true', 'kind': 'AllowAllPasswordIdentityProvider'}]
@@ -76,13 +82,13 @@ vars:
   openshift_use_system_containers: true
   system_images_registry: registry.ops.openshift.com
   #
-  openshift_image_tag: v3.7.0-0.153.0
+  openshift_image_tag: v3.7.0-0.143.7
   #
   glusterfs_devices: ["/dev/xvdf"]
   openshift_storage_glusterfs_wipe: true
-  openshift_storage_glusterfs_image: registry.access.redhat.com/rhgs3/rhgs-server-rhel7
-  openshift_storage_glusterfs_version: latest
-  openshift_storage_glusterfs_heketi_image: registry.access.redhat.com/rhgs3/rhgs-volmanager-rhel7
-  openshift_storage_glusterfs_heketi_version: latest
+  openshift_storage_glusterfs_image: docker.io/hongkailiu/test1
+  openshift_storage_glusterfs_version: 3.3.0-12
+  openshift_storage_glusterfs_heketi_image: docker.io/hongkailiu/test2
+  openshift_storage_glusterfs_heketi_version: 3.3.0-9
   openshift_hosted_registry_glusterfs_swap: true
 ###Do not modify this line:  end###
